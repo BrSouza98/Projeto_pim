@@ -1,0 +1,103 @@
+﻿@model List<Projeto_pimWEB.Models.Classes.Funcionario>
+
+@{
+	ViewData["Title"] = "Registro de funcionarios";
+
+}
+
+
+<h1 class="display-4 text-center"> Funcionários</h1>
+<br />
+
+
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th scope="col">#</th>
+			<th scope="col">Nome</th>
+			<th scope="col">E-mail</th>
+			<th scope="col">Telefone</th>
+			<th scope="col">Departamento</th>
+			<th scope="col">Cargo</th>
+			<th scope="col"></th>
+		</tr>
+	</thead>
+	<tbody>
+		@if (Model != null && Model.Any())
+		{
+			foreach (var func in Model)
+			{
+				<tr>
+					<th scope="row">@func.id_cod_func</th>
+					<td>@func.Nome</td>
+					<td>@func.Email</td>
+					<td>@func.Telefone</td>
+					<td>@func.Departamento</td>
+					<td>@func.Cargo</td>
+					<td class="d-flex justify-content-between">
+
+
+						<div class="btn-group">
+							<button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+								<i class="bi bi-gear-fill"></i>
+							</button>
+							<ul class="dropdown-menu">
+								<li>
+									<a asp-controller="Funcionario" asp-route-id="@func.id_cod_func" asp-action="Registro_depen" class="dropdown-item">Consultar Dependentes</a>
+								</li>
+								<li>
+									<a asp-controller="Funcionario" asp-route-id="@func.id_cod_func" asp-action="Detalhes" class="dropdown-item">Mais informações</a>
+								</li>
+								<li>
+									<a asp-controller="Funcionario" asp-route-id="@func.id_cod_func" asp-action="Editar" class="dropdown-item">Editar</a>
+								</li>
+								<li>
+									<hr class="dropdown-divider">
+								</li>
+								<li>
+									<!-- Button trigger modal -->
+									<button type="button" class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#Modal-Funcionario-@func.id_cod_func">
+										Apagar
+									</button>					
+								</li>
+							</ul>
+						</div>
+					</td>
+				</tr>
+			}
+		}
+	</tbody>
+</table>
+
+@if(Model != null)
+{
+	foreach (var func in Model)
+	{
+		<!-- Modal -->
+		<div class="modal fade" id="Modal-Funcionario-@func.id_cod_func" tabindex="-1" aria-labelledby="modalConfirmarApagar" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1 class="modal-title fs-5" id="modalConfirmarApagarLabel">Apagar Funcionario</h1>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<p>
+							Deseja apagar o funcionário <b>@func.Nome</b> permanentemente?
+						</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger">Apagar Funcionário</button>
+						<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	}
+}
+
+
+
+
+

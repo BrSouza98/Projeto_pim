@@ -1,0 +1,49 @@
+﻿@model List<Projeto_pimWEB.Models.Classes.Dependente>
+
+@{
+    ViewData["Title"] = "Registro Dependentes";
+    
+}
+
+<h1> Registro de dependentes</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Parentesco</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if(Model != null && Model.Any())
+        {
+            foreach (var d in Model)
+        {
+                <tr>
+                    <th scope="row">@d.id_cod_dep</th>
+                    <td>@d.Nome</td>
+                    <td>@d.Parentesco</td>
+                    <td>
+                        <div class="btn-group" role="group">
+                            <a role="button" asp-controller="" asp-route-id="@d.id_cod_dep" asp-action="" class="btn btn-primary">Editar</a>
+                            <a role="button" asp-controller="" asp-route-id="@d.id_cod_dep" asp-action="" class="btn btn-danger">Apagar</a>
+                        </div>
+                    </td>
+                </tr>
+                
+            
+            }
+            
+        }
+    </tbody>
+    <a asp-controller="Funcionario" asp-route-id="@Model[0].funcionarioid_cod_func" asp-action="Create_depen" class="btn btn-primary" role="button">Adicionar dependente</a>
+    <a asp-controller="Funcionario" asp-action="Registro" class="btn btn-secundary" role="button">Voltar</a>
+
+</table>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
