@@ -1,16 +1,19 @@
 ﻿@model Projeto_pimWEB.Models.Classes.Funcionario
 
 @{
-    ViewData["Title"] = "Adicionando Funcionario";
+    ViewData["Title"] = "Editar Funcionario";
 }
 
-<h1>Adicionar Funcionario</h1>
+<h1>Editar Funcionario: @Model.Nome</h1>
 
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-controller="Funcionario" asp-action="Create" method="post">
+        <form asp-controller="Funcionario" asp-action="Alterar" method="post">
+
+            
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="id_cod_func" />
             <h1 class="text-center"> Dados Pessoais</h1>
             <div class="form-group">
                 <label asp-for="Nome" class="control-label"></label>
@@ -19,15 +22,19 @@
             </div>
             <div class="form-group">
                 <label asp-for="Telefone" class="control-label"></label>
-                <input asp-for="Telefone" onkeypress="handlePhone(event)" class="form-control" maxlength="15" />
+                <input asp-for="Telefone" class="form-control" onkeyup="handlePhone(event)" maxlength="15" />
                 <span asp-validation-for="Telefone" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="TelefoneR" class="control-label">Telefone para recado</label>
-                <input asp-for="TelefoneR" onkeypress="handlePhone(event)" class="form-control" maxlength="15" />
+                <input asp-for="TelefoneR" class="form-control" onkeyup="handlePhone(event)" maxlength="15" />
                 <span asp-validation-for="TelefoneR" class="text-danger"></span>
             </div>
-            
+            <div class="form-group">
+                <label asp-for="Genero" class="control-label"></label>
+                <input asp-for="Genero" class="form-control" />
+                <span asp-validation-for="Genero" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="DtNascimento" class="control-label">Data de nascimento</label>
                 <input asp-for="DtNascimento" type="date" class="form-control" />
@@ -40,8 +47,8 @@
             </div>
             <div class="form-group">
                 <label asp-for="RG" class="control-label"></label>
-                <input asp-for="RG" class="form-control" onkeyup="handleRg(event)" maxlength="12" />
-                <span asp-validation-for="RG" class="text-danger"></span>
+                <input asp-for="RG" class="form-control" />
+                <span asp-validation-for="RG" class="text-danger" onkeyup="handleRg(event)" maxlength="12"></span>
             </div>
             <div class="form-group">
                 <label asp-for="EstadoCivil" class="control-label">Estado Civil</label>
@@ -68,26 +75,6 @@
                 <input asp-for="Password" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
-
-            <div class="form-group row">
-                <label asp-for="Genero" class="control-label"></label>
-                <div class="col">
-                    <label>Masculino</label>
-                    <input asp-for="Genero" type="radio" value="Masculino" class="form-check-input" />
-                </div>
-
-                <div class="col">
-                    <label>Feminino</label>
-                    <input asp-for="Genero" type="radio" value="Feminino" class="form-check-input" />
-                </div>
-
-                <div class="col">
-                    <label>Outro</label>
-                    <input asp-for="Genero" type="radio" value="Outro" class="form-check-input" />
-                </div>
-                <span asp-validation-for="Genero" class="text-danger"></span>
-            </div>
-
             <h1 class="text-center"> Endereço</h1>
             <div class="form-group">
                 <label asp-for="Rua" class="control-label"></label>
@@ -151,7 +138,7 @@
                 <input asp-for="CargaHoraria" class="form-control" />
                 <span asp-validation-for="CargaHoraria" class="text-danger"></span>
             </div>
-            
+
             <div class="form-group">
                 <label asp-for="PIS" class="control-label"></label>
                 <input asp-for="PIS" class="form-control" />
@@ -163,29 +150,28 @@
                 <span asp-validation-for="CTPS" class="text-danger"></span>
             </div>
             <br />
-            <div class="form-group form-check">
+            <div class="form-group form-check form-switch">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Ativo" /> @Html.DisplayNameFor(model => model.Ativo)
+                    <input class="form-check-input" role="switch" asp-for="Ativo" /> @Html.DisplayNameFor(model => model.Ativo)
                 </label>
             </div>
             <br />
-            <div class="form-group form-check">
+            <div class="form-group form-check form-switch">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="TemAcesso" /> @Html.DisplayNameFor(model => model.TemAcesso)
+                    <input class="form-check-input" role="switch" asp-for="TemAcesso" /> Acesso ao sistema
                 </label>
             </div>
 
 
 
-            <button type="submit" class="btn btn-primary">Adicionar</button>
-            <a class="btn btn-secondary" asp-controller="Funcionario" asp-action="Registro" role="button" >Voltar</a>
+            <button type="submit"  class="btn btn-primary">Alterar</button>
+            <a class="btn btn-secondary"  asp-action="Registro" role="button">Voltar</a>
         </form>
     </div>
 </div>
 
-
-
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
