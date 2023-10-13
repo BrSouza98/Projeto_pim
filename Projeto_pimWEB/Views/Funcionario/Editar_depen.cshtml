@@ -1,0 +1,35 @@
+﻿@model Projeto_pimWEB.Models.Classes.Dependente
+
+@{
+    ViewData["Title"] = "Editar Dependentes";
+}
+
+<h1>Editando dependente: @Model.Nome</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="Funcionario" asp-route-id="@Model.funcionarioid_cod_func" asp-action="Alterar_depen" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="id_cod_dep" />
+            <div class="form-group">
+                <label asp-for="Nome" class="control-label"></label>
+                <input asp-for="Nome" class="form-control" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DtNascimento" class="control-label"></label>
+                <input asp-for="DtNascimento" class="form-control" />
+                <span asp-validation-for="DtNascimento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Parentesco" class="control-label"></label>
+                <input asp-for="Parentesco" class="form-control" />
+                <span asp-validation-for="Parentesco" class="text-danger"></span>
+            </div>
+
+
+            <button type="submit" class="btn btn-primary">Alterar</button>
+            <a class="btn btn-secondary" asp-controller="Funcionario" asp-route-id="@Model.funcionarioid_cod_func" asp-action="Registro_depen" role="button">Voltar</a>
+        </form>
+    </div>
+</div>

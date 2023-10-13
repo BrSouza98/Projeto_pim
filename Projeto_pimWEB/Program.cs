@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 builder.Services.AddDbContext<myDbContext>(op => op.UseSqlite(builder.Configuration.GetConnectionString("DataBase")));
-builder.Services.AddScoped<I_FuncionarioMetodos, FuncionarioMetodos>();
+builder.Services.AddScoped<IFuncionarioRepository, FuncionarioMetodos>();
 
 
 var app = builder.Build();
