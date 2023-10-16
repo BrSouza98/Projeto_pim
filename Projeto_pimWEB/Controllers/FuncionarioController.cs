@@ -24,16 +24,16 @@ namespace Projeto_pimWEB.Controllers
         {
 
             Funcionario funcionario = _metodos.GetFuncionario(id);
-            funcionario.dependentes = _metodos.GetAllDependentes(id);
+            funcionario.dependentes = _metodos.GetAllDependentesFK(id);
 
-            return View(funcionario.dependentes);
+            return View(funcionario);
 
         }
 
         public IActionResult Detalhes(int id)
         {
             Funcionario funcionario = _metodos.GetFuncionario(id);
-            List<Dependente> dependentes = _metodos.GetAllDependentes(id);
+            List<Dependente> dependentes = _metodos.GetAllDependentesFK(id);
 
             ViewBag.dependentes = dependentes;
             return View(funcionario);
@@ -64,13 +64,12 @@ namespace Projeto_pimWEB.Controllers
         {
             dependente.funcionario = _metodos.GetFuncionario(id);
             _metodos.CreateDep(dependente);
-            return RedirectToAction("Registro_depen");
+            return RedirectToAction("Registro_depen", new { action ="Registro_depen", id });
         }
 
         public IActionResult Editar(int id)
         {
             var funcionario = _metodos.GetFuncionario(id);
-
             return View(funcionario);
         }
 
@@ -83,8 +82,8 @@ namespace Projeto_pimWEB.Controllers
 
         public IActionResult Editar_depen(int id)
         {
-                
-            return View(_metodos.GetDependente(id));
+            var dependente = _metodos.GetDependente(id);
+            return View(dependente);
         }
 
         [HttpPost]

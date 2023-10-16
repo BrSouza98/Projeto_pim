@@ -5,267 +5,270 @@
 	var dependentes = Model.dependentes;
 
 }
+@if (Model.Ativo == true)
+{
+	<h2 class="m-5">Detalhes do funcionário @Html.DisplayFor(model => model.Nome)</h2>
 
-<h2 class="m-5">Detalhes do funcionário @Html.DisplayFor(model => model.Nome)</h2>
+	<div class="accordion" id="accordionExample">
+		<div class="accordion-item">
+			<h2 class="accordion-header">
+				<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+					Dados Pessoais
+				</button>
+			</h2>
+			<div id="collapseOne" class="accordion-collapse collapse show m-2" data-bs-parent="#accordionExample">
+				<dl class="accordion-body row">
+					<dt class="col-sm-2">
+						@Html.DisplayNameFor(model => model.Nome)
+					</dt>
+					<dd class="col-sm-10">
+						@Html.DisplayFor(model => model.Nome)
+					</dd>
 
-<div class="accordion" id="accordionExample">
-	<div class="accordion-item">
-		<h2 class="accordion-header">
-			<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-				Dados Pessoais
-			</button>
-		</h2>
-		<div id="collapseOne" class="accordion-collapse collapse show m-2" data-bs-parent="#accordionExample">
-			<dl class="accordion-body row">
-				<dt class="col-sm-2">
-					@Html.DisplayNameFor(model => model.Nome)
-				</dt>
-				<dd class="col-sm-10">
-					@Html.DisplayFor(model => model.Nome)
-				</dd>
+					<dt class="col-sm-2">
+						Nascimento
+					</dt>
+					<dd class="col-sm-10">
+						@Html.DisplayFor(model => model.DtNascimento)
+					</dd>
 
-				<dt class="col-sm-2">
-					Nascimento
-				</dt>
-				<dd class="col-sm-10">
-					@Html.DisplayFor(model => model.DtNascimento)
-				</dd>
+					<dt class="col-sm-2">
+						@Html.DisplayNameFor(model => model.CPF)
+					</dt>
+					<dd class="col-sm-10">
+						@Html.DisplayFor(model => model.CPF)
+					</dd>
 
-				<dt class="col-sm-2">
-					@Html.DisplayNameFor(model => model.CPF)
-				</dt>
-				<dd class="col-sm-10">
-					@Html.DisplayFor(model => model.CPF)
-				</dd>
+					<dt class="col-sm-2">
+						@Html.DisplayNameFor(model => model.RG)
+					</dt>
+					<dd class="col-sm-10">
+						@Html.DisplayFor(model => model.RG)
+					</dd>
 
-				<dt class="col-sm-2">
-					@Html.DisplayNameFor(model => model.RG)
-				</dt>
-				<dd class="col-sm-10">
-					@Html.DisplayFor(model => model.RG)
-				</dd>
+					<dt class="col-sm-2">
+						Estado Civil
+					</dt>
+					<dd class="col-sm-10">
+						@Html.DisplayFor(model => model.EstadoCivil)
+					</dd>
 
-				<dt class="col-sm-2">
-					Estado Civil
-				</dt>
-				<dd class="col-sm-10">
-					@Html.DisplayFor(model => model.EstadoCivil)
-				</dd>
+					<dt class="col-sm-2">
+						@Html.DisplayNameFor(model => model.Telefone)
+					</dt>
+					<dd class="col-sm-10">
+						@Html.DisplayFor(model => model.Telefone)
+					</dd>
 
-				<dt class="col-sm-2">
-					@Html.DisplayNameFor(model => model.Telefone)
-				</dt>
-				<dd class="col-sm-10">
-					@Html.DisplayFor(model => model.Telefone)
-				</dd>
+					<dt class="col-sm-2">
+						Telefone Recado
+					</dt>
+					<dd class="col-sm-10">
+						@Html.DisplayFor(model => model.TelefoneR)
+					</dd>
 
-				<dt class="col-sm-2">
-					Telefone Recado
-				</dt>
-				<dd class="col-sm-10">
-					@Html.DisplayFor(model => model.TelefoneR)
-				</dd>
+					<dt class="col-sm-2">
+						@Html.DisplayNameFor(model => model.Email)
+					</dt>
+					<dd class="col-sm-10">
+						@Html.DisplayFor(model => model.Email)
+					</dd>
 
-				<dt class="col-sm-2">
-					@Html.DisplayNameFor(model => model.Email)
-				</dt>
-				<dd class="col-sm-10">
-					@Html.DisplayFor(model => model.Email)
-				</dd>
+					<dt class="col-sm-2">
+						@Html.DisplayNameFor(model => model.Genero)
+					</dt>
+					<dd class="col-sm-10">
+						@Html.DisplayFor(model => model.Genero)
+					</dd>
 
-				<dt class="col-sm-2">
-					@Html.DisplayNameFor(model => model.Genero)
-				</dt>
-				<dd class="col-sm-10">
-					@Html.DisplayFor(model => model.Genero)
-				</dd>
+					<dt class="col-sm-2">
+						Endereço
+					</dt>
+					<dd class="col-sm-10">
+						Rua @Html.DisplayFor(model => model.Rua) nº @Html.DisplayFor(model => model.Numero), @Html.DisplayFor(model => model.Bairro)
+					</dd>
+					<dt class="col-sm-2">
+						@Html.DisplayNameFor(model => model.Complemento)
+					</dt>
+					<dd class="col-sm-10">
+						@Html.DisplayFor(model => model.Complemento)
+					</dd>
 
-				<dt class="col-sm-2">
-					Endereço
-				</dt>
-				<dd class="col-sm-10">
-					Rua @Html.DisplayFor(model => model.Rua) nº @Html.DisplayFor(model => model.Numero), @Html.DisplayFor(model => model.Bairro)
-				</dd>
-				<dt class="col-sm-2">
-					@Html.DisplayNameFor(model => model.Complemento)
-				</dt>
-				<dd class="col-sm-10">
-					@Html.DisplayFor(model => model.Complemento)
-				</dd>
+					<dt class="col-sm-2">
+						Cidade:
+					</dt>
+					<dd class="col-sm-10">
+						@Html.DisplayFor(model => model.Cidade) - @Html.DisplayFor(model => model.Estado)
+					</dd>
 
-				<dt class="col-sm-2">
-					Cidade:
-				</dt>
-				<dd class="col-sm-10">
-					@Html.DisplayFor(model => model.Cidade) - @Html.DisplayFor(model => model.Estado)
-				</dd>
-
-				<dt class="col-sm-2">
-					@Html.DisplayNameFor(model => model.Pais)
-				</dt>
-				<dd class="col-sm-10">
-					@Html.DisplayFor(model => model.Pais)
-				</dd>
+					<dt class="col-sm-2">
+						@Html.DisplayNameFor(model => model.Pais)
+					</dt>
+					<dd class="col-sm-10">
+						@Html.DisplayFor(model => model.Pais)
+					</dd>
 
 
-				<dt class="col-sm-2">
-					CEP
-				</dt>
-				<dd class="col-sm-10">
-					@Html.DisplayFor(model => model.CEP)
-				</dd>
-			</dl>
+					<dt class="col-sm-2">
+						CEP
+					</dt>
+					<dd class="col-sm-10">
+						@Html.DisplayFor(model => model.CEP)
+					</dd>
+				</dl>
+			</div>
 		</div>
-	</div>
-	<div class="accordion-item">
-		<h2 class="accordion-header">
-			<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-				Dados Trabalhistas
-			</button>
-		</h2>
-		<div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-			<dl class="row accordion-body">
-				<dt class="col-sm-2">
-					@Html.DisplayNameFor(model => model.Departamento)
-				</dt>
-				<dd class="col-sm-10">
-					@Html.DisplayFor(model => model.Departamento)
-				</dd>
-				<dt class="col-sm-2">
-					@Html.DisplayNameFor(model => model.Cargo)
-				</dt>
-				<dd class="col-sm-10">
-					@Html.DisplayFor(model => model.Cargo)
-				</dd>
-				<dt class="col-sm-2">
-					@Html.DisplayNameFor(model => model.SalarioBruto)
-				</dt>
-				<dd class="col-sm-10">
-					@Html.DisplayFor(model => model.SalarioBruto)
-				</dd>
-				<dt class="col-sm-2">
-					@Html.DisplayNameFor(model => model.CargaHoraria)
-				</dt>
-				<dd class="col-sm-10">
-					@Html.DisplayFor(model => model.CargaHoraria)
-				</dd>
-				<dt class="col-sm-2">
-					@Html.DisplayNameFor(model => model.Ativo)
-				</dt>
-				<dd class="col-sm-10">
-					@Html.DisplayFor(model => model.Ativo)
-				</dd>
-				<dt class="col-sm-2">
-					@Html.DisplayNameFor(model => model.TemAcesso)
-				</dt>
-				<dd class="col-sm-10">
-					@Html.DisplayFor(model => model.TemAcesso)
-				</dd>
-				<dt class="col-sm-2">
-					@Html.DisplayNameFor(model => model.Formacao)
-				</dt>
-				<dd class="col-sm-10">
-					@Html.DisplayFor(model => model.Formacao)
-				</dd>
-				<dt class="col-sm-2">
-					@Html.DisplayNameFor(model => model.PIS)
-				</dt>
-				<dd class="col-sm-10">
-					@Html.DisplayFor(model => model.PIS)
-				</dd>
-				<dt class="col-sm-2">
-					@Html.DisplayNameFor(model => model.CTPS)
-				</dt>
-				<dd class="col-sm-10">
-					@Html.DisplayFor(model => model.CTPS)
-				</dd>
+		<div class="accordion-item">
+			<h2 class="accordion-header">
+				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+					Dados Trabalhistas
+				</button>
+			</h2>
+			<div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+				<dl class="row accordion-body">
+					<dt class="col-sm-2">
+						@Html.DisplayNameFor(model => model.Departamento)
+					</dt>
+					<dd class="col-sm-10">
+						@Html.DisplayFor(model => model.Departamento)
+					</dd>
+					<dt class="col-sm-2">
+						@Html.DisplayNameFor(model => model.Cargo)
+					</dt>
+					<dd class="col-sm-10">
+						@Html.DisplayFor(model => model.Cargo)
+					</dd>
+					<dt class="col-sm-2">
+						@Html.DisplayNameFor(model => model.SalarioBruto)
+					</dt>
+					<dd class="col-sm-10">
+						@Html.DisplayFor(model => model.SalarioBruto)
+					</dd>
+					<dt class="col-sm-2">
+						@Html.DisplayNameFor(model => model.CargaHoraria)
+					</dt>
+					<dd class="col-sm-10">
+						@Html.DisplayFor(model => model.CargaHoraria)
+					</dd>
+					<dt class="col-sm-2">
+						@Html.DisplayNameFor(model => model.Ativo)
+					</dt>
+					<dd class="col-sm-10">
+						@Html.DisplayFor(model => model.Ativo)
+					</dd>
+					<dt class="col-sm-2">
+						@Html.DisplayNameFor(model => model.TemAcesso)
+					</dt>
+					<dd class="col-sm-10">
+						@Html.DisplayFor(model => model.TemAcesso)
+					</dd>
+					<dt class="col-sm-2">
+						@Html.DisplayNameFor(model => model.Formacao)
+					</dt>
+					<dd class="col-sm-10">
+						@Html.DisplayFor(model => model.Formacao)
+					</dd>
+					<dt class="col-sm-2">
+						@Html.DisplayNameFor(model => model.PIS)
+					</dt>
+					<dd class="col-sm-10">
+						@Html.DisplayFor(model => model.PIS)
+					</dd>
+					<dt class="col-sm-2">
+						@Html.DisplayNameFor(model => model.CTPS)
+					</dt>
+					<dd class="col-sm-10">
+						@Html.DisplayFor(model => model.CTPS)
+					</dd>
 
-				<dt class="col-sm-2">
-					@Html.DisplayNameFor(model => model.Password)
-				</dt>
-				<dd class="col-sm-10">
-					@Html.DisplayFor(model => model.Password)
-				</dd>
-			</dl>
+					<dt class="col-sm-2">
+						@Html.DisplayNameFor(model => model.Password)
+					</dt>
+					<dd class="col-sm-10">
+						@Html.DisplayFor(model => model.Password)
+					</dd>
+				</dl>
+			</div>
 		</div>
-	</div>
-	@if (Model.dependentes != null)
-	{
-		if (Model.dependentes.Count > 0)
+		@if (Model.dependentes != null)
 		{
-			<div class="accordion-item">
-				<h2 class="accordion-header">
-					<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-						Dependentes Vinculados
-					</button>
-				</h2>
-				<div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-					<dl class="accordion-body row">
-						@foreach (var dependente in dependentes)
-						{
-							<dt class="col-sm-2">
-								Código:
-							</dt>
-							<dd class="col-sm-10">
-								@dependente.id_cod_dep
-							</dd>
+			if (Model.dependentes.Count > 0)
+			{
+				<div class="accordion-item">
+					<h2 class="accordion-header">
+						<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+							Dependentes Vinculados
+						</button>
+					</h2>
+					<div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+						<dl class="accordion-body row">
+							@foreach (var dependente in dependentes)
+							{
+								<dt class="col-sm-2">
+									Código:
+								</dt>
+								<dd class="col-sm-10">
+									@dependente.id_cod_dep
+								</dd>
 
-							<dt class="col-sm-2">
-								Nome:
-							</dt>
-							<dd class="col-sm-10">
-								@dependente.Nome
-							</dd>
+								<dt class="col-sm-2">
+									Nome:
+								</dt>
+								<dd class="col-sm-10">
+									@dependente.Nome
+								</dd>
 
-							<dt class="col-sm-2">
-								Data de Nascimento:
-							</dt>
-							<dd class="col-sm-10">
-								@dependente.DtNascimento
-							</dd>
+								<dt class="col-sm-2">
+									Data de Nascimento:
+								</dt>
+								<dd class="col-sm-10">
+									@dependente.DtNascimento
+								</dd>
 
-							<dt class="col-sm-2">
-								Parentesco:
-							</dt>
-							<dd class="col-sm-10">
-								@dependente.Parentesco
-							</dd>
+								<dt class="col-sm-2">
+									Parentesco:
+								</dt>
+								<dd class="col-sm-10">
+									@dependente.Parentesco
+								</dd>
 
-							<hr />
-						}
-					</dl>
+								<hr />
+							}
+						</dl>
+					</div>
+				</div>
+			}
+		}
+	</div>
+
+	<div class="modal fade" id="Modal-Funcionario-@Html.DisplayFor(model=> model.id_cod_func)" tabindex="-1" aria-labelledby="modalConfirmarApagar" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title fs-5" id="modalConfirmarApagarLabel">Apagar Funcionario</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<p>
+						Deseja apagar o funcionário <b>@Html.DisplayFor(model => model.Nome)</b> permanentemente?
+					</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger">Apagar Funcionário</button>
+					<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
 				</div>
 			</div>
-		}
-	}
-</div>
-
-<div class="modal fade" id="Modal-Funcionario-@Html.DisplayFor(model=> model.id_cod_func)" tabindex="-1" aria-labelledby="modalConfirmarApagar" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h1 class="modal-title fs-5" id="modalConfirmarApagarLabel">Apagar Funcionario</h1>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			</div>
-			<div class="modal-body">
-				<p>
-					Deseja apagar o funcionário <b>@Html.DisplayFor(model => model.Nome)</b> permanentemente?
-				</p>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-danger">Apagar Funcionário</button>
-				<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
-			</div>
 		</div>
 	</div>
-</div>
 
 
 
-<div class="btn-group mt-4">
-	<a asp-action="Editar" class="btn btn-primary" asp-route-id="@Model?.id_cod_func">Editar</a>
-	<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Modal-Funcionario-@Html.DisplayFor(model=> model.id_cod_func)">
-		Apagar
-	</button>
-	<a asp-action="Index" class="btn btn-secondary">Voltar</a>
-</div>
+	<div class="btn-group mt-4">
+		<a asp-action="Editar" class="btn btn-primary" asp-route-id="@Model?.id_cod_func">Editar</a>
+		<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Modal-Funcionario-@Html.DisplayFor(model=> model.id_cod_func)">
+			Apagar
+		</button>
+		<a asp-action="Index" class="btn btn-secondary">Voltar</a>
+	</div>
+}
+

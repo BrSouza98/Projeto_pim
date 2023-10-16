@@ -18,11 +18,10 @@ namespace Projeto_pimWEB.Models.Classes
         public string CTPS { get; set; }
 
         [NotMapped]
-        public Folha_Pagamento FpRecente { get; set; }
-        public ICollection<Folha_Pagamento> Folhas { get; set; }
-        public ICollection<Dependente> dependentes { get; set; }
+        public Folha_Pagamento? FpRecente { get; set; }
+        public ICollection<Folha_Pagamento>? Folhas { get; set; }
+        public ICollection<Dependente>? dependentes { get; set; }
+       
 
-        
-     
     }
 }

@@ -22,15 +22,14 @@ namespace Projeto_pimWEB.Metodos
             return func;
         }
 
-        public Funcionario GetFuncionario(int id)
+        public Funcionario GetFuncionario(int id) // Retorna apenas o funcionario pela chave primaria 
         {
-            return _mbdt.funcionarios.Where(i => i.id_cod_func == id).First();
+            return _mbdt.funcionarios.Where(i => i.id_cod_func == id).FirstOrDefault();
         }
 
-        public List<Funcionario> GetAllFuncionarios()
+        public List<Funcionario> GetAllFuncionarios() // Retorna todos os funcionarios 
         {
             return _mbdt.funcionarios.ToList();
-
         }
 
         public Funcionario UpdateFunc(Funcionario funcionario)
@@ -78,12 +77,12 @@ namespace Projeto_pimWEB.Metodos
             return dependente;
         }
 
-        public List<Dependente> GetAllDependentes(int id)
+        public List<Dependente> GetAllDependentesFK(int id) // Retorna apenas os dependentes com a chave estrangeira
         {
             return _mbdt.dependentes.Where(d => d.funcionarioid_cod_func == id).ToList();
         }
 
-        public Dependente GetDependente(int id)
+        public Dependente GetDependente(int id) // Retorna apenas o depentende pela chave primaria
         {
             return _mbdt.dependentes.Where(d => d.id_cod_dep == id).First();
         }
