@@ -61,11 +61,13 @@ var forms = {
 }
 
 
-const PrevForm = () => {
+const PrevForm = (event) => {
+    //Navega do terceiro form para o segundo
     if (forms.firstForm.state == false &&
         forms.secondForm.state == false &&
         forms.thirdForm.state == true) { forms.showSecond(); }
 
+    //Navega do segundo form para o primeiro
     else if (forms.firstForm.state == false &&
         forms.secondForm.state == true &&
         forms.thirdForm.state == false) { forms.showFirst(); }
@@ -76,10 +78,12 @@ const PrevForm = () => {
 }
 
 const NextForm = () => {
+    //Navega do primeiro para o segundo
     if (forms.firstForm.state == true &&
         forms.secondForm.state == false &&
         forms.thirdForm.state == false) { forms.showSecond(); }
 
+    //Navega do segundo para o terceiro
     else if (forms.firstForm.state == false &&
         forms.secondForm.state == true &&
         forms.thirdForm.state == false) { forms.showThird(); }
