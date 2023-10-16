@@ -1,10 +1,22 @@
 {
   "version": "1.0",
   "defaultProvider": "cdnjs",
-  "libraries": [{
-  "provider": "cdnjs",
-  "library": "bootstrap-icons@1.11.1",
-  "destination": "wwwroot/lib/bootstrap-icons/"
-}
-]
+  "libraries": [
+    {
+      "library": "bootstrap-icons@1.11.1",
+      "destination": "wwwroot/lib/bootstrap-icons/"
+    },
+    {
+      "library": "animateCSS@1.2.2",
+      "destination": "wwwroot/css/animateCSS/"
+    },
+    {
+      "library": "animate.css@4.1.1",
+      "destination": "wwwroot/lib/animate.css/",
+      "files": [
+        "animate.min.css",
+        "animate.compat.min.css"
+      ]
+    }
+  ]
 }

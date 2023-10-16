@@ -7,6 +7,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\css\animateCSS\**" />
+    <Compile Remove="wwwroot\lib\animateCSS\**" />
+    <Compile Remove="wwwroot\lib\bootstrap-icons\icons\**" />
+    <Content Remove="wwwroot\css\animateCSS\**" />
+    <Content Remove="wwwroot\lib\animateCSS\**" />
+    <Content Remove="wwwroot\lib\bootstrap-icons\icons\**" />
+    <EmbeddedResource Remove="wwwroot\css\animateCSS\**" />
+    <EmbeddedResource Remove="wwwroot\lib\animateCSS\**" />
+    <EmbeddedResource Remove="wwwroot\lib\bootstrap-icons\icons\**" />
+    <None Remove="wwwroot\css\animateCSS\**" />
+    <None Remove="wwwroot\lib\animateCSS\**" />
+    <None Remove="wwwroot\lib\bootstrap-icons\icons\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="bootstrap" Version="5.3.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.22" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.22" />
