@@ -28,43 +28,46 @@
 		{
 			foreach (var func in Model)
 			{
-				<tr>
-					<th scope="row">@func.id_cod_func</th>
-					<td>@func.Nome</td>
-					<td>@func.Email</td>
-					<td>@func.Telefone</td>
-					<td>@func.Departamento</td>
-					<td>@func.Cargo</td>
-					<td class="d-flex justify-content-between">
+				if (func.Ativo == true)
+				{
+					<tr>
+						<th scope="row">@func.id_cod_func</th>
+							<td>@func.Nome</td>
+							<td>@func.Email</td>
+							<td>@func.Telefone</td>
+							<td>@func.Departamento</td>
+							<td>@func.Cargo</td>
+							<td class="d-flex justify-content-between">
 
 
-						<div class="btn-group">
-							<button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-								<i class="bi bi-gear-fill"></i>
-							</button>
-							<ul class="dropdown-menu">
-								<li>
-									<a asp-controller="Funcionario" asp-route-id="@func.id_cod_func" asp-action="Registro_depen" class="dropdown-item">Consultar Dependentes</a>
-								</li>
-								<li>
-									<a asp-controller="Funcionario" asp-route-id="@func.id_cod_func" asp-action="Detalhes" class="dropdown-item">Mais informações</a>
-								</li>
-								<li>
-									<a asp-controller="Funcionario" asp-route-id="@func.id_cod_func" asp-action="Editar" class="dropdown-item">Editar</a>
-								</li>
-								<li>
-									<hr class="dropdown-divider">
-								</li>
-								<li>
-									<!-- Button trigger modal -->
-									<button type="button" class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#Modal-Funcionario-@func.id_cod_func">
-										Apagar
-									</button>					
-								</li>
-							</ul>
-						</div>
-					</td>
-				</tr>
+								<div class="btn-group">
+									<button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+										<i class="bi bi-gear-fill"></i>
+									</button>
+									<ul class="dropdown-menu">
+										<li>
+											<a asp-controller="Funcionario" asp-route-id="@func.id_cod_func" asp-action="Registro_depen" class="dropdown-item">Consultar Dependentes</a>
+										</li>
+										<li>
+											<a asp-controller="Funcionario" asp-route-id="@func.id_cod_func" asp-action="Detalhes" class="dropdown-item">Mais informações</a>
+										</li>
+										<li>
+											<a asp-controller="Funcionario" asp-route-id="@func.id_cod_func" asp-action="Editar" class="dropdown-item">Editar</a>
+										</li>
+										<li>
+											<hr class="dropdown-divider">
+										</li>
+										<li>
+											<!-- Button trigger modal -->
+											<button type="button" class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#Modal-Funcionario-@func.id_cod_func">
+												Apagar
+											</button>					
+										</li>
+									</ul>
+								</div>
+							</td>
+					</tr>
+				}
 			}
 		}
 	</tbody>
