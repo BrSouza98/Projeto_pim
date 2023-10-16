@@ -1,4 +1,10 @@
 var FinCadBtn = document.getElementById('FinCadBtn');
+var NextBtn = document.getElementById('NextBtn');
+var PrevBtn = document.getElementById('PrevBtn');
+
+
+var CampoOutro = document.getElementById('CampoOutro');
+var SelectGenero = document.getElementById('SelectGenero');
 
 var forms = {
     firstForm: {
@@ -27,8 +33,9 @@ var forms = {
         forms.thirdForm.state = false;
         forms.thirdForm.html.classList.add('d-none');
 
-        !FinCadBtn.classList.contains('d-none') ?
-            FindCadBtn.classList.add('d-none')
+        if (FinCadBtn.classList.contains('d-none') == false) {
+            FindCadBtn.classList.add('d-none');
+        }
     },
 
     showSecond: () => {
@@ -41,8 +48,11 @@ var forms = {
         forms.thirdForm.state = false;
         forms.thirdForm.html.classList.add('d-none');
 
-        !FinCadBtn.classList.contains('d-none') ?
-            FindCadBtn.classList.add('d-none')
+
+
+        if (FindCadBtn.classList.contains('d-none') == false) {
+            FindCadBtn.classList.add('d-none');
+        }
     },
 
     showThird: () => {
@@ -61,7 +71,7 @@ var forms = {
 }
 
 
-const PrevForm = (event) => {
+PrevBtn.addEventListener("click", () => {
     //Navega do terceiro form para o segundo
     if (forms.firstForm.state == false &&
         forms.secondForm.state == false &&
@@ -75,9 +85,9 @@ const PrevForm = (event) => {
     else {
         throw new DOMException("Nenhum formulário a ser mostrado");
     }
-}
+})
 
-const NextForm = () => {
+NextBtn.addEventListener("click", () => {
     //Navega do primeiro para o segundo
     if (forms.firstForm.state == true &&
         forms.secondForm.state == false &&
@@ -91,4 +101,6 @@ const NextForm = () => {
     else {
         throw new DOMException("Nenhum formulário a ser mostrado");
     }
-}
+})
+
+
