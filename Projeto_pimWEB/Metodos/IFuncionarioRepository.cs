@@ -11,7 +11,7 @@ namespace Projeto_pimWEB.Metodos
 
         /*Metodos da class Dependente*/
         Dependente CreateDep(Dependente dependente);
-        List<Dependente> GetAllDependentes(int id);
+        List<Dependente> GetAllDependentesFK(int id);
         Dependente GetDependente(int id);
         Dependente UpdateDep(Dependente dependente);
 
