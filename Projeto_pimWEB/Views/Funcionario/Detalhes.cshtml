@@ -265,9 +265,7 @@
 
 	<div class="btn-group mt-4">
 		<a asp-action="Editar" class="btn btn-primary" asp-route-id="@Model?.id_cod_func">Editar</a>
-		<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Modal-Funcionario-@Html.DisplayFor(model=> model.id_cod_func)">
-			Apagar
-		</button>
+		<a asp-controller="Funcionario" asp-route-id="@Model?.id_cod_func" asp-action="Desativar" class="btn btn-danger">Desativar</a>
 		<a asp-action="Index" class="btn btn-secondary">Voltar</a>
 	</div>
 }

@@ -87,11 +87,11 @@
 					</div>
 					<div class="modal-body">
 						<p>
-							Deseja apagar o funcionário <b>@func.Nome</b> permanentemente?
+							Deseja desativar o funcionário <b>@func.Nome</b>?
 						</p>
 					</div>
 					<div class="modal-footer">
-						<a  class="btn btn-danger" >Apagar Funcionário</a>
+                        <a asp-controller="Funcionario" asp-route-id="@func.id_cod_func" asp-action="Desativar" class="btn btn-danger">Desativar</a>
 						<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
 					</div>
 				</div>
