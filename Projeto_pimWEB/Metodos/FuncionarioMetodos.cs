@@ -111,7 +111,14 @@ namespace Projeto_pimWEB.Metodos
             return depen_db;
         }
 
-        
+        public bool Delete_Depen(int id)
+        {
+            var depen_db = GetDependente(id) ?? throw new Exception("Houve um erro na desativação do dependente");
+
+            _mbdt.dependentes.Remove(depen_db);
+            _mbdt.SaveChanges();
+            return true;
+        }
     }
 
 }

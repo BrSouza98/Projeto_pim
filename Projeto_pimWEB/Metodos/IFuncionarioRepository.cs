@@ -16,5 +16,6 @@ namespace Projeto_pimWEB.Metodos
         Dependente GetDependente(int id);
         Dependente UpdateDep(Dependente dependente);
 
+        bool Delete_Depen(int id);
     }
 }

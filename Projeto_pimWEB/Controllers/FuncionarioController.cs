@@ -98,5 +98,13 @@ namespace Projeto_pimWEB.Controllers
             _metodos.Desativar(id);
             return RedirectToAction("Registro");
         }
+
+        public IActionResult Deletar_Dependente(int id)
+        {
+            Dependente dependente = _metodos.GetDependente(id);
+
+            _metodos.Delete_Depen(id);
+            return RedirectToAction("Registro_depen", new { action = "Registro_depen", id = dependente.funcionarioid_cod_func });
+        }
     }
 }

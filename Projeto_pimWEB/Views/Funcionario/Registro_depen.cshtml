@@ -27,8 +27,8 @@
                     <td>@d.Parentesco</td>
                     <td>
                         <div class="btn-group" role="group">
-                            <a role="button" asp-controller="Funcionario" asp-route-id="@d.id_cod_dep" asp-action="Editar_depen" class="btn btn-primary">Editar</a>
-                            <a role="button" asp-controller="Funcionario" asp-route-id="@d.id_cod_dep" asp-action="" class="btn btn-danger">Apagar</a>
+                            <a  asp-controller="Funcionario" asp-route-id="@d.id_cod_dep" asp-action="Editar_depen" class="btn btn-primary">Editar</a>
+                            <a asp-controller="Funcionario" asp-route-id="@d.id_cod_dep" asp-action="Deletar_Dependente" class="btn btn-primary">Apagar</a>
                         </div>
                     </td>
                 </tr>
