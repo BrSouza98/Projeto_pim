@@ -8,6 +8,7 @@ namespace Projeto_pimWEB.Metodos
         List<Funcionario> GetAllFuncionarios();
         Funcionario GetFuncionario(int id);
         Funcionario UpdateFunc(Funcionario func);
+        Funcionario Desativar (int id);
 
         /*Metodos da class Dependente*/
         Dependente CreateDep(Dependente dependente);

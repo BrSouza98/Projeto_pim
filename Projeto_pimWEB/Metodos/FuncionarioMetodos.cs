@@ -69,6 +69,17 @@ namespace Projeto_pimWEB.Metodos
             return func_db;
         }
 
+        public Funcionario Desativar(int id)
+        {
+            var func_db = GetFuncionario(id) ?? throw new Exception("Houve um erro na desativação do funcionario");
+
+            func_db.Ativo = false;
+
+            _mbdt.funcionarios.Update(func_db);
+            _mbdt.SaveChanges();
+            return func_db;
+        }
+
         //Metodos dependentes 
         public Dependente CreateDep(Dependente dependente)
         {
@@ -99,6 +110,8 @@ namespace Projeto_pimWEB.Metodos
             _mbdt.SaveChanges();
             return depen_db;
         }
+
+        
     }
 
 }
