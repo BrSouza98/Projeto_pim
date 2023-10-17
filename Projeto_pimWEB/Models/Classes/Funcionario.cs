@@ -8,18 +8,18 @@ namespace Projeto_pimWEB.Models.Classes
         [Key]
         public int id_cod_func { get; set; }
 
-        [Required(ErrorMessage = "Campo obrigatorio")]
-        [MaxLength(30)]
+        [Required(ErrorMessage = "Campo obrigatorio.")]
+        [StringLength(30)]
         public string Departamento { get; set; }
 
-		[Required(ErrorMessage = "Campo obrigatorio")]
-		[MaxLength(30)]
+		[Required(ErrorMessage = "Campo obrigatorio.")]
+		[StringLength(30)]
 		public string Cargo { get; set; }
 
-		[Required(ErrorMessage = "Campo obrigatorio")]
+		[Required(ErrorMessage = "Campo obrigatorio.")]
 		public decimal SalarioBruto { get; set; }
 
-		[Required(ErrorMessage = "Campo obrigatorio")]
+		[Required(ErrorMessage = "Campo obrigatorio.")]
 		public float CargaHoraria { get; set; }
 
         
@@ -27,14 +27,15 @@ namespace Projeto_pimWEB.Models.Classes
         public bool TemAcesso { get; set; }
 
 
-		[Required(ErrorMessage = "Campo obrigatorio")]
-		[MaxLength(50)]
+		[Required(ErrorMessage = "Campo obrigatorio.")]
+		[StringLength(50)]
 		public string Formacao { get; set; }
 
-		[Required(ErrorMessage = "Campo obrigatorio")]
+		[Required(ErrorMessage = "Campo obrigatorio.")]
+        [StringLength(11, ErrorMessage ="Informe apenas 11 caracteres.")]
 		public string PIS { get; set; }
 
-		[Required(ErrorMessage = "Campo obrigatorio")]
+		[Required(ErrorMessage = "Campo obrigatorio.")]
 		public string CTPS { get; set; }
 
         [NotMapped]

@@ -47,7 +47,7 @@
 				</div>
 				<div class="form-group">
 					<label asp-for="RG" class="control-label"></label>
-					<input asp-for="RG" class="form-control" onkeyup="handleRg(event)" maxlength="12" />
+					<input asp-for="RG" class="form-control" onkeyup="handleRg(event)" maxlength="9" />
 					<span asp-validation-for="RG" class="text-danger"></span>
 				</div>
 				<div class="form-group">
@@ -85,8 +85,8 @@
 				<label asp-for="Genero" class="control-label"></label>
 				<select id="SelectGenero" asp-for="Genero" class="form-select">
 					<option selected>Selecione o Genero</option>
-					<option value="Masculino">Homem Cis</option>
-					<option value="Feminino">Mulher Cis</option>
+					<option value="Homem Cis">Homem Cis</option>
+					<option value="Mulher Cis">Mulher Cis</option>
 					<option value="Mulher Trans">Mulher Trans</option>
 					<option value="Homem Trans">Homem Trans</option>
 					<option value="Travesti">Travesti</option>
@@ -165,12 +165,12 @@
 
 				<div class="form-group">
 					<label asp-for="PIS" class="control-label"></label>
-					<input asp-for="PIS" class="form-control" />
+					<input asp-for="PIS" class="form-control" maxlength="11" />
 					<span asp-validation-for="PIS" class="text-danger"></span>
 				</div>
 				<div class="form-group">
 					<label asp-for="CTPS" class="control-label"></label>
-					<input asp-for="CTPS" class="form-control" />
+					<input asp-for="CTPS" class="form-control" maxlength="11" />
 					<span asp-validation-for="CTPS" class="text-danger"></span>
 				</div>
 				<br />

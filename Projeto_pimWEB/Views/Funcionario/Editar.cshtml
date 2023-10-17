@@ -23,12 +23,12 @@
                 </div>
                 <div class="form-group">
                     <label asp-for="Telefone" class="control-label"></label>
-                    <input asp-for="Telefone" class="form-control" onkeyup="handlePhone(event)" maxlength="15" />
+                    <input asp-for="Telefone" onkeypress="handlePhone(event)" class="form-control" maxlength="15" />
                     <span asp-validation-for="Telefone" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="TelefoneR" class="control-label">Telefone para recado</label>
-                    <input asp-for="TelefoneR" class="form-control" onkeyup="handlePhone(event)" maxlength="15" />
+                    <input asp-for="TelefoneR" onkeypress="handlePhone(event)" class="form-control" maxlength="15" />
                     <span asp-validation-for="TelefoneR" class="text-danger"></span>
                 </div>
                 <div class="form-group">
@@ -48,8 +48,8 @@
                 </div>
                 <div class="form-group">
                     <label asp-for="RG" class="control-label"></label>
-                    <input asp-for="RG" class="form-control" />
-                    <span asp-validation-for="RG" class="text-danger" onkeyup="handleRg(event)" maxlength="12"></span>
+                    <input asp-for="RG" class="form-control" class="form-control" onkeyup="handleRg(event)" maxlength="9" />
+                    <span asp-validation-for="RG" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="EstadoCivil" class="control-label">Estado Civil</label>
@@ -138,12 +138,12 @@
 
                 <div class="form-group">
                     <label asp-for="PIS" class="control-label"></label>
-                    <input asp-for="PIS" class="form-control" />
+                    <input asp-for="PIS" class="form-control" maxlength="11"/>
                     <span asp-validation-for="PIS" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="CTPS" class="control-label"></label>
-                    <input asp-for="CTPS" class="form-control" />
+                    <input asp-for="CTPS" class="form-control" maxlength="11" />
                     <span asp-validation-for="CTPS" class="text-danger"></span>
                 </div>
                 <br />
