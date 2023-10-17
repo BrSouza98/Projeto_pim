@@ -33,9 +33,8 @@ namespace Projeto_pimWEB.Controllers
         public IActionResult Detalhes(int id)
         {
             Funcionario funcionario = _metodos.GetFuncionario(id);
-            List<Dependente> dependentes = _metodos.GetAllDependentesFK(id);
+            funcionario.dependentes = _metodos.GetAllDependentesFK(id);
 
-            ViewBag.dependentes = dependentes;
             return View(funcionario);
         }
 

@@ -22,11 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\lib\jquery-validation\dist\localization\messages_pt_BR.js" />
-    <None Include="wwwroot\lib\jquery-validation\dist\localization\methods_pt.js" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="bootstrap" Version="5.3.2" />
     <PackageReference Include="jQuery.Validation.Globalize" Version="1.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.22" />

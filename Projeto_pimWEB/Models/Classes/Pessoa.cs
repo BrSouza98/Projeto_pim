@@ -5,24 +5,80 @@ namespace Projeto_pimWEB.Models.Classes
 {
     public class Pessoa
     {
-        public string Nome { get; set; }
+        [Required(ErrorMessage ="Campo obrigatorio.")]
+		[MaxLength(50)]
+		public string Nome { get; set; }
+
         public string Genero { get; set; }
+
+		[Required(ErrorMessage = "Campo obrigatorio.")]
+		[DataType(DataType.Date)]
         public DateTime DtNascimento { get; set; }
-        public string CPF { get; set; }
-        public string RG { get; set; }
-        public string EstadoCivil { get; set; }
-        public string Telefone {  get; set; }
-        public string TelefoneR { get; set; }
-        public string Email { get; set; }
+
+		[Required(ErrorMessage = "Campo obrigatorio.")]
+        [MaxLength(14)]
+		public string CPF { get; set; }
+
+		[Required(ErrorMessage = "Campo obrigatorio.")]
+		[MaxLength(12)]
+		public string RG { get; set; }
+
+		[Required(ErrorMessage = "Campo obrigatorio.")]
+		public string EstadoCivil { get; set; }
+
+		[Required(ErrorMessage = "Campo obrigatorio.")]
+		[Phone(ErrorMessage ="O número informado não é valido.")]
+		public string Telefone {  get; set; }
+
+		[Required(ErrorMessage = "Campo obrigatorio.")]
+		[Phone(ErrorMessage = "O número informado não é valido.")]
+		public string TelefoneR { get; set; }
+
+		[Required(ErrorMessage = "Campo obrigatorio.")]
+		[EmailAddress(ErrorMessage = "O e-mail informado não é valido.")]
+		public string Email { get; set; }
+
+		[Required(ErrorMessage = "Campo obrigatorio.")]
+		[DataType(DataType.Password)]
+		[MaxLength(20), MinLength(6, ErrorMessage = "Minimo de caractere para senha são 6.")]
         public string Password { get; set; }
-        public string Cidade { get; set; }
-        public string Estado { get; set; }
-        public string Pais { get; set; }
-        public string Rua { get; set; }
-        public int Numero { get; set; }
-        public string Bairro { get; set; }
-        public string CEP { get; set; }
-        public string Complemento { get; set; }
+
+		[NotMapped]
+		[Required(ErrorMessage = "Campo obrigatorio.")]
+		[Compare("Password", ErrorMessage = "Senhas diferentes.")]
+		[DataType(DataType.Password)]
+		[MaxLength(20), MinLength(6, ErrorMessage = "Minimo de caractere para senha são 6.")]
+		public string ConfirmPassword { get; set; }
+
+		[Required(ErrorMessage = "Campo obrigatorio.")]
+		[MaxLength(30)]
+		public string Cidade { get; set; }
+
+		[Required(ErrorMessage = "Campo obrigatorio.")]
+		[MaxLength(20), MinLength(2, ErrorMessage = "Minimo de caractere para Estado são 2.")]
+		public string Estado { get; set; }
+
+		[Required(ErrorMessage = "Campo obrigatorio.")]
+		[MaxLength(60)]
+		public string Pais { get; set; }
+
+		[Required(ErrorMessage = "Campo obrigatorio.")]
+		[MaxLength(100)]
+		public string Rua { get; set; }
+
+		[Required(ErrorMessage = "Campo obrigatorio.")]
+		public int Numero { get; set; }
+
+		[Required(ErrorMessage = "Campo obrigatorio.")]
+		[MaxLength(100)]
+		public string Bairro { get; set; }
+
+		[Required(ErrorMessage = "Campo obrigatorio.")]
+		public string CEP { get; set; }
+
+		[NotMapped]
+		[MaxLength(40)]
+		public string? Complemento { get; set; }
 
     }
 

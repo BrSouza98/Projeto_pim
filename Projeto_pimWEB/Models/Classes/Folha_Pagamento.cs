@@ -7,7 +7,11 @@ namespace Projeto_pimWEB.Models.Classes
     {
         [Key]
         public int id_cod_FP {  get; set; }
+
+        [DataType(DataType.Date)]
         public DateTime DataEmissao {  get; set; }
+
+        [DataType(DataType.Date)]
         public DateTime MesRef {  get; set; }
         public string NomeFunc { get; set; }
         public string Cargo { get; set; }

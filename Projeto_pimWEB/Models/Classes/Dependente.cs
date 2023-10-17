@@ -9,9 +9,18 @@ namespace Projeto_pimWEB.Models.Classes
         [Key]
         public int id_cod_dep {  get; set; }
 
-        public string Nome {  get; set; }
+		[Required(ErrorMessage = "Campo obrigatorio.")]
+		[MaxLength(50)]
+		public string Nome {  get; set; }
+
+        
+        [Required(ErrorMessage = "Campo obrigatorio.")]
+        [DataType(DataType.Date)]
         public DateTime DtNascimento { get; set; }
-        public string Parentesco {  get; set; }
+
+		[Required(ErrorMessage = "Campo obrigatorio.")]
+		[MaxLength(15)]
+		public string Parentesco {  get; set; }
 
 
         [ForeignKey(nameof(Dependente))]

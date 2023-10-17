@@ -56,7 +56,7 @@
 						<option value="Casado">Casado</option>
 						<option value="Divorciado">Divorciado</option>
 						<option value="União Estável">União Estável</option>
-						<option value="Solteire">Solteiro (a)</option>
+						<option value="Solteiro(a)">Solteiro (a)</option>
 					</select>
 					<span asp-validation-for="EstadoCivil" class="text-danger"></span>
 				</div>
@@ -74,6 +74,12 @@
 					<label asp-for="Password" class="control-label"></label>
 					<input asp-for="Password" type="password" class="form-control" />
 					<span asp-validation-for="Password" class="text-danger"></span>
+				</div>
+
+				<div class="form-group">
+					<label asp-for="ConfirmPassword" class="control-label"> Confirmar Password</label>
+					<input asp-for="ConfirmPassword" type="password" class="form-control" />
+					<span asp-validation-for="ConfirmPassword" class="text-danger"></span>
 				</div>
 
 				<label asp-for="Genero" class="control-label"></label>
@@ -168,15 +174,15 @@
 					<span asp-validation-for="CTPS" class="text-danger"></span>
 				</div>
 				<br />
-				<div class="form-group form-check">
+				<div class="form-group form-check form-switch">
 					<label class="form-check-label">
-						<input class="form-check-input" asp-for="Ativo" /> @Html.DisplayNameFor(model => model.Ativo)
+						<input class="form-check-input" asp-for="Ativo" /> Funcionario ativo
 					</label>
 				</div>
 				<br />
-				<div class="form-group form-check">
+				<div class="form-group form-check form-switch">
 					<label class="form-check-label">
-						<input class="form-check-input" asp-for="TemAcesso" /> @Html.DisplayNameFor(model => model.TemAcesso)
+						<input class="form-check-input" asp-for="TemAcesso" /> Acesso ao sistema
 					</label>
 				</div>
 

@@ -2,7 +2,6 @@
 
 @{
 	ViewData["Title"] = "Detalhes";
-	var dependentes = Model.dependentes;
 
 }
 @if (Model.Ativo == true)
@@ -202,7 +201,7 @@
 					</h2>
 					<div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
 						<dl class="accordion-body row">
-							@foreach (var dependente in dependentes)
+							@foreach (var dependente in Model.dependentes)
 							{
 								<dt class="col-sm-2">
 									Código:
@@ -266,7 +265,7 @@
 	<div class="btn-group mt-4">
 		<a asp-action="Editar" class="btn btn-primary" asp-route-id="@Model?.id_cod_func">Editar</a>
 		<a asp-controller="Funcionario" asp-route-id="@Model?.id_cod_func" asp-action="Desativar" class="btn btn-danger">Desativar</a>
-		<a asp-action="Index" class="btn btn-secondary">Voltar</a>
+		<a asp-controller="Funcionario" asp-action="Registro" class="btn btn-secondary">Voltar</a>
 	</div>
 }
 

@@ -7,19 +7,41 @@ namespace Projeto_pimWEB.Models.Classes
     {
         [Key]
         public int id_cod_func { get; set; }
+
+        [Required(ErrorMessage = "Campo obrigatorio")]
+        [MaxLength(30)]
         public string Departamento { get; set; }
-        public string Cargo { get; set; }
-        public decimal SalarioBruto { get; set; }
-        public float CargaHoraria { get; set; }
+
+		[Required(ErrorMessage = "Campo obrigatorio")]
+		[MaxLength(30)]
+		public string Cargo { get; set; }
+
+		[Required(ErrorMessage = "Campo obrigatorio")]
+		public decimal SalarioBruto { get; set; }
+
+		[Required(ErrorMessage = "Campo obrigatorio")]
+		public float CargaHoraria { get; set; }
+
+        
         public bool Ativo { get; set; }
         public bool TemAcesso { get; set; }
-        public string Formacao { get; set; }
-        public string PIS { get; set; }
-        public string CTPS { get; set; }
+
+
+		[Required(ErrorMessage = "Campo obrigatorio")]
+		[MaxLength(50)]
+		public string Formacao { get; set; }
+
+		[Required(ErrorMessage = "Campo obrigatorio")]
+		public string PIS { get; set; }
+
+		[Required(ErrorMessage = "Campo obrigatorio")]
+		public string CTPS { get; set; }
 
         [NotMapped]
         public Folha_Pagamento? FpRecente { get; set; }
+        [NotMapped]
         public ICollection<Folha_Pagamento>? Folhas { get; set; }
+        [NotMapped]
         public ICollection<Dependente>? dependentes { get; set; }
        
 
