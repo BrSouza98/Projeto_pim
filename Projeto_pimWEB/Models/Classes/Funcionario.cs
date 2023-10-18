@@ -27,9 +27,8 @@ namespace Projeto_pimWEB.Models.Classes
         public bool TemAcesso { get; set; }
 
 
-		[Required(ErrorMessage = "Campo obrigatorio.")]
 		[StringLength(50)]
-		public string Formacao { get; set; }
+		public string? Formacao { get; set; }
 
 		[Required(ErrorMessage = "Campo obrigatorio.")]
         [StringLength(11, ErrorMessage ="Informe apenas 11 caracteres.")]

@@ -20,18 +20,20 @@ namespace Projeto_pimWEB.Models.Classes
 		public string CPF { get; set; }
 
 		[Required(ErrorMessage = "Campo obrigatorio.")]
-		[StringLength(12)]
+		[StringLength(12), MinLength(12)]
 		public string RG { get; set; }
+
+		[Required(ErrorMessage = "Campo obrigatorio.")]
+		[StringLength(60)]
+		public string Nacionalidade { get; set; }
 
 		[Required(ErrorMessage = "Campo obrigatorio.")]
 		public string EstadoCivil { get; set; }
 
 		[Required(ErrorMessage = "Campo obrigatorio.")]
-		[Phone(ErrorMessage ="O número informado não é valido.")]
 		public string Telefone {  get; set; }
 
-		[Required(ErrorMessage = "Campo obrigatorio.")]
-		public string TelefoneR { get; set; }
+		public string? TelefoneR { get; set; }
 
 		[Required(ErrorMessage = "Campo obrigatorio.")]
 		[EmailAddress(ErrorMessage = "O e-mail informado não é valido.")]
@@ -56,10 +58,6 @@ namespace Projeto_pimWEB.Models.Classes
 		[Required(ErrorMessage = "Campo obrigatorio.")]
 		[StringLength(20), MinLength(2, ErrorMessage = "Minimo de caractere para Estado são 2.")]
 		public string Estado { get; set; }
-
-		[Required(ErrorMessage = "Campo obrigatorio.")]
-		[StringLength(60)]
-		public string Pais { get; set; }
 
 		[Required(ErrorMessage = "Campo obrigatorio.")]
 		[StringLength(100)]

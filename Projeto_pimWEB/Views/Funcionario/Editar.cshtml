@@ -1,175 +1,233 @@
 ﻿@model Projeto_pimWEB.Models.Classes.Funcionario
 
 @{
-    ViewData["Title"] = "Editar Funcionario";
+	ViewData["Title"] = "View";
+	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@if(Model.Ativo == true){
-    <h1>Editar Funcionario: @Model.Nome</h1>
+<h4>Editando o funcionário @Model.Nome</h4>
+<hr />
 
-    <hr />
-    <div class="row">
-        <div class="col-md-4">
-            <form asp-controller="Funcionario" asp-action="Alterar" method="post">
+<form asp-controller="Funcionario" asp-action="Alterar" method="post">
+	<div class="row align-content-center flex-column">
+		<div class="col-md-5">
+			<input type="hidden" asp-for="id_cod_func" />
 
-            
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <input type="hidden" asp-for="id_cod_func" />
-                <h1 class="text-center"> Dados Pessoais</h1>
-                <div class="form-group">
-                    <label asp-for="Nome" class="control-label"></label>
-                    <input asp-for="Nome" class="form-control" />
-                    <span asp-validation-for="Nome" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Telefone" class="control-label"></label>
-                    <input asp-for="Telefone" onkeypress="handlePhone(event)" class="form-control" maxlength="15" />
-                    <span asp-validation-for="Telefone" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="TelefoneR" class="control-label">Telefone para recado</label>
-                    <input asp-for="TelefoneR" onkeypress="handlePhone(event)" class="form-control" maxlength="15" />
-                    <span asp-validation-for="TelefoneR" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Genero" class="control-label"></label>
-                    <input asp-for="Genero" class="form-control" />
-                    <span asp-validation-for="Genero" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="DtNascimento" class="control-label">Data de nascimento</label>
-                    <input asp-for="DtNascimento" type="date" class="form-control" />
-                    <span asp-validation-for="DtNascimento" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="CPF" class="control-label"></label>
-                    <input asp-for="CPF" class="form-control" onkeypress="handleCpf(event)" maxlength="14" />
-                    <span asp-validation-for="CPF" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="RG" class="control-label"></label>
-                    <input asp-for="RG" class="form-control" class="form-control" onkeyup="handleRg(event)" maxlength="9" />
-                    <span asp-validation-for="RG" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="EstadoCivil" class="control-label">Estado Civil</label>
-                    <select asp-for="EstadoCivil" class="form-select">
-                        <option value="Casado">Casado</option>
-                        <option value="Divorciado">Divorciado</option>
-                        <option value="União Estável">União Estável</option>
-                        <option value="Solteire">Solteiro (a)</option>
-                    </select>
-                    <span asp-validation-for="EstadoCivil" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Formacao" class="control-label">Formação</label>
-                    <input asp-for="Formacao" class="form-control" />
-                    <span asp-validation-for="Formacao" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Email" class="control-label">E-mail</label>
-                    <input asp-for="Email" class="form-control" />
-                    <span asp-validation-for="Email" class="text-danger"></span>
-                </div>
-                
-                <h1 class="text-center"> Endereço</h1>
-                <div class="form-group">
-                    <label asp-for="Rua" class="control-label"></label>
-                    <input asp-for="Rua" class="form-control" />
-                    <span asp-validation-for="Rua" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Numero" class="control-label"></label>
-                    <input asp-for="Numero" class="form-control" />
-                    <span asp-validation-for="Numero" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Bairro" class="control-label"></label>
-                    <input asp-for="Bairro" class="form-control" />
-                    <span asp-validation-for="Bairro" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="CEP" class="control-label"></label>
-                    <input asp-for="CEP" class="form-control" onkeyup="handleCep(event)" maxlength="9" />
-                    <span asp-validation-for="CEP" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Cidade" class="control-label"></label>
-                    <input asp-for="Cidade" class="form-control" />
-                    <span asp-validation-for="Cidade" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Estado" class="control-label"></label>
-                    <input asp-for="Estado" class="form-control" />
-                    <span asp-validation-for="Estado" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Pais" class="control-label"></label>
-                    <input asp-for="Pais" class="form-control" />
-                    <span asp-validation-for="Pais" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Complemento" class="control-label"></label>
-                    <input asp-for="Complemento" class="form-control" />
-                    <span asp-validation-for="Complemento" class="text-danger"></span>
-                </div>
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<div id="firstForm" class="">
+				<h1 class="text-center"> Dados Pessoais</h1>
+				<div class="form-group">
+					<label asp-for="Nome" class="control-label"></label>
+					<input asp-for="Nome" class="form-control" />
+					<span asp-validation-for="Nome" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="Telefone" class="control-label"></label>
+					<input asp-for="Telefone" onkeypress="handlePhone(event)" class="form-control" maxlength="15" />
+					<span asp-validation-for="Telefone" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="TelefoneR" class="control-label">Telefone para recado</label>
+					<input asp-for="TelefoneR" onkeypress="handlePhone(event)" class="form-control" maxlength="15" />
+					<span asp-validation-for="TelefoneR" class="text-danger"></span>
+				</div>
 
-                <h1 class="text-center"> Dados Trabalhista</h1>
-                <div class="form-group">
-                    <label asp-for="Departamento" class="control-label"></label>
-                    <input asp-for="Departamento" class="form-control" />
-                    <span asp-validation-for="Departamento" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Cargo" class="control-label"></label>
-                    <input asp-for="Cargo" class="form-control" />
-                    <span asp-validation-for="Cargo" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="SalarioBruto" class="control-label">Salario</label>
-                    <input asp-for="SalarioBruto" class="form-control" />
-                    <span asp-validation-for="SalarioBruto" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="CargaHoraria" class="control-label">Carga Horaria</label>
-                    <input asp-for="CargaHoraria" class="form-control" />
-                    <span asp-validation-for="CargaHoraria" class="text-danger"></span>
-                </div>
+				<div class="form-group">
+					<label asp-for="DtNascimento" class="control-label">Data de nascimento</label>
+					<input asp-for="DtNascimento" type="date" class="form-control" />
+					<span asp-validation-for="DtNascimento" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="CPF" class="control-label"></label>
+					<input asp-for="CPF" class="form-control" onkeypress="handleCpf(event)" maxlength="14" />
+					<span asp-validation-for="CPF" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="RG" class="control-label"></label>
+					<input asp-for="RG" class="form-control" onkeyup="handleRg(event)" maxlength="9" />
+					<span asp-validation-for="RG" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="Nacionalidade" class="control-label"></label>
+					<input asp-for="Nacionalidade" class="form-control" />
+					<span asp-validation-for="Nacionalidade" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="EstadoCivil" class="control-label">Estado Civil</label>
+					<select asp-for="EstadoCivil" class="form-select">
+						<option value="Casado">Casado</option>
+						<option value="Divorciado">Divorciado</option>
+						<option value="União Estável">União Estável</option>
+						<option value="Solteiro(a)">Solteiro (a)</option>
+					</select>
+					<span asp-validation-for="EstadoCivil" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="Formacao" class="control-label">Formação</label>
+					<input asp-for="Formacao" class="form-control" />
+					<span asp-validation-for="Formacao" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="Email" class="control-label">E-mail</label>
+					<input asp-for="Email" class="form-control" />
+					<span asp-validation-for="Email" class="text-danger"></span>
+				</div>
 
-                <div class="form-group">
-                    <label asp-for="PIS" class="control-label"></label>
-                    <input asp-for="PIS" class="form-control" maxlength="11"/>
-                    <span asp-validation-for="PIS" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="CTPS" class="control-label"></label>
-                    <input asp-for="CTPS" class="form-control" maxlength="11" />
-                    <span asp-validation-for="CTPS" class="text-danger"></span>
-                </div>
-                <br />
-                <div class="form-group form-check form-switch">
-                    <label class="form-check-label">
-                        <input class="form-check-input" role="switch" asp-for="Ativo" /> Funcionario ativo
-                    </label>
-                </div>
-                <br />
-                <div class="form-group form-check form-switch">
-                    <label class="form-check-label">
-                        <input class="form-check-input" role="switch" asp-for="TemAcesso" /> Acesso ao sistema
-                    </label>
-                </div>
+				<label asp-for="Genero" class="control-label"></label>
+				<select id="SelectGenero" asp-for="Genero" class="form-select">
+					<option selected>Selecione o Genero</option>
+					<option value="Homem Cis">Homem Cis</option>
+					<option value="Mulher Cis">Mulher Cis</option>
+					<option value="Mulher Trans">Mulher Trans</option>
+					<option value="Homem Trans">Homem Trans</option>
+					<option value="Travesti">Travesti</option>
+					<option value="Não-Binário">Não-Binário</option>
+					<option value="Prefiro não dizer/Não me identifico">Prefiro não dizer/Não me identifico</option>
+				</select>
+				<span asp-validation-for="Genero" class="text-danger"></span>
+
+			</div>
+
+			<div id="secondForm" class="d-none">
+				<h1 class="text-center"> Endereço</h1>
+				<div class="form-group">
+					<label asp-for="Rua" class="control-label"></label>
+					<input asp-for="Rua" class="form-control" />
+					<span asp-validation-for="Rua" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="Numero" class="control-label"></label>
+					<input asp-for="Numero" class="form-control" />
+					<span asp-validation-for="Numero" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="Bairro" class="control-label"></label>
+					<input asp-for="Bairro" class="form-control" />
+					<span asp-validation-for="Bairro" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="CEP" class="control-label"></label>
+					<input asp-for="CEP" class="form-control" onkeyup="handleCep(event)" maxlength="9" />
+					<span asp-validation-for="CEP" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="Cidade" class="control-label"></label>
+					<input asp-for="Cidade" class="form-control" />
+					<span asp-validation-for="Cidade" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="Estado" class="control-label"></label>
+					<select id="Estado" asp-for="Estado" class="form-select" name="Estado">
+						<option value="">Selecione</option>
+						<option value="AC">AC</option>
+						<option value="AL">AL</option>
+						<option value="AP">AP</option>
+						<option value="AM">AM</option>
+						<option value="BA">BA</option>
+						<option value="CE">CE</option>
+						<option value="DF">DF</option>
+						<option value="ES">ES</option>
+						<option value="GO">GO</option>
+						<option value="MA">MA</option>
+						<option value="MS">MS</option>
+						<option value="MT">MT</option>
+						<option value="MG">MG</option>
+						<option value="PA">PA</option>
+						<option value="PB">PB</option>
+						<option value="PR">PR</option>
+						<option value="PE">PE</option>
+						<option value="PI">PI</option>
+						<option value="RJ">RJ</option>
+						<option value="RN">RN</option>
+						<option value="RS">RS</option>
+						<option value="RO">RO</option>
+						<option value="RR">RR</option>
+						<option value="SC">SC</option>
+						<option value="SP">SP</option>
+						<option value="SE">SE</option>
+						<option value="TO">TO</option>
+					</select>
+					<span asp-validation-for="Estado" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="Complemento" class="control-label"></label>
+					<input asp-for="Complemento" class="form-control" />
+					<span asp-validation-for="Complemento" class="text-danger"></span>
+				</div>
+			</div>
+
+			<div id="thirdForm" class="d-none">
+				<h1 class="text-center"> Dados Trabalhista</h1>
+				<div class="form-group">
+					<label asp-for="Departamento" class="control-label"></label>
+					<input asp-for="Departamento" class="form-control" />
+					<span asp-validation-for="Departamento" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="Cargo" class="control-label"></label>
+					<input asp-for="Cargo" class="form-control" />
+					<span asp-validation-for="Cargo" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="SalarioBruto" class="control-label">Salario</label>
+					<input asp-for="SalarioBruto" class="form-control" />
+					<span asp-validation-for="SalarioBruto" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="CargaHoraria" class="control-label">Carga Horaria</label>
+					<input asp-for="CargaHoraria" class="form-control" />
+					<span asp-validation-for="CargaHoraria" class="text-danger"></span>
+				</div>
+
+				<div class="form-group">
+					<label asp-for="PIS" class="control-label"></label>
+					<input asp-for="PIS" class="form-control" maxlength="11" />
+					<span asp-validation-for="PIS" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="CTPS" class="control-label"></label>
+					<input asp-for="CTPS" class="form-control" maxlength="11" />
+					<span asp-validation-for="CTPS" class="text-danger"></span>
+				</div>
+				<br />
+				<div class="form-group form-check form-switch">
+					<label class="form-check-label">
+						<input class="form-check-input" asp-for="Ativo" /> Funcionario ativo
+					</label>
+				</div>
+				<br />
+				<div class="form-group form-check form-switch">
+					<label class="form-check-label">
+						<input class="form-check-input" asp-for="TemAcesso" /> Acesso ao sistema
+					</label>
+				</div>
 
 
 
-                <button type="submit"  class="btn btn-primary">Alterar</button>
-                <a class="btn btn-secondary"  asp-action="Registro" role="button">Voltar</a>
-            </form>
-        </div>
-    </div>
 
-    @section Scripts {
-        @{
-            await Html.RenderPartialAsync("_ValidationScriptsPartial");
-        }
-    }
-}
+			</div>
+
+		</div>
+		<div class="col-md-5 mt-5">
+			<div class="row justify-content-between">
+				<div class="col-3 d-flex justify-content-center">
+					<button type="button" class="btn btn-lg btn-secondary" id="PrevBtn"> <i class="bi bi-arrow-return-left"></i> Anterior</button>
+				</div>
+
+				<div class="col-3 d-flex justify-content-center d-none" id="FinCadBtn">
+					<button type="submit" class="btn btn-primary">Finalizar Cadastro</button>
+				</div>
+
+				<div class="col-3 d-flex justify-content-center" id="PrevBtn">
+					<button type="button" class="btn btn-lg btn-info" id="NextBtn"> Proximo <i class="bi bi-arrow-return-right"></i></button>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+		}

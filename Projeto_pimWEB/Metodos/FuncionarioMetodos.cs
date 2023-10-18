@@ -56,7 +56,7 @@ namespace Projeto_pimWEB.Metodos
             func_db.Email = funcionario.Email;
             func_db.Cidade = funcionario.Cidade;
             func_db.Estado = funcionario.Estado;
-            func_db.Pais = funcionario.Pais;
+            func_db.Nacionalidade = funcionario.Nacionalidade;
             func_db.Rua = funcionario.Rua;
             func_db.Numero = funcionario.Numero;
             func_db.Bairro = funcionario.Bairro;
