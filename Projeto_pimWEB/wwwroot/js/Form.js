@@ -1,10 +1,12 @@
+/*
+Scripts com as interações da página
+*/
+
+
+//scripts para a funcionalidade dos botoes avançar e voltar do form
 var FinCadBtn = document.getElementById('FinCadBtn');
 var NextBtn = document.getElementById('NextBtn');
 var PrevBtn = document.getElementById('PrevBtn');
-
-
-var CampoOutro = document.getElementById('CampoOutro');
-var SelectGenero = document.getElementById('SelectGenero');
 
 var forms = {
     firstForm: {
@@ -32,10 +34,6 @@ var forms = {
 
         forms.thirdForm.state = false;
         forms.thirdForm.html.classList.add('d-none');
-
-        if (FinCadBtn.classList.contains('d-none') == false) {
-            FindCadBtn.classList.add('d-none');
-        }
     },
 
     showSecond: () => {
@@ -47,12 +45,6 @@ var forms = {
 
         forms.thirdForm.state = false;
         forms.thirdForm.html.classList.add('d-none');
-
-
-
-        if (FindCadBtn.classList.contains('d-none') == false) {
-            FindCadBtn.classList.add('d-none');
-        }
     },
 
     showThird: () => {
@@ -64,9 +56,6 @@ var forms = {
 
         forms.thirdForm.state = true;
         forms.thirdForm.html.classList.remove('d-none');
-
-        /* Mostra o botão FinCadastro*/
-        FinCadBtn.classList.remove('d-none');
     }
 }
 
@@ -75,15 +64,23 @@ PrevBtn.addEventListener("click", () => {
     //Navega do terceiro form para o segundo
     if (forms.firstForm.state == false &&
         forms.secondForm.state == false &&
-        forms.thirdForm.state == true) { forms.showSecond(); }
+        forms.thirdForm.state == true) {
+        forms.showSecond()
+
+        FinCadBtn.parentElement.classList.add("d-none")
+        NextBtn.parentElement.classList.remove('d-none')
+       
+    }
 
     //Navega do segundo form para o primeiro
     else if (forms.firstForm.state == false &&
         forms.secondForm.state == true &&
-        forms.thirdForm.state == false) { forms.showFirst(); }
+        forms.thirdForm.state == false) {
+        forms.showFirst()
+    }
 
     else {
-        throw new DOMException("Nenhum formulário a ser mostrado");
+        window.history.back()
     }
 })
 
@@ -91,16 +88,45 @@ NextBtn.addEventListener("click", () => {
     //Navega do primeiro para o segundo
     if (forms.firstForm.state == true &&
         forms.secondForm.state == false &&
-        forms.thirdForm.state == false) { forms.showSecond(); }
+        forms.thirdForm.state == false) {
+        forms.showSecond()
+    }
 
     //Navega do segundo para o terceiro
     else if (forms.firstForm.state == false &&
         forms.secondForm.state == true &&
-        forms.thirdForm.state == false) { forms.showThird(); }
+        forms.thirdForm.state == false) {
+        forms.showThird();
 
-    else {
-        throw new DOMException("Nenhum formulário a ser mostrado");
+        FinCadBtn.parentElement.classList.remove("d-none")
+        NextBtn.parentElement.classList.add('d-none')
     }
 })
+
+
+
+//Script para o Switch mostrar e ocultar a senha
+
+
+const SwitchAcesso = document.getElementById('SwitchAcesso');
+var PasswordDiv = document.getElementById('PasswordDiv')
+var toggleVar = false
+
+const togglePwrdDiv = () => {
+    if (toggleVar) {
+        PasswordDiv.classList.remove('d-none')
+        console.log(toggleVar)
+    } else {
+        PasswordDiv.classList.add('d-none')
+        console.log(toggleVar)
+    }
+}
+
+SwitchAcesso.addEventListener("click", () => {
+    toggleVar = !toggleVar
+    togglePwrdDiv()
+    
+})
+
 
 

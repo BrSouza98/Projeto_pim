@@ -4,14 +4,6 @@
 	ViewData["Title"] = "Adicionando Funcionario";
 }
 
-
-<div>
-	<a class="btn btn-outline-dark" asp-controller="Funcionario" asp-action="Registro" role="button"><i class="bi bi-arrow-left"></i></a>
-	<h1 class="text-center">Adicionar Funcionario</h1>
-</div>
-
-<hr />
-
 <form asp-controller="Funcionario" asp-action="Create" method="post">
 	<div class="row align-content-center flex-column">
 		<div class="col-md-5">
@@ -69,17 +61,6 @@
 					<label asp-for="Email" class="control-label">E-mail</label>
 					<input asp-for="Email" class="form-control" />
 					<span asp-validation-for="Email" class="text-danger"></span>
-				</div>
-				<div class="form-group">
-					<label asp-for="Password" class="control-label"></label>
-					<input asp-for="Password" type="password" class="form-control" />
-					<span asp-validation-for="Password" class="text-danger"></span>
-				</div>
-
-				<div class="form-group">
-					<label asp-for="ConfirmPassword" class="control-label"> Confirmar Password</label>
-					<input asp-for="ConfirmPassword" type="password" class="form-control" />
-					<span asp-validation-for="ConfirmPassword" class="text-danger"></span>
 				</div>
 
 				<label asp-for="Genero" class="control-label"></label>
@@ -203,22 +184,33 @@
 					<input asp-for="CTPS" class="form-control" maxlength="11" />
 					<span asp-validation-for="CTPS" class="text-danger"></span>
 				</div>
-				<br />
+
 				<div class="form-group form-check form-switch">
 					<label class="form-check-label">
 						<input class="form-check-input" asp-for="Ativo" /> Funcionario ativo
 					</label>
 				</div>
-				<br />
-				<div class="form-group form-check form-switch">
+
+				<div class="form-group form-check form-switch" id="SwitchAcesso" value="False">
 					<label class="form-check-label">
 						<input class="form-check-input" asp-for="TemAcesso" /> Acesso ao sistema
 					</label>
 				</div>
 
+				<div id="PasswordDiv" class="d-none">
+					<div class="form-group">
+						<label asp-for="Password" class="control-label"></label>
+						<input asp-for="Password" type="password" class="form-control" />
+						<span asp-validation-for="Password" class="text-danger"></span>
+					</div>
 
+					<div class="form-group">
+						<label asp-for="ConfirmPassword" class="control-label"> Confirmar Password</label>
+						<input asp-for="ConfirmPassword" type="password" class="form-control" />
+						<span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+					</div>
+				</div>
 
-				
 			</div>
 
 		</div>
@@ -228,12 +220,12 @@
 					<button type="button" class="btn btn-lg btn-secondary" id="PrevBtn"> <i class="bi bi-arrow-return-left"></i> Voltar</button>
 				</div>
 
-				<div class="col d-flex justify-content-end">
-					<button hidden="hidden" type="submit" class="btn btn-lg btn-success" id="FinCadBtn"><i class="bi bi-arrow-return-right"></i>Finalizar</button>
+				<div class="col d-flex justify-content-end d-none">
+					<button type="submit" class="btn btn-lg btn-success" id="FinCadBtn"> Finalizar <i class="bi bi-arrow-return-right"></i></button>
 				</div>
 
 				<div class="col d-flex justify-content-end">
-					<button type="button" class="btn btn-lg btn-info" id="NextBtn"><i class="bi bi-arrow-return-right"></i> Avançar </button>
+					<button type="button" class="btn btn-lg btn-info" id="NextBtn"> Avançar <i class="bi bi-arrow-return-right"></i></button>
 				</div>
 			</div>
 		</div>
