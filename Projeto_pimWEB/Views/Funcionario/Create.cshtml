@@ -5,6 +5,13 @@
 }
 
 
+<div>
+	<a class="btn btn-outline-dark" asp-controller="Funcionario" asp-action="Registro" role="button"><i class="bi bi-arrow-left"></i></a>
+	<h1 class="text-center">Adicionar Funcionario</h1>
+</div>
+
+<hr />
+
 <form asp-controller="Funcionario" asp-action="Create" method="post">
 	<div class="row align-content-center flex-column">
 		<div class="col-md-5">
@@ -62,6 +69,17 @@
 					<label asp-for="Email" class="control-label">E-mail</label>
 					<input asp-for="Email" class="form-control" />
 					<span asp-validation-for="Email" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="Password" class="control-label"></label>
+					<input asp-for="Password" type="password" class="form-control" />
+					<span asp-validation-for="Password" class="text-danger"></span>
+				</div>
+
+				<div class="form-group">
+					<label asp-for="ConfirmPassword" class="control-label"> Confirmar Password</label>
+					<input asp-for="ConfirmPassword" type="password" class="form-control" />
+					<span asp-validation-for="ConfirmPassword" class="text-danger"></span>
 				</div>
 
 				<label asp-for="Genero" class="control-label"></label>
@@ -194,21 +212,10 @@
 				<br />
 				<div class="form-group form-check form-switch">
 					<label class="form-check-label">
-						<input class="form-check-input" asp-for="TemAcesso" id="switchAcesso" /> Acesso ao sistema
+						<input class="form-check-input" asp-for="TemAcesso" /> Acesso ao sistema
 					</label>
 				</div>
 
-				<div class="form-group d-none" id="inputPwd">
-					<label asp-for="Password" class="control-label"></label>
-					<input asp-for="Password" type="password" class="form-control"/>
-					<span asp-validation-for="Password" class="text-danger"></span>
-				</div>
-
-				<div class="form-group d-none" id="confirmInputPwd">
-					<label asp-for="ConfirmPassword" class="control-label"> Confirmar Password</label>
-					<input asp-for="ConfirmPassword" type="password" class="form-control" />
-					<span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-				</div>
 
 
 				

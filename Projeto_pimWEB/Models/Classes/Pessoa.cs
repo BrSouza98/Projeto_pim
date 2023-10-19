@@ -1,5 +1,4 @@
-﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Projeto_pimWEB.Models.Classes
@@ -57,7 +56,6 @@ namespace Projeto_pimWEB.Models.Classes
 		public string Cidade { get; set; }
 
 		[Required(ErrorMessage = "Campo obrigatorio.")]
-		[StringLength(20), MinLength(2, ErrorMessage = "Minimo de caractere para Estado são 2.")]
 		public string Estado { get; set; }
 
 		[Required(ErrorMessage = "Campo obrigatorio.")]

@@ -1,9 +1,11 @@
 ﻿using Projeto_pimWEB.Models.Classes;
+using System.Collections.Specialized;
 
 namespace Projeto_pimWEB.Metodos
 {
 	public interface IFuncionarioRepository
     {
+        Funcionario GetFuncionarioEmail(string email);
         Funcionario CreateFunc(Funcionario func);
         List<Funcionario> GetAllFuncionarios();
         Funcionario GetFuncionario(int id);

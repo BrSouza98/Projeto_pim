@@ -32,6 +32,11 @@ namespace Projeto_pimWEB.Metodos
             return _mbdt.funcionarios.ToList();
         }
 
+        public Funcionario GetFuncionarioEmail(string email)
+        {
+            return _mbdt.funcionarios.FirstOrDefault(e => e.Email == email);
+        }
+
         public Funcionario UpdateFunc(Funcionario funcionario)
         {
             Funcionario func_db = GetFuncionario(funcionario.id_cod_func) ?? throw new Exception("Houve um erro na alteração dos dados");
@@ -118,6 +123,8 @@ namespace Projeto_pimWEB.Metodos
             _mbdt.SaveChanges();
             return true;
         }
+
+        
     }
 
 }
