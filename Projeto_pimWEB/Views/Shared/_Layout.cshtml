@@ -10,9 +10,9 @@
     <link rel="stylesheet" href="~/lib/bootstrap-icons/font/bootstrap-icons.min.css"asp-append-version="true" />
     <link rel="stylesheet" href="~/lib/animate.css/animate.min.css" />
 </head>
-<body>
+<body class="back-ground">
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom border-body box-shadow mb-3" data-bs-theme="dark">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom border-body box-shadow mb-3 nav-bar" data-bs-theme="dark">
             <div class="container-fluid">
                 @await Component.InvokeAsync("Menu")
             </div>
@@ -24,9 +24,9 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer text-muted footer">
         <div class="container">
-            &copy; 2023 - Projeto PIM - <a asp-area="" asp-controller="Home" asp-action="Privacy">Alunos</a>
+            &copy; 2023 - Projeto PIM - <a class="link" asp-area="" asp-controller="Home" asp-action="Privacy">Alunos</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

@@ -1,3 +1,10 @@
+:root {
+    --cor-1: #2C3639;
+    --cor-2: #3F4E4F;
+    --cor-3: #A27B5C;
+    --cor-4: #DCD7C9;
+}
+
 html {
   font-size: 14px;
 }
@@ -15,4 +22,23 @@ html {
 
 body {
   margin-bottom: 60px;
+  color: var(--cor-2);
+}
+
+
+.nav-bar, .logo{
+    background-color: var(--cor-1);
+    color: var(--cor-4);
+  }
+.footer {
+    background-color: var(--cor-2);
+    color: var(--cor-4)
+}
+.link {
+    text-decoration: none;
+}
+
+.nav-link:hover, .logo:hover{
+  color: #ffffff;
+  font-weight: 400;
 }
