@@ -1,0 +1,34 @@
+﻿@model LoginModel
+@{
+    Layout = "_LayoutDesconect";
+    ViewData["Title"] = "Login";
+}
+
+@if (TempData["MensagemErro"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        <button typer="button" class="btn btn-danger btn-sm close-alert" data-bs-dismiss="alert" aria-label="Close">X</button>
+         @TempData["MensagemErro"]
+    </div>
+}
+
+
+<h1> Tela de login</h1>
+
+<form asp-controller="Login" asp-action="Entrar" method="post">
+    <div class="mb-3">
+        <label for="Email" class="form-label">E-mail</label>
+        <input type="email" asp-for="email" class="form-control" id="Email">
+        <span asp-validation-for="email" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label for="Password" class="form-label">Password</label>
+        <input type="password" asp-for="password" class="form-control" id="password">
+        <span asp-validation-for="password" class="text-danger"></span>
+    </div>
+    <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Entrar</button>
+</form>
