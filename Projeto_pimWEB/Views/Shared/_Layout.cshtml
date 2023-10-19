@@ -10,11 +10,11 @@
     <link rel="stylesheet" href="~/lib/bootstrap-icons/font/bootstrap-icons.min.css"asp-append-version="true" />
     <link rel="stylesheet" href="~/lib/animate.css/animate.min.css" />
 </head>
-<body>
+<body class="back-ground">
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom border-body box-shadow mb-3" data-bs-theme="dark">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom border-body box-shadow mb-3 nav-bar" data-bs-theme="dark">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Projeto PIM</a>
+                <a class="navbar-brand logo" asp-area="" asp-controller="Home" asp-action="Index">Projeto PIM</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -22,13 +22,13 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Funcionario" asp-action="Registro">Registro</a>
+                            <a class="nav-link nav-bar" asp-area="" asp-controller="Funcionario" asp-action="Registro">Registro</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Funcionario" asp-action="Create">Adicionar Funcionario</a>
+                            <a class="nav-link nav-bar" asp-area="" asp-controller="Funcionario" asp-action="Create">Adicionar Funcionario</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link nav-bar" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                     </ul>
                 </div>
@@ -41,9 +41,9 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer text-muted footer">
         <div class="container">
-            &copy; 2023 - Projeto PIM - <a asp-area="" asp-controller="Home" asp-action="Privacy">Alunos</a>
+            &copy; 2023 - Projeto PIM - <a class="link" asp-area="" asp-controller="Home" asp-action="Privacy">Alunos</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
