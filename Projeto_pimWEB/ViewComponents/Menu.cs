@@ -13,7 +13,7 @@ namespace Projeto_pimWEB.ViewComponents
 
             if(string.IsNullOrEmpty(SessionUser) )  return null; 
 
-            Funcionario func = JsonConvert.DeserializeObject<Funcionario>(SessionUser);
+            Funcionario? func = JsonConvert.DeserializeObject<Funcionario>(SessionUser);
             return View(func);
         }
     }

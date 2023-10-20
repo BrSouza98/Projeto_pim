@@ -10,11 +10,11 @@ namespace Projeto_pimWEB.Models.Classes
 
         [Required(ErrorMessage = "Campo obrigatorio.")]
         [StringLength(30)]
-        public string Departamento { get; set; }
+        public string? Departamento { get; set; }
 
 		[Required(ErrorMessage = "Campo obrigatorio.")]
 		[StringLength(30)]
-		public string Cargo { get; set; }
+		public string? Cargo { get; set; }
 
 		[Required(ErrorMessage = "Campo obrigatorio.")]
 		public decimal SalarioBruto { get; set; }
@@ -32,10 +32,10 @@ namespace Projeto_pimWEB.Models.Classes
 
 		[Required(ErrorMessage = "Campo obrigatorio.")]
         [StringLength(11, ErrorMessage ="Informe apenas 11 caracteres.")]
-		public string PIS { get; set; }
+		public string? PIS { get; set; }
 
 		[Required(ErrorMessage = "Campo obrigatorio.")]
-		public string CTPS { get; set; }
+		public string? CTPS { get; set; }
 
         [NotMapped]
         public Folha_Pagamento? FpRecente { get; set; }

@@ -19,10 +19,13 @@ namespace Projeto_pimWEB.Controllers
 
         public IActionResult login()
         {
-            // Não permitir o retorno do funcionario logado para tela de login, redireciona para home
-            if (_session.GetSession() != null) return RedirectToAction("Index", "Home");
 
+            if (_session.GetSession() != null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
+            
         }
 
         [HttpPost]
@@ -63,6 +66,7 @@ namespace Projeto_pimWEB.Controllers
         {
             _session.RemoveSession_User();
             return RedirectToAction("login", "Login");
+
         }
 
     }

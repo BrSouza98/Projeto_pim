@@ -29,6 +29,13 @@
                }
              } " asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link nav-bar @{
+               if (ViewContext.RouteData.Values["Action"].ToString() == "Sair") {
+                   WriteLiteral("active-page");
+               }
+             } " asp-area="" asp-controller="Login" asp-action="Sair">Sair</a>
+        </li>
     </ul>
     <span>Olá, @Model.Nome</span>
 </div>

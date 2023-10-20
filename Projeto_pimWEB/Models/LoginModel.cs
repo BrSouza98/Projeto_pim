@@ -6,9 +6,9 @@ namespace Projeto_pimWEB.Models
     public class LoginModel
     {
         [Required(ErrorMessage = "Campo obrigatorio.")]
-        public string email { get; set; }
+        public string? email { get; set; }
         [Required(ErrorMessage = "Digite a senha")]
-        public string password { get; set; }
+        public string? password { get; set; }
 
     }
 }
