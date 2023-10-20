@@ -42,3 +42,10 @@ body {
   color: #ffffff;
   font-weight: 400;
 }
+
+.nav-bar.active-page {
+    color: #ffffff;
+    font-weight: 600;
+
+    border-bottom: 3px solid #ffffff;
+}

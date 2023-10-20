@@ -9,13 +9,25 @@
 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
     <ul class="navbar-nav flex-grow-1">
         <li class="nav-item">
-            <a class="nav-link nav-bar" asp-area="" asp-controller="Funcionario" asp-action="Registro">Registro</a>
+            <a class="nav-link nav-bar @{  
+               if (ViewContext.RouteData.Values["Action"].ToString() == "Registro") {
+                   WriteLiteral("active-page");
+               }
+             } " asp-area="" asp-controller="Funcionario" asp-action="Registro">Registro</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link nav-bar" asp-area="" asp-controller="Funcionario" asp-action="Create">Adicionar Funcionario</a>
+            <a class="nav-link nav-bar @{
+               if (ViewContext.RouteData.Values["Action"].ToString() == "Create") {
+                   WriteLiteral("active-page");
+               }
+             } " asp-area="" asp-controller="Funcionario" asp-action="Create">Adicionar Funcionario</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link nav-bar" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <a class="nav-link nav-bar @{
+               if (ViewContext.RouteData.Values["Action"].ToString() == "Privacy") {
+                   WriteLiteral("active-page");
+               }
+             } " asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </li>
     </ul>
     <span>Olá, @Model.Nome</span>
