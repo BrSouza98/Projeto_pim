@@ -39,17 +39,17 @@ namespace Projeto_pimWEB.Controllers
 
                     if(funcionario != null)
                     {
-                        if(funcionario.Email.ToLower() == login.email.ToLower() && funcionario.Password.ToLower() == login.password.ToLower()) 
+                        if (funcionario.TemAcesso)
                         {
-
-                            _session.CreatSession_User(funcionario);
-                            return RedirectToAction("Index", "Home");
+                            if (funcionario.Password == login.password)
+                            {
+                                _session.CreatSession_User(funcionario);
+                                return RedirectToAction("Index", "Home");
+                            }
+                            ViewData["MensagemErro"] = $"Usuário e/ou senha invalido(s). Por favor, tente novamente!";
                         }
-
-
+                        else ViewData["MensagemErro"] = $"{funcionario.Nome} não tem acesso ao sistema.";
                     }
-                    TempData["MensagemErro"] = $"Usuário e/ou senha invalido(s). Por favor, tente novamente!";
-
                 }
 
                 return View("login");

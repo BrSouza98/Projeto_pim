@@ -24,7 +24,8 @@ namespace Projeto_pimWEB.Metodos
 
         public Funcionario GetFuncionario(int id) // Retorna apenas o funcionario pela chave primaria 
         {
-            return _mbdt.funcionarios.Where(i => i.id_cod_func == id).FirstOrDefault();
+            Funcionario? func = _mbdt.funcionarios.Where(i => i.id_cod_func == id).FirstOrDefault();
+            return func;
         }
 
         public List<Funcionario> GetAllFuncionarios() // Retorna todos os funcionarios 
@@ -34,7 +35,8 @@ namespace Projeto_pimWEB.Metodos
 
         public Funcionario GetFuncionarioEmail(string email)
         {
-            return _mbdt.funcionarios.FirstOrDefault(e => e.Email == email);
+            Funcionario? func = _mbdt.funcionarios.FirstOrDefault(e => e.Email.ToLower() == email.ToLower());
+            return func;
         }
 
         public Funcionario UpdateFunc(Funcionario funcionario)
@@ -78,6 +80,7 @@ namespace Projeto_pimWEB.Metodos
             var func_db = GetFuncionario(id) ?? throw new Exception("Houve um erro na desativação do funcionario");
 
             func_db.Ativo = false;
+            func_db.TemAcesso = false;
 
             _mbdt.funcionarios.Update(func_db);
             _mbdt.SaveChanges();
