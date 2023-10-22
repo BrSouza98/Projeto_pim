@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Projeto_pimWEB.Filter;
 using Projeto_pimWEB.Metodos;
 using Projeto_pimWEB.Models.Classes;
+using System;
 
 namespace Projeto_pimWEB.Controllers
 {
@@ -49,8 +50,23 @@ namespace Projeto_pimWEB.Controllers
         [HttpPost]
         public IActionResult Create(Funcionario func)
         {
-            _metodos.CreateFunc(func);
-            return RedirectToAction("Registro");
+            try
+            {
+				if (ModelState.IsValid)
+				{
+					_metodos.CreateFunc(func);
+					TempData["MensagemSucesso"] = $"Sucesso ao cadastrar: {func.Nome}";
+					return RedirectToAction("Registro");
+				}
+
+				return View(func);
+			}
+            catch (Exception ex)
+            {
+				TempData["MensagemErro"] = $"Não foi possivel cadastrar: {func.Nome}." +
+                    $"Mais detalhes: {ex.Message}";
+				return RedirectToAction("Registro");
+			}
         }
 
         public IActionResult Create_depen(int id)
@@ -63,9 +79,25 @@ namespace Projeto_pimWEB.Controllers
         [HttpPost]
         public IActionResult Create_depen(int id, Dependente dependente)
         {
-            dependente.funcionario = _metodos.GetFuncionario(id);
-            _metodos.CreateDep(dependente);
-            return RedirectToAction("Registro_depen", new { action ="Registro_depen", id });
+            try
+            {
+                if (ModelState.IsValid) 
+                {
+                    dependente.funcionario = _metodos.GetFuncionario(id);
+                    _metodos.CreateDep(dependente);
+                    TempData["MensagemSucesso"] = $"Sucesso ao cadastrar: {dependente.Nome}";
+                    return RedirectToAction("Registro_depen", new { action = "Registro_depen", id });
+                }
+                return View(dependente);
+            }
+
+            catch (Exception ex)
+            {
+                TempData["MensagemErro"] = $"Não foi possivel cadastrar: {dependente.Nome}." +
+                    $"Mais detalhes: {ex.Message}";
+                return RedirectToAction("Registro_depen", new { action = "Registro_depen", id });
+            }
+            
         }
 
         public IActionResult Editar(int id)
@@ -77,8 +109,13 @@ namespace Projeto_pimWEB.Controllers
         [HttpPost]
         public IActionResult Alterar(Funcionario func)
         {
-            _metodos.UpdateFunc(func);
-            return RedirectToAction("Registro");
+            if(ModelState.IsValid)
+            {
+				_metodos.UpdateFunc(func);
+				return RedirectToAction("Registro");
+			}
+
+            return View("Editar", func);
         }
 
         public IActionResult Editar_depen(int id)

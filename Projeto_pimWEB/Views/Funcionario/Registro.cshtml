@@ -6,10 +6,24 @@
 }
 
 
+
 <h1 class="display-4 text-center"> Funcionários</h1>
 <br />
 
+@if (TempData["MensagemErro"] != null)
+{
+	<div class="alert alert-danger close-alert" role="alert">
+		@TempData["MensagemErro"]
+	</div>
+}
 
+@if (TempData["MensagemSucesso"] != null)
+{
+	<div class="alert alert-success close-alert" role="alert">
+		@TempData["MensagemSucesso"]
+	</div>
+}
+<br />
 
 <table class="table" id="table-registro">
 	<thead>
