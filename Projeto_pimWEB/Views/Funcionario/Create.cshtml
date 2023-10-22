@@ -6,7 +6,7 @@
 
 <form asp-controller="Funcionario" asp-action="Create" method="post">
 	<div class="row align-content-center flex-column">
-		<div class="col-md-5">
+		<div class="col-lg-5">
 
 			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 			<div id="firstForm" class="">
@@ -62,6 +62,11 @@
 					<input asp-for="Email" class="form-control" />
 					<span asp-validation-for="Email" class="text-danger"></span>
 				</div>
+				<div class="form-group">
+					<label asp-for="Nacionalidade" class="control-label"></label>
+					<input asp-for="Nacionalidade" class="form-control" />
+					<span asp-validation-for="Nacionalidade" class="text-danger"></span>
+				</div>
 
 				<label asp-for="Genero" class="control-label"></label>
 				<select id="SelectGenero" asp-for="Genero" class="form-select">
@@ -75,14 +80,19 @@
 					<option value="Prefiro não dizer/Não me identifico">Prefiro não dizer/Não me identifico</option>
 				</select>
 				<span asp-validation-for="Genero" class="text-danger"></span>
-				
+
 			</div>
 
 			<div id="secondForm" class="d-none">
 				<h1 class="text-center"> Endereço</h1>
 				<div class="form-group">
+					<label asp-for="CEP" class="control-label"></label>
+					<input asp-for="CEP" class="form-control border" onkeyup="cepApi(event.target.value)" maxlength="9" id="cep" />
+					<span asp-validation-for="CEP" class="text-danger"></span>
+				</div>
+				<div class="form-group">
 					<label asp-for="Rua" class="control-label"></label>
-					<input asp-for="Rua" class="form-control" />
+					<input asp-for="Rua" class="form-control" id="rua" />
 					<span asp-validation-for="Rua" class="text-danger"></span>
 				</div>
 				<div class="form-group">
@@ -92,22 +102,17 @@
 				</div>
 				<div class="form-group">
 					<label asp-for="Bairro" class="control-label"></label>
-					<input asp-for="Bairro" class="form-control" />
+					<input asp-for="Bairro" class="form-control" id="bairro" />
 					<span asp-validation-for="Bairro" class="text-danger"></span>
 				</div>
 				<div class="form-group">
-					<label asp-for="CEP" class="control-label"></label>
-					<input asp-for="CEP" class="form-control" onkeyup="handleCep(event)" maxlength="9" />
-					<span asp-validation-for="CEP" class="text-danger"></span>
-				</div>
-				<div class="form-group">
 					<label asp-for="Cidade" class="control-label"></label>
-					<input asp-for="Cidade" class="form-control" />
+					<input asp-for="Cidade" class="form-control" id="cidade" />
 					<span asp-validation-for="Cidade" class="text-danger"></span>
 				</div>
 				<div class="form-group">
 					<label asp-for="Estado" class="control-label"></label>
-					<select id="Estado" class="form-select" name="estado">
+					<select id="estado" class="form-select" name="estado">
 						<option value="">Selecione</option>
 						<option value="AC">AC</option>
 						<option value="AL">AL</option>
@@ -137,13 +142,9 @@
 						<option value="SE">SE</option>
 						<option value="TO">TO</option>
 					</select>
-					<span asp-validation-for="Estado" class="text-danger"></span>
 				</div>
-				<div class="form-group">
-					<label asp-for="Nacionalidade" class="control-label"></label>
-					<input asp-for="Nacionalidade" class="form-control" />
-					<span asp-validation-for="Nacionalidade" class="text-danger"></span>
-				</div>
+				<span asp-validation-for="Estado" class="text-danger"></span>
+
 				<div class="form-group">
 					<label asp-for="Complemento" class="control-label"></label>
 					<input asp-for="Complemento" class="form-control" />

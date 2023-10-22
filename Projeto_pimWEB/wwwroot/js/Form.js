@@ -129,3 +129,42 @@ SwitchAcesso.addEventListener("click", () => {
 })
 
 
+/*CEP API */
+
+function renderCep(data) {
+    const cepHtml = document.querySelector("#cep");
+    const rua = document.querySelector("#rua");
+    const bairro = document.querySelector("#bairro")
+    const cidade = document.querySelector("#cidade")
+    const estado = document.querySelector("#estado")
+
+    cepHtml.value = data.cep
+    rua.value = data.logradouro
+    bairro.value = data.bairro
+    cidade.value = data.localidade
+    estado.value = data.uf
+}
+
+const cepApi = (cep) => {
+    let api = `https://viacep.com.br/ws/${cep}/json/`
+    const cepHtml = document.querySelector("#cep");
+
+    console.log(api);
+
+    if (cep.length == 8) {
+        fetch(api)
+            .then((response) => {
+                response.json().then((data) => {
+                    cepHtml.classList.remove("border-warning")
+                    cepHtml.classList.add("border-success")
+                    renderCep(data)
+                })
+            })
+    } else {
+        if (!cepHtml.classList.contains("border-warning")) {
+            cepHtml.classList.add("border-warning")
+        }
+    }
+}
+
+
