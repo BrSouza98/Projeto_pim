@@ -41,6 +41,5 @@ $(document).ready(function () {
     setTimeout(() => {
         $('.close-alert').fadeOut('slow')
     },5000)
-
 });
 
