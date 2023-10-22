@@ -1,9 +1,15 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.Sqlite;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Sqlite.Query.Internal;
+using Microsoft.Extensions.Caching.Memory;
 using Projeto_pimWEB.Filter;
 using Projeto_pimWEB.Metodos;
 using Projeto_pimWEB.Models.Classes;
+using SQLitePCL;
 using System;
+using System.ComponentModel;
 
 namespace Projeto_pimWEB.Controllers
 {
@@ -63,8 +69,10 @@ namespace Projeto_pimWEB.Controllers
 			}
             catch (Exception ex)
             {
-				TempData["MensagemErro"] = $"Não foi possivel cadastrar: {func.Nome}." +
+               
+                TempData["MensagemErro"] = $"Não foi possivel cadastrar: {func.Nome}.\n" +
                     $"Mais detalhes: {ex.Message}";
+
 				return RedirectToAction("Registro");
 			}
         }
@@ -93,7 +101,7 @@ namespace Projeto_pimWEB.Controllers
 
             catch (Exception ex)
             {
-                TempData["MensagemErro"] = $"Não foi possivel cadastrar: {dependente.Nome}." +
+                TempData["MensagemErro"] = $"Não foi possivel cadastrar: {dependente.Nome}.\n" +
                     $"Mais detalhes: {ex.Message}";
                 return RedirectToAction("Registro_depen", new { action = "Registro_depen", id });
             }
@@ -109,40 +117,95 @@ namespace Projeto_pimWEB.Controllers
         [HttpPost]
         public IActionResult Alterar(Funcionario func)
         {
-            if(ModelState.IsValid)
+            try
             {
-				_metodos.UpdateFunc(func);
-				return RedirectToAction("Registro");
-			}
+                if (ModelState.IsValid)
+                {
+                    _metodos.UpdateFunc(func);
+                    TempData["MensagemSucesso"] = $"Dados alterados com sucesso do(a): {func.Nome}";
+                    return RedirectToAction("Registro");
+                }
 
-            return View("Editar", func);
+                return View("Editar", func);
+            }
+            catch (Exception ex)
+            {
+                TempData["MensagemErro"] = $"Ops, erro na alteração dos dados do(a): {func.Nome}.\n" +
+                    $"Mais detalher: {ex.Message}";
+                return RedirectToAction("Registro");
+            }
+            
         }
 
         public IActionResult Editar_depen(int id)
         {
-            var dependente = _metodos.GetDependente(id);
-            return View(dependente);
+		    var dependente = _metodos.GetDependente(id);
+		    return View(dependente);
         }
 
         [HttpPost]
         public IActionResult Alterar_depen(Dependente dependente, int id)
         {
-            _metodos.UpdateDep(dependente);
-            return RedirectToAction("Registro_depen", new { action = "Registro_depen", id });
+            try
+            {
+                if (ModelState.IsValid)
+                {
+					_metodos.UpdateDep(dependente);
+					TempData["MensagemSucesso"] = $"Dados do(a): {dependente.Nome} alterados com sucesso.";
+					return RedirectToAction("Registro_depen", new { action = "Registro_depen", id });
+				}
+				return View("Editar_depen", id);
+			}
+            catch(Exception ex)
+            {
+				TempData["MensagemErro"] = $"Ops, erro na alteração dos dados do(a) dependente: {dependente.Nome}.\n" +
+					$"Mais detalher: {ex.Message}";
+				return RedirectToAction("Registro_depen", new { action = "Registro_depen", id });
+			}
+            
         }
 
         public IActionResult Desativar(int id)
         {
-            _metodos.Desativar(id);
-            return RedirectToAction("Registro");
+            try
+            {
+				var func = _metodos.Desativar(id);
+                TempData["MensagemSucesso"] = $"Sucesso ao desativar o(a) funcionario(a): {func.Nome}";
+				return RedirectToAction("Registro");
+			}
+            catch (Exception ex)
+            {
+                var func = _metodos.GetFuncionario(id);
+				TempData["MensagemErro"] = $"Ops, houve um erro ao tentar desativar o(a) funcionario(a): {func.Nome}.\n" +
+                    $"Mais detalhes: {ex.Message}";
+				return RedirectToAction("Registro");
+			}
         }
 
         public IActionResult Deletar_Dependente(int id)
         {
-            Dependente dependente = _metodos.GetDependente(id);
-
-            _metodos.Delete_Depen(id);
-            return RedirectToAction("Registro_depen", new { action = "Registro_depen", id = dependente.funcionarioid_cod_func });
+            try
+            {
+				Dependente dependente = _metodos.GetDependente(id);
+                if (ModelState.IsValid)
+                {
+                    bool apagado = _metodos.Delete_Depen(id);
+                    if (apagado)
+                    {
+                        TempData["MensagemSucesso"] = $"Dependente: {dependente.Nome} foi apagado com sucesso.";
+                        return RedirectToAction("Registro_depen", new { action = "Registro_depen", id = dependente.funcionarioid_cod_func });
+                    }
+                }
+                return RedirectToAction("Registro_depen", new { action = "Registro_depen", id = dependente.funcionarioid_cod_func });
+			}
+            catch(Exception ex)
+            {
+                var dependente = _metodos.GetDependente(id);
+                TempData["MensagemErro"] = $"Ops, houve um erro ao tentar deletar o dependente:{dependente.Nome}.\n" +
+                    $"Mais detalhes: {ex.Message}";
+				return RedirectToAction("Registro_depen", new { action = "Registro_depen", id = dependente.funcionarioid_cod_func });
+			}
+            
         }
     }
 }

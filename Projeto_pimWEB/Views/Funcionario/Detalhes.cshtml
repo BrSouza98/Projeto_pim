@@ -231,7 +231,6 @@
 									@dependente.Parentesco
 								</dd>
 
-								<hr />
 							}
 						</dl>
 					</div>
@@ -240,7 +239,16 @@
 		}
 	</div>
 
-	<div class="modal fade" id="Modal-Funcionario-@Html.DisplayFor(model=> model.id_cod_func)" tabindex="-1" aria-labelledby="modalConfirmarApagar" aria-hidden="true">
+
+	<div class="btn-group mt-4">
+		<a asp-action="Editar" class="btn btn-primary" asp-route-id="@Model?.id_cod_func">Editar</a>
+		<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Modal-Funcionario-@Model.id_cod_func">
+			Desativar
+		</button>
+		<a asp-controller="Funcionario" asp-action="Registro" class="btn btn-secondary">Voltar</a>
+	</div>
+
+	<div class="modal fade" id="Modal-Funcionario-@Model.id_cod_func" tabindex="-1" aria-labelledby="modalConfirmarApagar" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -249,23 +257,15 @@
 				</div>
 				<div class="modal-body">
 					<p>
-						Deseja apagar o funcionário <b>@Html.DisplayFor(model => model.Nome)</b> permanentemente?
+						Deseja desativar o(a) funcionário(a) <b>@Html.DisplayFor(model => model.Nome)</b> permanentemente?
 					</p>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-danger">Apagar Funcionário</button>
+					<a asp-controller="Funcionario" asp-route-id="@Model.id_cod_func" asp-action="Desativar" class="btn btn-danger">Desativar</a>
 					<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
 				</div>
 			</div>
 		</div>
-	</div>
-
-
-
-	<div class="btn-group mt-4">
-		<a asp-action="Editar" class="btn btn-primary" asp-route-id="@Model?.id_cod_func">Editar</a>
-		<a asp-controller="Funcionario" asp-route-id="@Model?.id_cod_func" asp-action="Desativar" class="btn btn-danger">Desativar</a>
-		<a asp-controller="Funcionario" asp-action="Registro" class="btn btn-secondary">Voltar</a>
 	</div>
 }
 

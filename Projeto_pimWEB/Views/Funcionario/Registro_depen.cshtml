@@ -44,7 +44,9 @@
                     <td>
                         <div class="btn-group" role="group">
                             <a  asp-controller="Funcionario" asp-route-id="@d.id_cod_dep" asp-action="Editar_depen" class="btn btn-primary">Editar</a>
-                            <a asp-controller="Funcionario" asp-route-id="@d.id_cod_dep" asp-action="Deletar_Dependente" class="btn btn-danger">Apagar</a>
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Modal-Dependente-@d.id_cod_dep">
+                                Apagar
+                            </button>
                         </div>
                     </td>
                 </tr>
@@ -59,11 +61,39 @@
             </tr>
         }
     </tbody>
-    <a asp-controller="Funcionario" asp-action="Registro" class="btn btn-secundary" role="button">Voltar</a>
+    <a asp-controller="Funcionario" asp-action="Registro" class="btn btn-secondary" role="button">Voltar</a>
     <a asp-controller="Funcionario" asp-route-id="@Model.id_cod_func" asp-action="Create_depen" class="btn btn-primary" role="button">Adicionar dependente</a>
     
 
 </table>
+
+
+@if (Model.dependentes != null)
+{
+    foreach (var d in Model.dependentes)
+    {
+        <!-- Modal -->
+        <div class="modal fade" id="Modal-Dependente-@d.id_cod_dep" tabindex="-1" aria-labelledby="modalConfirmarApagar" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="modalConfirmarApagarLabel">Apagar dependente</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            Deseja apagar o dependente <b>@d.Nome</b>?
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <a asp-controller="Funcionario" asp-route-id="@d.id_cod_dep" asp-action="Deletar_Dependente" class="btn btn-danger">Apagar</a>
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
 
 
 @section Scripts {

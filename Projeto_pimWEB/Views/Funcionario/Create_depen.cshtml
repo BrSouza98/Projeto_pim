@@ -43,11 +43,8 @@
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
+                <a asp-controller="Funcionario" asp-route-id="@Model.funcionario.id_cod_func" asp-action="Registro_depen" role="button" class="btn btn-secondary">Voltar</a>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-controller="Funcionario" asp-route-id="@Model.funcionario.id_cod_func" asp-action="Registro_depen">Voltar</a>
 </div>
