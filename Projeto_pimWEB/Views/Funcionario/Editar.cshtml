@@ -202,7 +202,9 @@
 					</label>
 				</div>
 
-				<div id="PasswordDiv" class="d-none">
+				<div id="PasswordDiv" class="@{ 
+					if(Convert.ToBoolean(Model.TemAcesso) == true) { WriteLiteral(""); } else { WriteLiteral("d-none");}
+				}">
 					<div class="form-group">
 						<label asp-for="Password" class="control-label"></label>
 						<input asp-for="Password" type="password" class="form-control" />
