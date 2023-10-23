@@ -89,14 +89,14 @@ namespace Projeto_pimWEB.Controllers
         {
             try
             {
-                if (ModelState.IsValid) 
-                {
-                    dependente.funcionario = _metodos.GetFuncionario(id);
-                    _metodos.CreateDep(dependente);
-                    TempData["MensagemSucesso"] = $"Sucesso ao cadastrar: {dependente.Nome}";
-                    return RedirectToAction("Registro_depen", new { action = "Registro_depen", id });
-                }
-                return View(dependente);
+                
+                
+                dependente.funcionario = _metodos.GetFuncionario(id);
+                _metodos.CreateDep(dependente);
+                TempData["MensagemSucesso"] = $"Sucesso ao cadastrar: {dependente.Nome}";
+                return RedirectToAction("Registro_depen", new { action = "Registro_depen", id });
+                
+                
             }
 
             catch (Exception ex)
