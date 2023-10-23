@@ -9,7 +9,7 @@ namespace Projeto_pimWEB.Models.Classes
         public string Motivo {  get; set; }
         public double Valor { get; set; }
 
-        public Folha_Pagamento Folha_Pagamento {  get; set; }
+        public FolhaPagamento Folha_Pagamento {  get; set; }
         public Funcionario Funcionario { get; set; }
 
         

@@ -9,14 +9,14 @@ namespace Projeto_pimWEB.Data
         {
         }
         public DbSet<Funcionario> funcionarios { get; set; }
-        public DbSet<Folha_Pagamento> folha_pagamento { get; set; }
+        public DbSet<FolhaPagamento> folhaPagamento { get; set; }
         public DbSet<Desconto> descontos { get; set; }
         public DbSet<Beneficio> beneficios { get; set; }
         public DbSet<Dependente> dependentes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Folha_Pagamento>()
+            modelBuilder.Entity<FolhaPagamento>()
                 .HasOne(f => f.Funcionario)
                 .WithMany(f => f.Folhas)
                 .HasForeignKey(f => f.id_cod_func)
