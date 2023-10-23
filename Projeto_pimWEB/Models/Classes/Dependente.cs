@@ -11,21 +11,21 @@ namespace Projeto_pimWEB.Models.Classes
 
 		[Required(ErrorMessage = "Campo obrigatorio.")]
 		[MaxLength(50)]
-		public string? Nome {  get; set; }
+		public string Nome {  get; set; }
 
         
         [Required(ErrorMessage = "Campo obrigatorio.")]
         [DataType(DataType.Date)]
-        public DateTime DtNascimento { get; set; }
+        public string DtNascimento { get; set; }
 
 		[Required(ErrorMessage = "Campo obrigatorio.")]
 		[MaxLength(15)]
-		public string? Parentesco {  get; set; }
+		public string Parentesco {  get; set; }
 
 
         [ForeignKey(nameof(Dependente))]
         public int funcionarioid_cod_func { get; set; }
-        public Funcionario? funcionario { get; set; }
+        public Funcionario funcionario { get; set; }
 
         
     }

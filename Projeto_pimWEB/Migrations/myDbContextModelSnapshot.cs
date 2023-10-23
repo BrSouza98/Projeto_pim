@@ -23,10 +23,10 @@ namespace Projeto_pimWEB.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Folha_Pagamentoid_cod_FP")
+                    b.Property<int?>("Folha_Pagamentoid_cod_FP")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Funcionarioid_cod_func")
+                    b.Property<int?>("Funcionarioid_cod_func")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Nome_Ben")
@@ -51,15 +51,18 @@ namespace Projeto_pimWEB.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("DtNascimento")
+                    b.Property<string>("DtNascimento")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Nome")
                         .IsRequired()
+                        .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Parentesco")
                         .IsRequired()
+                        .HasMaxLength(15)
                         .HasColumnType("TEXT");
 
                     b.Property<int>("funcionarioid_cod_func")
@@ -84,7 +87,7 @@ namespace Projeto_pimWEB.Migrations
                     b.Property<int>("Funcionarioid_cod_func")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Nome_des")
+                    b.Property<string>("Motivo")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -106,22 +109,25 @@ namespace Projeto_pimWEB.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Cargo")
+                    b.Property<string>("DataEmissao")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("DataEmissao")
-                        .HasColumnType("TEXT");
-
-                    b.Property<float>("DiasTrabalhados")
+                    b.Property<double>("Fgts")
                         .HasColumnType("REAL");
 
-                    b.Property<DateTime>("MesRef")
-                        .HasColumnType("TEXT");
+                    b.Property<double>("Inss")
+                        .HasColumnType("REAL");
 
-                    b.Property<string>("NomeFunc")
+                    b.Property<string>("MesAnoRef")
                         .IsRequired()
                         .HasColumnType("TEXT");
+
+                    b.Property<double>("Salario")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("SalarioLiquido")
+                        .HasColumnType("REAL");
 
                     b.Property<int>("id_cod_func")
                         .HasColumnType("INTEGER");
@@ -144,40 +150,40 @@ namespace Projeto_pimWEB.Migrations
 
                     b.Property<string>("Bairro")
                         .IsRequired()
+                        .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("CEP")
                         .IsRequired()
+                        .HasMaxLength(9)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("CPF")
                         .IsRequired()
+                        .HasMaxLength(14)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("CTPS")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<float>("CargaHoraria")
-                        .HasColumnType("REAL");
-
                     b.Property<string>("Cargo")
                         .IsRequired()
+                        .HasMaxLength(30)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Cidade")
                         .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Complemento")
-                        .IsRequired()
+                        .HasMaxLength(30)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Departamento")
                         .IsRequired()
+                        .HasMaxLength(30)
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("DtNascimento")
+                    b.Property<string>("DtNascimento")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
@@ -194,14 +200,22 @@ namespace Projeto_pimWEB.Migrations
 
                     b.Property<string>("Formacao")
                         .IsRequired()
+                        .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Genero")
-                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("HoraSemanais")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Nacionalidade")
+                        .HasMaxLength(60)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Nome")
                         .IsRequired()
+                        .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
                     b.Property<int>("Numero")
@@ -209,33 +223,31 @@ namespace Projeto_pimWEB.Migrations
 
                     b.Property<string>("PIS")
                         .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Pais")
-                        .IsRequired()
+                        .HasMaxLength(11)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Password")
-                        .IsRequired()
+                        .HasMaxLength(20)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("RG")
                         .IsRequired()
+                        .HasMaxLength(12)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Rua")
                         .IsRequired()
+                        .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
-                    b.Property<decimal>("SalarioBruto")
-                        .HasColumnType("TEXT");
+                    b.Property<double>("Salario")
+                        .HasColumnType("REAL");
 
                     b.Property<string>("Telefone")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("TelefoneR")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("TemAcesso")
@@ -249,16 +261,12 @@ namespace Projeto_pimWEB.Migrations
             modelBuilder.Entity("Projeto_pimWEB.Models.Classes.Beneficio", b =>
                 {
                     b.HasOne("Projeto_pimWEB.Models.Classes.Folha_Pagamento", "Folha_Pagamento")
-                        .WithMany("Beneficios")
-                        .HasForeignKey("Folha_Pagamentoid_cod_FP")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany()
+                        .HasForeignKey("Folha_Pagamentoid_cod_FP");
 
                     b.HasOne("Projeto_pimWEB.Models.Classes.Funcionario", "Funcionario")
                         .WithMany()
-                        .HasForeignKey("Funcionarioid_cod_func")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Funcionarioid_cod_func");
 
                     b.Navigation("Folha_Pagamento");
 
@@ -268,7 +276,7 @@ namespace Projeto_pimWEB.Migrations
             modelBuilder.Entity("Projeto_pimWEB.Models.Classes.Dependente", b =>
                 {
                     b.HasOne("Projeto_pimWEB.Models.Classes.Funcionario", "funcionario")
-                        .WithMany("dependentes")
+                        .WithMany()
                         .HasForeignKey("funcionarioid_cod_func")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -279,7 +287,7 @@ namespace Projeto_pimWEB.Migrations
             modelBuilder.Entity("Projeto_pimWEB.Models.Classes.Desconto", b =>
                 {
                     b.HasOne("Projeto_pimWEB.Models.Classes.Folha_Pagamento", "Folha_Pagamento")
-                        .WithMany("Descontos")
+                        .WithMany()
                         .HasForeignKey("Folha_Pagamentoid_cod_FP")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -306,18 +314,9 @@ namespace Projeto_pimWEB.Migrations
                     b.Navigation("Funcionario");
                 });
 
-            modelBuilder.Entity("Projeto_pimWEB.Models.Classes.Folha_Pagamento", b =>
-                {
-                    b.Navigation("Beneficios");
-
-                    b.Navigation("Descontos");
-                });
-
             modelBuilder.Entity("Projeto_pimWEB.Models.Classes.Funcionario", b =>
                 {
                     b.Navigation("Folhas");
-
-                    b.Navigation("dependentes");
                 });
 #pragma warning restore 612, 618
         }

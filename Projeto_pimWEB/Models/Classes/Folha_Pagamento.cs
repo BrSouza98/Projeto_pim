@@ -9,24 +9,23 @@ namespace Projeto_pimWEB.Models.Classes
         public int id_cod_FP {  get; set; }
 
         [DataType(DataType.Date)]
-        public DateTime DataEmissao {  get; set; }
+        public string DataEmissao {  get; set; }
 
         [DataType(DataType.Date)]
-        public DateTime MesRef {  get; set; }
-        public string? NomeFunc { get; set; }
-        public string? Cargo { get; set; }
-        public float DiasTrabalhados { get; set; }
+        public string MesAnoRef {  get; set; }
+
         public int id_cod_func { get; set; }
-        public Funcionario? Funcionario { get; set; }
+        public Funcionario Funcionario { get; set; }
+        public double Salario { get; set; }
+        public double SalarioLiquido { get; set; }
+        public double Inss {  get; set; }
+        public double Fgts {  get; set; }
+
 
         [NotMapped]
-        private decimal SalarioBruto { get; set; }
+        public ICollection<Desconto> Descontos { get; set; }
         [NotMapped]
-        private decimal SalarioLiquido { get; set; }
-        [NotMapped]
-        public ICollection<Desconto>? Descontos { get; set; }
-        [NotMapped]
-        public ICollection<Beneficio>? Beneficios { get; set; }
+        public ICollection<Beneficio> Beneficios { get; set; }
 
 
     }

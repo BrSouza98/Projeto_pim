@@ -46,8 +46,8 @@ namespace Projeto_pimWEB.Metodos
             func_db.Nome = funcionario.Nome;
             func_db.Departamento = funcionario.Departamento;
             func_db.Cargo = funcionario.Cargo;
-            func_db.SalarioBruto = funcionario.SalarioBruto;
-            func_db.CargaHoraria = funcionario.CargaHoraria;
+            func_db.Salario = funcionario.Salario;
+            func_db.HoraSemanais = funcionario.HoraSemanais;
             func_db.Ativo = funcionario.Ativo;
             func_db.TemAcesso = funcionario.TemAcesso;
             func_db.Formacao = funcionario.Formacao;

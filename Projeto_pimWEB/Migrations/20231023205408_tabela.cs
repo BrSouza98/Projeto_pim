@@ -1,11 +1,10 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace Projeto_pimWEB.Migrations
 {
-    public partial class CreatDatabase : Migration
+    public partial class tabela : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,33 +14,32 @@ namespace Projeto_pimWEB.Migrations
                 {
                     id_cod_func = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Departamento = table.Column<string>(type: "TEXT", nullable: false),
-                    Cargo = table.Column<string>(type: "TEXT", nullable: false),
-                    SalarioBruto = table.Column<decimal>(type: "TEXT", nullable: false),
-                    CargaHoraria = table.Column<float>(type: "REAL", nullable: false),
+                    Departamento = table.Column<string>(type: "TEXT", maxLength: 30, nullable: false),
+                    Cargo = table.Column<string>(type: "TEXT", maxLength: 30, nullable: false),
+                    Salario = table.Column<double>(type: "REAL", nullable: false),
+                    HoraSemanais = table.Column<int>(type: "INTEGER", nullable: false),
                     Ativo = table.Column<bool>(type: "INTEGER", nullable: false),
                     TemAcesso = table.Column<bool>(type: "INTEGER", nullable: false),
-                    Formacao = table.Column<string>(type: "TEXT", nullable: false),
-                    PIS = table.Column<string>(type: "TEXT", nullable: false),
+                    Formacao = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
+                    PIS = table.Column<string>(type: "TEXT", maxLength: 11, nullable: false),
                     CTPS = table.Column<string>(type: "TEXT", nullable: false),
-                    Nome = table.Column<string>(type: "TEXT", nullable: false),
-                    Genero = table.Column<string>(type: "TEXT", nullable: false),
-                    DtNascimento = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    CPF = table.Column<string>(type: "TEXT", nullable: false),
-                    RG = table.Column<string>(type: "TEXT", nullable: false),
+                    Nome = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
+                    Genero = table.Column<string>(type: "TEXT", nullable: true),
+                    DtNascimento = table.Column<string>(type: "TEXT", nullable: false),
+                    CPF = table.Column<string>(type: "TEXT", maxLength: 14, nullable: false),
+                    RG = table.Column<string>(type: "TEXT", maxLength: 12, nullable: false),
+                    Nacionalidade = table.Column<string>(type: "TEXT", maxLength: 60, nullable: true),
                     EstadoCivil = table.Column<string>(type: "TEXT", nullable: false),
                     Telefone = table.Column<string>(type: "TEXT", nullable: false),
-                    TelefoneR = table.Column<string>(type: "TEXT", nullable: false),
+                    TelefoneR = table.Column<string>(type: "TEXT", nullable: true),
                     Email = table.Column<string>(type: "TEXT", nullable: false),
-                    Password = table.Column<string>(type: "TEXT", nullable: false),
-                    Cidade = table.Column<string>(type: "TEXT", nullable: false),
+                    Password = table.Column<string>(type: "TEXT", maxLength: 20, nullable: true),
+                    Cidade = table.Column<string>(type: "TEXT", maxLength: 30, nullable: false),
                     Estado = table.Column<string>(type: "TEXT", nullable: false),
-                    Pais = table.Column<string>(type: "TEXT", nullable: false),
-                    Rua = table.Column<string>(type: "TEXT", nullable: false),
+                    Rua = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
                     Numero = table.Column<int>(type: "INTEGER", nullable: false),
-                    Bairro = table.Column<string>(type: "TEXT", nullable: false),
-                    CEP = table.Column<string>(type: "TEXT", nullable: false),
-                    Complemento = table.Column<string>(type: "TEXT", nullable: false)
+                    Bairro = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
+                    CEP = table.Column<string>(type: "TEXT", maxLength: 9, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -54,9 +52,9 @@ namespace Projeto_pimWEB.Migrations
                 {
                     id_cod_dep = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Nome = table.Column<string>(type: "TEXT", nullable: false),
-                    DtNascimento = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    Parentesco = table.Column<string>(type: "TEXT", nullable: false),
+                    Nome = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
+                    DtNascimento = table.Column<string>(type: "TEXT", nullable: false),
+                    Parentesco = table.Column<string>(type: "TEXT", maxLength: 15, nullable: false),
                     funcionarioid_cod_func = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
@@ -76,12 +74,13 @@ namespace Projeto_pimWEB.Migrations
                 {
                     id_cod_FP = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    DataEmissao = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    MesRef = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    NomeFunc = table.Column<string>(type: "TEXT", nullable: false),
-                    Cargo = table.Column<string>(type: "TEXT", nullable: false),
-                    DiasTrabalhados = table.Column<float>(type: "REAL", nullable: false),
-                    id_cod_func = table.Column<int>(type: "INTEGER", nullable: false)
+                    DataEmissao = table.Column<string>(type: "TEXT", nullable: false),
+                    MesAnoRef = table.Column<string>(type: "TEXT", nullable: false),
+                    id_cod_func = table.Column<int>(type: "INTEGER", nullable: false),
+                    Salario = table.Column<double>(type: "REAL", nullable: false),
+                    SalarioLiquido = table.Column<double>(type: "REAL", nullable: false),
+                    Inss = table.Column<double>(type: "REAL", nullable: false),
+                    Fgts = table.Column<double>(type: "REAL", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -102,8 +101,8 @@ namespace Projeto_pimWEB.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Nome_Ben = table.Column<string>(type: "TEXT", nullable: false),
                     valor = table.Column<double>(type: "REAL", nullable: false),
-                    Folha_Pagamentoid_cod_FP = table.Column<int>(type: "INTEGER", nullable: false),
-                    Funcionarioid_cod_func = table.Column<int>(type: "INTEGER", nullable: false)
+                    Folha_Pagamentoid_cod_FP = table.Column<int>(type: "INTEGER", nullable: true),
+                    Funcionarioid_cod_func = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -112,14 +111,12 @@ namespace Projeto_pimWEB.Migrations
                         name: "FK_beneficios_folha_pagamento_Folha_Pagamentoid_cod_FP",
                         column: x => x.Folha_Pagamentoid_cod_FP,
                         principalTable: "folha_pagamento",
-                        principalColumn: "id_cod_FP",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "id_cod_FP");
                     table.ForeignKey(
                         name: "FK_beneficios_funcionarios_Funcionarioid_cod_func",
                         column: x => x.Funcionarioid_cod_func,
                         principalTable: "funcionarios",
-                        principalColumn: "id_cod_func",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "id_cod_func");
                 });
 
             migrationBuilder.CreateTable(
@@ -128,7 +125,7 @@ namespace Projeto_pimWEB.Migrations
                 {
                     id_cod_des = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Nome_des = table.Column<string>(type: "TEXT", nullable: false),
+                    Motivo = table.Column<string>(type: "TEXT", nullable: false),
                     Valor = table.Column<double>(type: "REAL", nullable: false),
                     Folha_Pagamentoid_cod_FP = table.Column<int>(type: "INTEGER", nullable: false),
                     Funcionarioid_cod_func = table.Column<int>(type: "INTEGER", nullable: false)
