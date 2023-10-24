@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Registro Dependentes";
-    
+
 }
 <h1> Registro de dependentes</h1>
 <br />
@@ -29,7 +29,7 @@
             <th scope="col">#</th>
             <th scope="col">Nome</th>
             <th scope="col">Parentesco</th>
-            <th scope="col"></th>
+            <th scope="col">Ações</th>
         </tr>
     </thead>
     <tbody>
@@ -43,8 +43,8 @@
                     <td>@d.Parentesco</td>
                     <td>
                         <div class="btn-group" role="group">
-                            <a  asp-controller="Funcionario" asp-route-id="@d.id_cod_dep" asp-action="Editar_depen" class="btn btn-primary">Editar</a>
-                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Modal-Dependente-@d.id_cod_dep">
+                            <a class="btn btn-primary m-2" style="width: 5rem; asp-controller="Funcionario" asp-route-id="@d.id_cod_dep" asp-action="Editar_depen"> Editar </a>
+                    <button type="button" class="btn btn-danger m-2" data-bs-toggle="modal" data-bs-target="#Modal-Dependente-@d.id_cod_dep" style="width: 5rem;">
                                 Apagar
                             </button>
                         </div>
@@ -61,9 +61,8 @@
             </tr>
         }
     </tbody>
-    <a asp-controller="Funcionario" asp-action="Registro" class="btn btn-secondary" role="button">Voltar</a>
-    <a asp-controller="Funcionario" asp-route-id="@Model.id_cod_func" asp-action="Create_depen" class="btn btn-primary" role="button">Adicionar dependente</a>
-    
+
+
 
 </table>
 
@@ -94,7 +93,8 @@
         </div>
     }
 }
-
+<a asp-controller="Funcionario" asp-action="Registro" class="btn btn-secondary" role="button">Voltar</a>
+<a asp-controller="Funcionario" asp-route-id="@Model.id_cod_func" asp-action="Create_depen" class="btn btn-primary" role="button">Adicionar dependente</a>
 
 @section Scripts {
     @{
