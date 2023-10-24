@@ -58,14 +58,10 @@ namespace Projeto_pimWEB.Controllers
         {
             try
             {
-				if (ModelState.IsValid)
-				{
-					_metodos.CreateFunc(func);
-					TempData["MensagemSucesso"] = $"Sucesso ao cadastrar: {func.Nome}";
-					return RedirectToAction("Registro");
-				}
 
-				return View(func);
+				_metodos.CreateFunc(func);
+				TempData["MensagemSucesso"] = $"Sucesso ao cadastrar: {func.Nome}";
+				return RedirectToAction("Registro");
 			}
             catch (Exception ex)
             {

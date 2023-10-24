@@ -2,6 +2,7 @@
 using Projeto_pimWEB.Helper;
 using Projeto_pimWEB.Metodos;
 using Projeto_pimWEB.Models;
+using Projeto_pimWEB.Models.Classes;
 
 namespace Projeto_pimWEB.Controllers
 {
@@ -47,12 +48,13 @@ namespace Projeto_pimWEB.Controllers
                                 return RedirectToAction("Index", "Home");
                             }
                             ViewData["MensagemErro"] = $"Usuário e/ou senha invalido(s). Por favor, tente novamente!";
-                        }
-                        else ViewData["MensagemErro"] = $"{funcionario.Nome} não tem acesso ao sistema.";
-                    }
+
+                        }else ViewData["MensagemErro"] = $"{funcionario.Nome} não tem acesso ao sistema.";
+                        
+					}else ViewData["MensagemErro"] = $"E-mail é invalido. Por favor, tente novamente!";
                 }
 
-                return View("login");
+				return View("login");
 
             }
             catch (Exception ex)

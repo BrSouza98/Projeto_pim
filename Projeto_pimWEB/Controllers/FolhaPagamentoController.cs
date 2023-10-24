@@ -1,11 +1,13 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Projeto_pimWEB.Data;
+using Projeto_pimWEB.Filter;
 using Projeto_pimWEB.Metodos;
 using Projeto_pimWEB.Models.Classes;
 
 namespace Projeto_pimWEB.Controllers
 {
+	[UserFilterON]
 	public class FolhaPagamentoController : Controller
 	{
 		

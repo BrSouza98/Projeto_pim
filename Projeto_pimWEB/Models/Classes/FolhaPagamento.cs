@@ -89,7 +89,6 @@ namespace Projeto_pimWEB.Models.Classes
                 AcInss += 112.62;
                 AcInss += 154.28;
                 AcInss += 511.08;
-                AcInss += (SalarioBruto - 7507.49) * 14 / 100;
             }
             else
             {
