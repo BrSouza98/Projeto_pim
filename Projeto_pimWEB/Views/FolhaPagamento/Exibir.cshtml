@@ -1,5 +1,4 @@
-﻿@model IEnumerable<Projeto_pimWEB.Models.Classes.FolhaPagamento>
-
+﻿@model Projeto_pimWEB.Models.Classes.FolhaPagamento
 @{
     ViewData["Title"] = "View";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -20,10 +19,10 @@
                 @Html.DisplayNameFor(model => model.MesAnoRef)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Funcionario)
+                @Html.DisplayNameFor(model => model.Funcionario.Nome)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Salario)
+                @Html.DisplayNameFor(model => model.SalarioBruto)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.SalarioLiquido)
@@ -38,35 +37,31 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.DataEmissao)
+                @Model.DataEmissao
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.MesAnoRef)
+                @Model.MesAnoRef
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Funcionario.Bairro)
+                @Model.Funcionario.Nome
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Salario)
+                @Model.SalarioBruto
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.SalarioLiquido)
+                @Model.SalarioLiquido
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Inss)
+                @Model.Inss
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Fgts)
+                @Model.Fgts
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.id_cod_FP">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.id_cod_FP">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.id_cod_FP">Delete</a>
             </td>
         </tr>
-}
+
     </tbody>
 </table>

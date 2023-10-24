@@ -12,7 +12,7 @@ namespace Projeto_pimWEB.Metodos
 		}
 		public FolhaPagamento CreateFolha(FolhaPagamento fp)
 		{
-			_mdbc.Add(fp);
+			_mdbc.folhaPagamento.Add(fp);
 			return fp;
 		}
 
@@ -20,11 +20,11 @@ namespace Projeto_pimWEB.Metodos
 		{
 			return _mdbc.folhaPagamento.Where(i => i.id_cod_FP == id).FirstOrDefault();
 		}
-
-		public List<FolhaPagamento> ListarFolhas()
+		
+		public List<FolhaPagamento> ListarFolhas(int id)
 		{
-			return _mdbc.folhaPagamento.ToList();
-		}
+            return _mdbc.folhaPagamento.Where(i => i.id_cod_func == id).ToList();
+        }
 
 		public FolhaPagamento UpdateFolha(FolhaPagamento newFp)
 		{

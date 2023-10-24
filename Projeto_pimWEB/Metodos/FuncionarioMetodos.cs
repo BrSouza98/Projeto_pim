@@ -24,7 +24,7 @@ namespace Projeto_pimWEB.Metodos
 
         public Funcionario GetFuncionario(int id) // Retorna apenas o funcionario pela chave primaria 
         {
-            Funcionario? func = _mbdt.funcionarios.Where(i => i.id_cod_func == id).FirstOrDefault();
+            Funcionario func = _mbdt.funcionarios.FirstOrDefault(i => i.id_cod_func == id);
             return func;
         }
 

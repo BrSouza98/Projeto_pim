@@ -1,83 +1,32 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Projeto_pimWEB.Data;
+using Projeto_pimWEB.Metodos;
+using Projeto_pimWEB.Models.Classes;
 
 namespace Projeto_pimWEB.Controllers
 {
 	public class FolhaPagamentoController : Controller
 	{
-		// GET: FolhaPagamentoController
-		public ActionResult Index()
+		
+		private readonly IFuncionarioRepository _metodos;
+
+		public FolhaPagamentoController(IFuncionarioRepository metodo)
 		{
-			return View();
+			_metodos = metodo;
+		}
+        
+
+		public IActionResult Exibir(int id)
+		{
+			Funcionario func = _metodos.GetFuncionario(id);
+			func.dependentes = _metodos.GetAllDependentesFK(id);
+			FolhaPagamento fp = new FolhaPagamento();
+			fp.Preencher_FolhaPagamento(func);
+			return View(fp);
 		}
 
-		// GET: FolhaPagamentoController/Details/5
-		public ActionResult Details(int id)
-		{
-			return View();
-		}
 
-		// GET: FolhaPagamentoController/Create
-		public ActionResult Create()
-		{
-			return View();
-		}
 
-		// POST: FolhaPagamentoController/Create
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public ActionResult Create(IFormCollection collection)
-		{
-			try
-			{
-				return RedirectToAction(nameof(Index));
-			}
-			catch
-			{
-				return View();
-			}
-		}
-
-		// GET: FolhaPagamentoController/Edit/5
-		public ActionResult Edit(int id)
-		{
-			return View();
-		}
-
-		// POST: FolhaPagamentoController/Edit/5
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public ActionResult Edit(int id, IFormCollection collection)
-		{
-			try
-			{
-				return RedirectToAction(nameof(Index));
-			}
-			catch
-			{
-				return View();
-			}
-		}
-
-		// GET: FolhaPagamentoController/Delete/5
-		public ActionResult Delete(int id)
-		{
-			return View();
-		}
-
-		// POST: FolhaPagamentoController/Delete/5
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public ActionResult Delete(int id, IFormCollection collection)
-		{
-			try
-			{
-				return RedirectToAction(nameof(Index));
-			}
-			catch
-			{
-				return View();
-			}
-		}
 	}
 }
