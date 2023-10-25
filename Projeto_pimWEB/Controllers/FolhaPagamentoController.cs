@@ -34,11 +34,11 @@ namespace Projeto_pimWEB.Controllers
 			folha.Funcionario = func;
 
 			folha.Jornada = Calculos.CalcJornada(func.HoraSemanais);
-			folha.SalarioBruto = Calculos.CalcSalarioBruto(func.Salario, folha.Beneficios, folha.Jornada);
-			folha.Inss = Calculos.CalcINSS(folha.SalarioBruto);
-			folha.Irrf = Calculos.CalcIRRF(folha.SalarioBruto, folha.Inss, func.dependentes);
-			folha.Fgts = Calculos.CalcFGTS(folha.SalarioBruto);
-			folha.SalarioLiquido = Calculos.CalcSalarioLiquido(folha.Inss, folha.Irrf, folha.SalarioBruto);
+			folha.SalarioBruto = Math.Round(Calculos.CalcSalarioBruto(func.Salario, folha.Beneficios, folha.Jornada), 2);
+			folha.Inss = Math.Round(Calculos.CalcINSS(folha.SalarioBruto), 2);
+			folha.Irrf = Math.Round(Calculos.CalcIRRF(folha.SalarioBruto, folha.Inss, func.dependentes), 2);
+			folha.Fgts = Math.Round(Calculos.CalcFGTS(folha.SalarioBruto), 2);
+			folha.SalarioLiquido = Math.Round(Calculos.CalcSalarioLiquido(folha.Inss, folha.Irrf, folha.SalarioBruto), 2);
 			folha.DataEmissao = DateTime.Now.ToString("dd/MM/yyyy");
 			folha.MesAnoRef = DateTime.Now.ToString("MM/yyyy");
 
