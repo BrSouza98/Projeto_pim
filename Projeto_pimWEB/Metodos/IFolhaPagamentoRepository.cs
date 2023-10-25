@@ -6,8 +6,11 @@ namespace Projeto_pimWEB.Metodos
     {
         public FolhaPagamento CreateFolha(FolhaPagamento entity);
         public FolhaPagamento GetFolhaPagamento(int id);
-        
-        public Beneficio CreateBeneficio(Beneficio entity);
+        public List<FolhaPagamento> GetAllFolhaPagamento_FK(int id);
+        public List<FolhaPagamento> GetAllFolhas();
+
+
+		public Beneficio CreateBeneficio(Beneficio entity);
         public Desconto CreateBeneficio(Desconto entity);
 
     }

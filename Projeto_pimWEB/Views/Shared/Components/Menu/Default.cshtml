@@ -17,6 +17,13 @@
         </li>
         <li class="nav-item">
             <a class="nav-link nav-bar @{
+               if (ViewContext.RouteData.Values["Action"].ToString() == "Registro_Folhas") {
+                   WriteLiteral("active-page");
+               }
+             } " asp-area="" asp-controller="FolhaPagamento" asp-action="Registro_Folhas">Registro de folhas</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link nav-bar @{
                if (ViewContext.RouteData.Values["Action"].ToString() == "Create") {
                    WriteLiteral("active-page");
                }

@@ -58,6 +58,26 @@ namespace Projeto_pimWEB.Controllers
 			return View();
 		}
 
+		public IActionResult Registro_Folhas()
+		{
+			List<FolhaPagamento> folha = _metodosFolha.GetAllFolhas();
+			List<Funcionario> func = _metodos.GetAllFuncionarios();
 
+			List<FolhaPagamento> ListaFinais = new List<FolhaPagamento>();
+
+			foreach(FolhaPagamento fp in folha)
+			{
+				foreach(Funcionario funcionario in func)
+				{
+					if(fp.id_cod_func == funcionario.id_cod_func)
+					{
+						fp.Funcionario = funcionario;
+						ListaFinais.Add(fp);
+					}
+				}
+			}
+
+			return View(ListaFinais);
+		}
 	}
 }
