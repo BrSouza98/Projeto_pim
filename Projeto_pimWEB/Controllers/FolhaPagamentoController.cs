@@ -56,6 +56,20 @@ namespace Projeto_pimWEB.Controllers
 		public IActionResult CreateDesconto(int id)
 		{
 			return View();
+
+		}
+
+		public IActionResult CreateBenefios(int id)
+		{
+			return View();
+		}
+
+		public IActionResult RegistroFolha_Func(int id)
+		{
+			Funcionario func = _metodos.GetFuncionario(id);
+			func.Folhas = _metodosFolha.GetAllFolhaPagamento_FK(id);
+
+			return View(func);
 		}
 
 		public IActionResult Registro_Folhas()

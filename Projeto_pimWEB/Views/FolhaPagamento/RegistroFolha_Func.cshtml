@@ -1,0 +1,40 @@
+﻿@model Projeto_pimWEB.Models.Classes.Funcionario
+
+@{
+	ViewData["Title"] = "Registro de Folhas";
+}
+
+<h1>Folhas do funcionario: @Model.Nome - ID: @Model.id_cod_func</h1>
+
+<table class="table" id="RegistroFP_func">
+	<thead>
+		<tr>
+			<th scope="col">ID</th>
+			<th scope="col">Data de emissão</th>
+			<th scope="col">Mês e ano</th>
+			<th scope="col">Salario Liquido</th>
+			<th scope="col">Salario Bruto</th>
+			<th scope="col">INSS</th>
+			<th scope="col">IRRF</th>
+			<th scope="col">FGTS</th>
+		</tr>
+	</thead>
+	<tbody>
+			@if (Model.Folhas != null && Model.Folhas.Any())
+			{
+				foreach (var fp in Model.Folhas)
+				{
+					<tr>
+						<td>@fp.id_cod_FP</td>
+						<td>@fp.DataEmissao</td>
+						<td>@fp.MesAnoRef</td>
+						<td>@fp.SalarioLiquido</td>
+						<td>@fp.SalarioBruto</td>
+						<td>@fp.Inss</td>
+						<td>@fp.Irrf</td>
+						<td>@fp.Fgts</td>
+					</tr>
+				}
+			}
+	</tbody>
+</table>
