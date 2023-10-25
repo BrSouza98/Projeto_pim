@@ -4,13 +4,18 @@ namespace Projeto_pimWEB.Metodos.Calculos
 {
 	public class Calculos
 	{
+		public static double CalcFGTS(double SalarioBruto)
+		{
+			return SalarioBruto * 0.08;
+		}
+
 		public static int CalcJornada(int HorasSemanais)
 		{
 			return HorasSemanais * 5;
 		}
 
 
-		public static double CalcSalarioBruto(double Salario, List<Beneficio> beneficios, int Jornada)
+		public static double CalcSalarioBruto(double Salario, ICollection<Beneficio> beneficios, int Jornada)
 		{
 			double? valorHoraExtra = null;
 
@@ -31,11 +36,11 @@ namespace Projeto_pimWEB.Metodos.Calculos
 
 				if (valorHoraExtra != null)
 				{
-					return Math.Round(Salario + (double)valorHoraExtra);
+					return Salario + (double)valorHoraExtra;
 				}
 
 			}
-			return Math.Round(Salario);
+			return Salario;
 		}
 
 		public static double CalcINSS(double SalarioBruto)
@@ -77,7 +82,7 @@ namespace Projeto_pimWEB.Metodos.Calculos
 				throw new Exception("Valor invalido");
 			}
 
-			return Math.Round(AcInss);
+			return AcInss;
 		}
 
 		public static double CalcIRRF(double SalarioBruto, double ValorINSS, ICollection<Dependente> depen)
@@ -99,26 +104,26 @@ namespace Projeto_pimWEB.Metodos.Calculos
 			}
 			else if (EstaEntre(2112.01, 2826.65, baseCalc))
 			{
-				return  Math.Round((baseCalc * 7.5 / 100) - 158.40);
+				return  (baseCalc * 7.5 / 100) - 158.40;
 			}
 			else if (EstaEntre(2826.66, 3751.05, baseCalc))
 			{
-				return Math.Round((baseCalc * 15 / 100) - 370.40);
+				return (baseCalc * 15 / 100) - 370.40;
 			}
 			else if (EstaEntre(3751.06, 4664.68, baseCalc))
 			{
-				return Math.Round((baseCalc * 22.5 / 100) - 651.73);
+				return (baseCalc * 22.5 / 100) - 651.73;
 			}
 			else
 			{
-				return Math.Round((baseCalc * 27.5 / 100) - 884.96);
+				return (baseCalc * 27.5 / 100) - 884.96;
 			}
 
 		}
 
 		public static double CalcSalarioLiquido(double ValorINSS, double ValorIRRF, double SalarioBruto)
 		{
-			return Math.Round((SalarioBruto - ValorINSS) - ValorIRRF);
+			return (SalarioBruto - ValorINSS) - ValorIRRF;
 		}
 
 		public static bool EstaEntre(double valorMin, double ValorMax, double valor)

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Projeto_pimWEB.Data;
 using Projeto_pimWEB.Filter;
 using Projeto_pimWEB.Metodos;
+using Projeto_pimWEB.Metodos.Calculos;
 using Projeto_pimWEB.Models.Classes;
 
 namespace Projeto_pimWEB.Controllers
@@ -23,18 +24,21 @@ namespace Projeto_pimWEB.Controllers
 
 		public IActionResult CreatFolha(int id)
 		{
+			// Lista de beneficios
+			// Lista de descontos
+
 			Funcionario func = _metodos.GetFuncionario(id);
-            FolhaPagamento folha = new FolhaPagamento();
+			func.dependentes = _metodos.GetAllDependentesFK(id);
+
+			FolhaPagamento folha = new FolhaPagamento();
 			folha.Funcionario = func;
-			folha.Funcionario.dependentes = _metodos.GetAllDependentesFK(id);
-			folha.DataEmissao = DateTime.Now.ToString("dd/MM/yyyy");
-			folha.MesAnoRef = DateTime.Now.ToString("MM/yyyy");
-			folha.CalcJornada(func.HoraSemanais);
-			folha.CalcSalarioBruto(func.Salario);
-			folha.CalcINSS(folha.SalarioBruto);
-			folha.CalcIRRF(folha.SalarioBruto, folha.Inss, func.dependentes);
-			folha.CalcSalarioLiquido(folha.Inss, folha.Irrf, folha.SalarioBruto);
-			folha.Fgts = (folha.SalarioBruto * 0.08);
+
+			folha.Jornada = Calculos.CalcJornada(func.HoraSemanais);
+			folha.SalarioBruto = Calculos.CalcSalarioBruto(func.Salario, folha.Beneficios, folha.Jornada);
+			folha.Inss = Calculos.CalcINSS(folha.SalarioBruto);
+			folha.Irrf = Calculos.CalcIRRF(folha.SalarioBruto, folha.Inss, func.dependentes);
+			folha.Fgts = Calculos.CalcFGTS(folha.SalarioBruto);
+			folha.SalarioLiquido = Calculos.CalcFGTS(folha.SalarioBruto);
 
 			return View(folha);
 		}
