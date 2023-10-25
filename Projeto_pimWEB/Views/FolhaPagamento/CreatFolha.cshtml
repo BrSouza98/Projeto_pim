@@ -1,74 +1,69 @@
 ﻿@model Projeto_pimWEB.Models.Classes.FolhaPagamento
 
 @{
-    ViewData["Title"] = "CreatFolha";
+	ViewData["Title"] = "CreatFolha";
 }
 
-<h1>CreatFolha</h1>
+<h1>Folha de Pagamento de Salário</h1>
 
-<h4>FolhaPagamento</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="CreatFolha" method="post">
-            <fieldset disabled>
-                <input asp-for="id_cod_func" class="d-none" value="@Model.Funcionario.id_cod_func" />
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="DataEmissao" class="control-label"></label>
-                    <input asp-for="DataEmissao" type="text" class="form-control" />
-                    <span asp-validation-for="DataEmissao" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="MesAnoRef" class="control-label"></label>
-                    <input asp-for="MesAnoRef" type="text" class="form-control"  />
-                    <span asp-validation-for="MesAnoRef" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Jornada" class="control-label"></label>
-                    <input asp-for="Jornada" class="form-control" />
-                    <span asp-validation-for="Jornada" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="SalarioBruto" class="control-label"></label>
-                    <input asp-for="SalarioBruto" class="form-control" />
-                    <span asp-validation-for="SalarioBruto" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Inss" class="control-label"></label>
-                    <input asp-for="Inss" class="form-control" />
-                    <span asp-validation-for="Inss" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Irrf" class="control-label"></label>
-                    <input asp-for="Irrf" class="form-control" />
-                    <span asp-validation-for="Irrf" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="SalarioLiquido" class="control-label"></label>
-                    <input asp-for="SalarioLiquido" class="form-control" />
-                    <span asp-validation-for="SalarioLiquido" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Fgts" class="control-label"></label>
-                    <input asp-for="Fgts" class="form-control" />
-                    <span asp-validation-for="Fgts" class="text-danger"></span>
-                </div>
+	<div class="col-md-4">
+		<div class="form-group">
+			<h4>Nome </h4>
+			<p>@Model.Funcionario.Nome</p>
+		</div>
 
-            </fieldset>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
+		<div class="form-group">
+			<h4>Departamento </h4>
+			<p>@Model.Funcionario.Departamento</p>
+		</div>
+
+		<div class="form-group">
+			<h4>Cargo </h4>
+			<p>@Model.Funcionario.Cargo</p>
+		</div>
+
+		<div class="form-group">
+			<h4>Data de Emissão</h4>
+
+			<p>@Model.DataEmissao</p>
+		</div>
+
+		<div class="form-group">
+			<h4>Referencia: </h4>
+			<p>@Model.MesAnoRef</p>
+		</div>
+
+
+
+		<!--Separa apenas os dados a serem enviados, permitindo salvar a folha no banco de dados-->
+		<form asp-action="CreatFolha" method="post">
+			<input asp-for="id_cod_func" type="hidden" value="@Model.Funcionario.id_cod_func" />
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<input asp-for="DataEmissao" type="hidden" class="form-control" />
+			<input asp-for="MesAnoRef" type="hidden" class="form-control" />
+			<input asp-for="Jornada" type="hidden" class="form-control" />
+			<input asp-for="SalarioBruto" type="hidden" class="form-control" />
+			<input asp-for="Inss" type="hidden" class="form-control" />
+			<input asp-for="Irrf" type="hidden" class="form-control" />
+			<input asp-for="SalarioLiquido" type="hidden" class="form-control" />
+			<input asp-for="Fgts" type="hidden" class="form-control" />
+			<div class="form-group">
+				<button type="submit" value="Create" class="btn btn-primary"> Salvar Folha </button>
+			</div>
+		</form>
+	</div>
 </div>
 
 <div>
-    <button onclick="window.history.back()" class="btn btn-secondary">Back to List</button>
-    <button asp-action="" class="btn btn-secondary">Adicionar Beneficios</button>
-    <button asp-action="" class="btn btn-secondary">Adicionar Descontos</button>
+	<button onclick="window.history.back()" class="btn btn-secondary">Back to List</button>
+	<button asp-action="" class="btn btn-secondary">Adicionar Beneficios</button>
+	<button asp-action="" class="btn btn-secondary">Adicionar Descontos</button>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
 }

@@ -1,0 +1,40 @@
+﻿@model List<Projeto_pimWEB.Models.Classes.FolhaPagamento>
+
+@{
+	ViewData["Title"] = "Registro de Folha";
+}
+
+<table class="table" id="Registro_FP">
+	<thead>
+		<tr>
+			<th scope="col" class="d-none d-lg-table-cell">#</th>
+			<th scope="col">Nome</th>
+			<th scope="col">Cargo</th>
+			<th scope="col" class="d-none d-lg-table-cell">Departamento</th>
+			<th scope="col">Salario Liquido</th>
+			<th scope="col">Salario Bruto</th>
+			<th scope="col">INSS</th>
+			<th scope="col">IRRF</th>
+			<th scope="col">FGTS</th>
+		</tr>
+	</thead>
+	<tbody>
+		@if (Model != null && Model.Any())
+		{
+			foreach (var fp in Model)
+			{
+				<tr>
+					<th scope="row" class="d-none d-lg-table-cell">@fp.Funcionario.id_cod_func</th>
+					<td>@fp.Funcionario.Nome</td>
+					<td class="d-none d-lg-table-cell">@fp.Funcionario.Cargo</td>
+					<td>@fp.Funcionario.Departamento</td>
+					<td class="d-none d-lg-table-cell">@fp.SalarioLiquido</td>
+					<td>@fp.SalarioBruto</td>
+					<td>@fp.Inss</td>
+					<td>@fp.Irrf</td>
+					<td>@fp.Fgts</td>
+				</tr>
+			}
+		}
+	</tbody>
+</table>
