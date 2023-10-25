@@ -1,32 +1,42 @@
 ﻿@model Projeto_pimWEB.Models.Classes.FolhaPagamento
 
 @{
-	ViewData["Title"] = "CreatFolha";
+ViewData["Title"] = "CreatFolha";
 }
 
 <h1>Folha de Pagamento de Salário</h1>
 
 <hr />
+<div>
+	
+	<button asp-action="" class="btn btn-success">Adicionar Benefícios</button>
+	<button asp-action="" class="btn btn-warning">Adicionar Descontos</button>
+</div>
 <div class="row">
-	<div class="col-md-4">
-		<div class="form-group">
-			<h4>Nome </h4>
-			<p>@Model.Funcionario.Nome</p>
-		</div>
+	<div class="">
+		<h2>Dados do funcionário</h2>
+		<div class="d-flex m-3">
+			<div class="form-group me-5">
+				<h4>Nome:</h4>
+				<p>@Model.Funcionario.Nome</p>
+			</div>
 
-		<div class="form-group">
-			<h4>Departamento </h4>
-			<p>@Model.Funcionario.Departamento</p>
-		</div>
+			<div class="form-group me-4">
+				<h4>Departamento:</h4>
+				<p>@Model.Funcionario.Departamento</p>
+			</div>
 
-		<div class="form-group">
-			<h4>Cargo </h4>
-			<p>@Model.Funcionario.Cargo</p>
-		</div>
-
-		<div class="form-group">
-			<h4>Data de Emissão</h4>
-
+			<div class="form-group">
+				<h4>Cargo:</h4>
+				<p>@Model.Funcionario.Cargo</p>
+			</div>
+			</div>
+		
+	<h2>Dados da folha</h2>
+	<div class="m-3">
+		<div class="d-flex">
+		<div class="form-group me-3">
+			<h4>Data de Emissão:</h4>
 			<p>@Model.DataEmissao</p>
 		</div>
 
@@ -34,8 +44,26 @@
 			<h4>Referencia: </h4>
 			<p>@Model.MesAnoRef</p>
 		</div>
+		</div>
 
-
+		<div class="form-group">
+			<h4>Salário bruto: </h4>
+			<p>R$@Model.SalarioBruto</p>
+		</div>
+		<h3>Descontos</h3>
+		<div class="form-group ms-1">
+			<h4>INSS: </h4>
+			<p>R$@Model.Inss</p>
+		</div>
+		<div class="form-group ms-1">
+				<h4>IRRF: </h4>
+				<p>R$@Model.Irrf</p>
+		</div>
+			<div class="form-group ms-1">
+				<h4>FGTS: </h4>
+				<p>R$@Model.Fgts</p>
+			</div>
+	</div>
 
 		<!--Separa apenas os dados a serem enviados, permitindo salvar a folha no banco de dados-->
 		<form asp-action="CreatFolha" method="post">
@@ -50,20 +78,17 @@
 			<input asp-for="SalarioLiquido" type="hidden" class="form-control" />
 			<input asp-for="Fgts" type="hidden" class="form-control" />
 			<div class="form-group">
-				<button type="submit" value="Create" class="btn btn-primary"> Salvar Folha </button>
+				<button onclick="window.history.back()" class="btn btn-secondary">Voltar</button>
+				<button type="submit" value="Create" class="btn btn-dark"> Salvar Folha </button>
 			</div>
 		</form>
 	</div>
 </div>
 
-<div>
-	<button onclick="window.history.back()" class="btn btn-secondary">Back to List</button>
-	<button asp-action="" class="btn btn-secondary">Adicionar Beneficios</button>
-	<button asp-action="" class="btn btn-secondary">Adicionar Descontos</button>
-</div>
+
 
 @section Scripts {
-	@{
-		await Html.RenderPartialAsync("_ValidationScriptsPartial");
-	}
+@{
+await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
 }
