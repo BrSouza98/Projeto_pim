@@ -73,7 +73,7 @@ namespace Projeto_pimWEB.Controllers
 			}
         }
 
-        public IActionResult Create_depen2(int id)
+        public IActionResult Create_depen(int id)
         {
             var dependente = new Dependente();
             dependente.funcionario = _metodos.GetFuncionario(id);
