@@ -38,7 +38,9 @@ namespace Projeto_pimWEB.Controllers
 			folha.Inss = Calculos.CalcINSS(folha.SalarioBruto);
 			folha.Irrf = Calculos.CalcIRRF(folha.SalarioBruto, folha.Inss, func.dependentes);
 			folha.Fgts = Calculos.CalcFGTS(folha.SalarioBruto);
-			folha.SalarioLiquido = Calculos.CalcFGTS(folha.SalarioBruto);
+			folha.SalarioLiquido = Calculos.CalcSalarioLiquido(folha.Inss, folha.Irrf, folha.SalarioBruto);
+			folha.DataEmissao = DateTime.Now.ToString("dd/MM/yyyy");
+			folha.MesAnoRef = DateTime.Now.ToString("MM/yyyy");
 
 			return View(folha);
 		}
