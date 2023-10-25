@@ -19,7 +19,7 @@ namespace Projeto_pimWEB.Metodos
 
 		public FolhaPagamento GetFolha(int id)
 		{
-			return _mdbc.folhaPagamento.FirstOrDefault(i => i.id_cod_FP == id) ;
+			return _mdbc.folhaPagamento.FirstOrDefault(i => i.id_cod_FP == id);
 		}
 		
 		public List<FolhaPagamento> ListarFolhas(int id)

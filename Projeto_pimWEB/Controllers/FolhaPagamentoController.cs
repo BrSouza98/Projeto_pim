@@ -27,6 +27,8 @@ namespace Projeto_pimWEB.Controllers
             FolhaPagamento folha = new FolhaPagamento();
 			folha.Funcionario = func;
 			folha.Funcionario.dependentes = _metodos.GetAllDependentesFK(id);
+			folha.DataEmissao = DateTime.Now.ToString("dd/MM/yyyy");
+			folha.MesAnoRef = DateTime.Now.ToString("MM/yyyy");
 			folha.CalcJornada(func.HoraSemanais);
 			folha.CalcSalarioBruto(func.Salario);
 			folha.CalcINSS(folha.SalarioBruto);

@@ -31,11 +31,11 @@ namespace Projeto_pimWEB.Metodos.Calculos
 
 				if (valorHoraExtra != null)
 				{
-					return Salario + (double)valorHoraExtra;
+					return Math.Round(Salario + (double)valorHoraExtra);
 				}
 
 			}
-			return Salario;
+			return Math.Round(Salario);
 		}
 
 		public static double CalcINSS(double SalarioBruto)
@@ -77,7 +77,7 @@ namespace Projeto_pimWEB.Metodos.Calculos
 				throw new Exception("Valor invalido");
 			}
 
-			return AcInss;
+			return Math.Round(AcInss);
 		}
 
 		public static double CalcIRRF(double SalarioBruto, double ValorINSS, ICollection<Dependente> depen)
@@ -99,26 +99,26 @@ namespace Projeto_pimWEB.Metodos.Calculos
 			}
 			else if (EstaEntre(2112.01, 2826.65, baseCalc))
 			{
-				return  (baseCalc * 7.5 / 100) - 158.40;
+				return  Math.Round((baseCalc * 7.5 / 100) - 158.40);
 			}
 			else if (EstaEntre(2826.66, 3751.05, baseCalc))
 			{
-				return (baseCalc * 15 / 100) - 370.40;
+				return Math.Round((baseCalc * 15 / 100) - 370.40);
 			}
 			else if (EstaEntre(3751.06, 4664.68, baseCalc))
 			{
-				return (baseCalc * 22.5 / 100) - 651.73;
+				return Math.Round((baseCalc * 22.5 / 100) - 651.73);
 			}
 			else
 			{
-				return (baseCalc * 27.5 / 100) - 884.96;
+				return Math.Round((baseCalc * 27.5 / 100) - 884.96);
 			}
 
 		}
 
 		public static double CalcSalarioLiquido(double ValorINSS, double ValorIRRF, double SalarioBruto)
 		{
-			return (SalarioBruto - ValorINSS) - ValorIRRF;
+			return Math.Round((SalarioBruto - ValorINSS) - ValorIRRF);
 		}
 
 		public static bool EstaEntre(double valorMin, double ValorMax, double valor)
