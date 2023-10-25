@@ -1,4 +1,5 @@
 ﻿@{
+    Layout = "_LayoutDesconect";
     ViewData["Title"] = "Pagina Inicial";
 }
 
@@ -7,33 +8,40 @@
     <p> <a href="https://drive.google.com/file/d/1jiGriDVf9ySjYuHTCDZXZMh0lHg1-094/view">Projeto PIM</a>.</p>
 </div>
 
-<div class="d-flex row p-2">
-   <div class="col">
-        <div class="card d-flex justify-content-center align-items-center flex-column m-4" style="width: 18rem;">
+<div class="d-flex justify-content-around flex-wrap p-2">
+   <div>
+        <a class="text-decoration-none" asp-area="" asp-controller="Funcionario" asp-action="Registro">
+        <div class="card d-flex justify-content-center align-items-center flex-column m-4 card-menu" style="width: 18rem;">
             <i class="bi bi-people-fill" style="font-size: 8em"></i>
             <div class="card-body">
                 <h5 class="card-title">Funcionários</h5>
 
             </div>
         </div>
+        </a>
    </div>
-    <div class="col">
-        <div class="card d-flex justify-content-center align-items-center flex-column m-4" style="width: 18rem;">
-            <i class="bi bi-people-fill" style="font-size: 8em"></i>
+    <div>
+        <a class="text-decoration-none" asp-area="" asp-controller="Funcionario" asp-action="Create">
+        <div class="card d-flex justify-content-center align-items-center flex-column m-4 card-menu" style="width: 18rem;">
+            <i class="bi bi-person-fill-add" style="font-size: 8em"></i>
             <div class="card-body">
-                <h5 class="card-title">Funcionários</h5>
+                <h5 class="card-title">Adicionar Funcionário</h5>
+
 
             </div>
         </div>
+        </a>
     </div> 
-    <div class="col">
-        <div class="card d-flex justify-content-center align-items-center flex-column m-4" style="width: 18rem;">
-            <i class="bi bi-people-fill" style="font-size: 8em"></i>
+    <div>
+        <a class="text-decoration-none" asp-area="" asp-controller="FolhaPagamento" asp-action="">
+        <div class="card d-flex justify-content-center align-items-center flex-column m-4 card-menu" style="width: 18rem;">
+            <i class="bi bi-file-earmark-spreadsheet-fill" style="font-size: 8em"></i>
             <div class="card-body">
-                <h5 class="card-title">Funcionários</h5>
+                <h5 class="card-title">Folhas de pagamento</h5>
 
             </div>
         </div>
+        </a>
     </div>
 
 
