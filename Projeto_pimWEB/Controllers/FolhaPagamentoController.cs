@@ -53,5 +53,11 @@ namespace Projeto_pimWEB.Controllers
 		}
 
 
+		public IActionResult CreateDesconto(int id)
+		{
+			return View();
+		}
+
+
 	}
 }

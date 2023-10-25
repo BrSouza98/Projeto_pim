@@ -10,6 +10,7 @@ namespace Projeto_pimWEB.Metodos
 		{
 			_mdbc = myDbContext;
 		}
+
 		public FolhaPagamento CreateFolha(FolhaPagamento fp)
 		{
 			_mdbc.folhaPagamento.Add(fp);
@@ -17,19 +18,26 @@ namespace Projeto_pimWEB.Metodos
 			return fp;
 		}
 
-		public FolhaPagamento GetFolha(int id)
+		public FolhaPagamento GetFolhaPagamento(int id)
 		{
-			return _mdbc.folhaPagamento.FirstOrDefault(i => i.id_cod_FP == id) ;
+			return _mdbc.folhaPagamento.FirstOrDefault(i => i.id_cod_FP == id);
 		}
-		
-		public List<FolhaPagamento> ListarFolhas(int id)
-		{
-            return _mdbc.folhaPagamento.Where(i => i.id_cod_func == id).ToList();
-        }
 
-		public FolhaPagamento UpdateFolha(FolhaPagamento newFp)
+		// Metodos para descontos e beneficos.
+		public Beneficio CreateBeneficio(Beneficio entity)
 		{
-			throw new NotImplementedException();
+			_mdbc.beneficios.Add(entity);
+			this._mdbc.SaveChanges();
+			return entity;
 		}
+
+		public Desconto CreateBeneficio(Desconto entity)
+		{
+			_mdbc.descontos.Add(entity);
+			this._mdbc.SaveChanges();
+			return entity;
+		}
+
+		
 	}
 }

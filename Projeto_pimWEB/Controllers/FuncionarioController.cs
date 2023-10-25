@@ -73,7 +73,7 @@ namespace Projeto_pimWEB.Controllers
 			}
         }
 
-        public IActionResult Create_depen2(int id)
+        public IActionResult Create_depen(int id)
         {
             var dependente = new Dependente();
             dependente.funcionario = _metodos.GetFuncionario(id);
@@ -115,14 +115,12 @@ namespace Projeto_pimWEB.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
-                {
-                    _metodos.UpdateFunc(func);
-                    TempData["MensagemSucesso"] = $"Dados alterados com sucesso do(a): {func.Nome}";
-                    return RedirectToAction("Registro");
-                }
 
-                return View("Editar", func);
+                _metodos.UpdateFunc(func);
+                TempData["MensagemSucesso"] = $"Dados alterados com sucesso do(a): {func.Nome}";
+                return RedirectToAction("Registro");
+
+                
             }
             catch (Exception ex)
             {
