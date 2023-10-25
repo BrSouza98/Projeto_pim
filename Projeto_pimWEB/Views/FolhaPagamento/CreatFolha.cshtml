@@ -1,0 +1,69 @@
+﻿@model Projeto_pimWEB.Models.Classes.FolhaPagamento
+
+@{
+    ViewData["Title"] = "CreatFolha";
+}
+
+<h1>CreatFolha</h1>
+
+<h4>FolhaPagamento</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreatFolha" method="post">
+            <input asp-for="id_cod_func" class="d-none" value="@Model.Funcionario.id_cod_func" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="DataEmissao" class="control-label"></label>
+                <input asp-for="DataEmissao" class="form-control" />
+                <span asp-validation-for="DataEmissao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MesAnoRef" class="control-label"></label>
+                <input asp-for="MesAnoRef" class="form-control" />
+                <span asp-validation-for="MesAnoRef" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Jornada" class="control-label"></label>
+                <input asp-for="Jornada" class="form-control" />
+                <span asp-validation-for="Jornada" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SalarioBruto" class="control-label"></label>
+                <input asp-for="SalarioBruto" class="form-control" />
+                <span asp-validation-for="SalarioBruto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Inss" class="control-label"></label>
+                <input asp-for="Inss" class="form-control" />
+                <span asp-validation-for="Inss" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Irrf" class="control-label"></label>
+                <input asp-for="Irrf" class="form-control" />
+                <span asp-validation-for="Irrf" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SalarioLiquido" class="control-label"></label>
+                <input asp-for="SalarioLiquido" class="form-control" />
+                <span asp-validation-for="SalarioLiquido" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fgts" class="control-label"></label>
+                <input asp-for="Fgts" class="form-control" />
+                <span asp-validation-for="Fgts" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

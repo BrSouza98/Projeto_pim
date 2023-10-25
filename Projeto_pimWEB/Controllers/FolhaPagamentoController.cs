@@ -10,24 +10,39 @@ namespace Projeto_pimWEB.Controllers
 	[UserFilterON]
 	public class FolhaPagamentoController : Controller
 	{
-		
-		private readonly IFuncionarioRepository _metodos;
 
-		public FolhaPagamentoController(IFuncionarioRepository metodo)
+		private readonly IFuncionarioRepository _metodos;
+		private readonly IFolhaPagamentoRepository _metodosFolha;
+
+		public FolhaPagamentoController(IFuncionarioRepository metodo, IFolhaPagamentoRepository metodoFolha)
 		{
 			_metodos = metodo;
+			_metodosFolha = metodoFolha;
 		}
-        
 
-		public IActionResult Exibir(int id)
+
+		public IActionResult CreatFolha(int id)
 		{
 			Funcionario func = _metodos.GetFuncionario(id);
-			func.dependentes = _metodos.GetAllDependentesFK(id);
-			FolhaPagamento fp = new FolhaPagamento();
-			fp.Preencher_FolhaPagamento(func);
-			return View(fp);
+            FolhaPagamento folha = new FolhaPagamento();
+			folha.Funcionario = func;
+			folha.Funcionario.dependentes = _metodos.GetAllDependentesFK(id);
+			folha.CalcJornada(func.HoraSemanais);
+			folha.CalcSalarioBruto(func.Salario);
+			folha.CalcINSS(folha.SalarioBruto);
+			folha.CalcIRRF(folha.SalarioBruto, folha.Inss, func.dependentes);
+			folha.CalcSalarioLiquido(folha.Inss, folha.Irrf, folha.SalarioBruto);
+			folha.Fgts = (folha.SalarioBruto * 0.08);
+
+			return View(folha);
 		}
 
+		[HttpPost]
+		public IActionResult CreatFolha(FolhaPagamento fp)
+		{
+			_metodosFolha.CreateFolha(fp);
+			return RedirectToAction("Registro", "Funcionario");
+		}
 
 
 	}

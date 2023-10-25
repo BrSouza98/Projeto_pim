@@ -11,6 +11,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddDbContext<myDbContext>(op => op.UseSqlite(builder.Configuration.GetConnectionString("DataBase")));
 builder.Services.AddScoped<IFuncionarioRepository, FuncionarioMetodos>();
+builder.Services.AddScoped<IFolhaPagamentoRepository,FolhaPagamentoMetodos >();
 builder.Services.AddScoped<ISessao, Sessao>();
 
 builder.Services.AddSession(o =>

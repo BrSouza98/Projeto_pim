@@ -14,9 +14,11 @@ namespace Projeto_pimWEB.Models.Classes
         public string DataEmissao { get; set; } 
 
         [DataType(DataType.Date)]
-        public string MesAnoRef {  get; set; } 
+        public string MesAnoRef {  get; set; }
+
+        [ForeignKey(nameof(Funcionario))]
         public int id_cod_func { get; set; }
-        public Funcionario Funcionario { get; set; }
+        public Funcionario? Funcionario { get; set; }
         public int Jornada { get; set; }
         public double SalarioBruto { get; set; }
         public double Inss { get ; set; }
@@ -30,8 +32,13 @@ namespace Projeto_pimWEB.Models.Classes
         [NotMapped]
         public ICollection<Beneficio> Beneficios { get; set; }
 
+        public void CalcJornada(int horas)
+        {
+            Jornada = horas * 5;
+        }
 
-        public double CalcSalarioBruto(double Salario)
+
+        public void CalcSalarioBruto(double Salario)
         {
             double? valorHoraExtra = null;
 
@@ -52,15 +59,14 @@ namespace Projeto_pimWEB.Models.Classes
 
                 if(valorHoraExtra != null) 
                 {
-                    return Math.Round(Salario + (double)valorHoraExtra, 2);
+                    SalarioBruto = Salario + (double)valorHoraExtra;
                 }
                 
             }
-            return Math.Round(Salario,2);
-
+            SalarioBruto = Salario;
         }
         
-        public double CalcINSS(double SalarioBruto)
+        public void CalcINSS(double SalarioBruto)
         {
             double AcInss = 0;
 
@@ -95,10 +101,10 @@ namespace Projeto_pimWEB.Models.Classes
                 throw new Exception("Valor invalido");
             }
 
-            return Math.Round(AcInss, 2);
+            Inss = AcInss;
         }
 
-        public double CalcIRRF(double SalarioBruto, double ValorINSS, ICollection<Dependente> depen)
+        public void CalcIRRF(double SalarioBruto, double ValorINSS, ICollection<Dependente> depen)
         {
             int qntdDepen = 0;
             
@@ -113,27 +119,27 @@ namespace Projeto_pimWEB.Models.Classes
 
             if (baseCalc <= 2112)
             {
-                return 0;
+                Irrf = 0;
             }else if(EstaEntre(2112.01, 2826.65, baseCalc))
             {
-                return Math.Round((baseCalc * 7.5 / 100) - 158.40, 2);
+                Irrf = (baseCalc * 7.5 / 100) - 158.40;
             }else if(EstaEntre(2826.66, 3751.05, baseCalc))
             {
-                return Math.Round((baseCalc * 15 / 100) - 370.40, 2);
+                Irrf = (baseCalc * 15 / 100) - 370.40;
             }else if(EstaEntre(3751.06, 4664.68, baseCalc))
             {
-                return Math.Round((baseCalc * 22.5 / 100) - 651.73, 2);
+                Irrf = (baseCalc * 22.5 / 100) - 651.73;
             }
             else
             {
-                return Math.Round((baseCalc * 27.5 / 100) - 884.96, 2);
+                Irrf = (baseCalc * 27.5 / 100) - 884.96;
             }
             
         }
    
-        public double CalcSalarioLiquido(double ValorINSS, double ValorIRRF, double SalarioBruto)
+        public void CalcSalarioLiquido(double ValorINSS, double ValorIRRF, double SalarioBruto)
         {
-            return Math.Round((SalarioBruto - ValorINSS) - ValorIRRF, 2);
+            SalarioLiquido = (SalarioBruto - ValorINSS) - ValorIRRF;
         }
 
         private bool EstaEntre(double valorMin, double ValorMax, double valor)
@@ -145,26 +151,5 @@ namespace Projeto_pimWEB.Models.Classes
             return false;
         }
 
-        public void Preencher_FolhaPagamento(Funcionario func)
-        {
-            try
-            {
-                DataEmissao = DateTime.Now.ToString("dd/MM/yyyy");
-                MesAnoRef = DateTime.Now.ToString("MM/yyyy");
-                Funcionario = func;
-                Jornada = Funcionario.HoraSemanais * 5;
-                SalarioBruto = CalcSalarioBruto(Funcionario.Salario);
-                Inss = CalcINSS(SalarioBruto);
-                Irrf = CalcIRRF(SalarioBruto, Inss, Funcionario.dependentes);
-                SalarioLiquido = CalcSalarioLiquido(Inss, Irrf, SalarioBruto);
-                Fgts = SalarioBruto * 0.08;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            
-
-        }
     }
 }

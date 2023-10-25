@@ -22,6 +22,11 @@ namespace Projeto_pimWEB.Data
                 .HasForeignKey(f => f.id_cod_func)
                 .IsRequired();
 
+            modelBuilder.Entity<Funcionario>()
+                .HasMany(f => f.Folhas)
+                .WithOne(f => f.Funcionario)
+                .IsRequired();
+
             modelBuilder.Entity<Dependente>()
                 .HasOne(x => x.funcionario);
 

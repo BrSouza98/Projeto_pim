@@ -12,9 +12,11 @@
 }
 
 
-<h1> Tela de login</h1>
+<h1 class="text-lg-center m-5">Entrar</h1>
+<div class="d-flex justify-content-center">
+    <div class="p-5 border border-black rounded-3" style="width: 25rem;">
 
-<form asp-controller="Login" asp-action="Entrar" method="post">
+<form class="d-flex flex-column" style="width: 20rem;" asp-controller="Login" asp-action="Entrar" method="post">
     <div class="mb-3">
         <label for="Email" class="form-label">E-mail</label>
         <input type="email" asp-for="email" class="form-control" id="Email">
@@ -29,5 +31,7 @@
         <input type="checkbox" class="form-check-input" id="exampleCheck1">
         <label class="form-check-label" for="exampleCheck1">Check me out</label>
     </div>
-    <button type="submit" class="btn btn-primary">Entrar</button>
+    <button type="submit" class="btn btn-primary align-self-center" style="width:80%;">Entrar</button>
 </form>
+</div>
+</div>
