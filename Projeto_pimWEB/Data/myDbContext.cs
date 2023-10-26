@@ -30,6 +30,12 @@ namespace Projeto_pimWEB.Data
             modelBuilder.Entity<Dependente>()
                 .HasOne(x => x.funcionario);
 
+
+            modelBuilder.Entity<Desconto>()
+                .HasOne(f => f.Funcionario);
+                
+
+
             base.OnModelCreating(modelBuilder);
         }
     }   

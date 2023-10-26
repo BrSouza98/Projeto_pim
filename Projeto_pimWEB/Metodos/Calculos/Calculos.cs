@@ -1,4 +1,5 @@
 ﻿using Projeto_pimWEB.Models.Classes;
+using System.Transactions;
 
 namespace Projeto_pimWEB.Metodos.Calculos
 {
@@ -15,31 +16,67 @@ namespace Projeto_pimWEB.Metodos.Calculos
 		}
 
 
-		public static double CalcSalarioBruto(double Salario, ICollection<Beneficio> beneficios, int Jornada)
+		public static double CalcSalarioBruto(
+			double Salario, 
+			ICollection<Beneficio>? beneficios, 
+			ICollection<Desconto>? descontos ,
+			int Jornada, 
+			int? horasExtra,
+			int? bonus,
+			int? faltas,
+			int? atrasos)
 		{
-			double? valorHoraExtra = null;
+			double valortotalBene = 0;
+			double valortotalDesc = 0;
+
+			/*Calculos descontos*/
+
+			if (atrasos != null && atrasos > 0)
+			{
+				double descAtraso = (Salario / Jornada) * (int)atrasos;
+				Salario -= descAtraso;
+			}
+
+			if (faltas != null && faltas > 0)
+			{
+				double valorFalta = (Salario / 30) * (int)faltas;
+				Salario -= valorFalta;
+			}
+
+			if (descontos != null && descontos.Any()) 
+			{
+				foreach (Desconto desc in descontos)
+				{
+					valortotalDesc += desc.Valor;
+
+				}
+				Salario -= valortotalDesc;
+
+			}
+			 /*Calculos adicionais*/
+			if (bonus != null && bonus > 0)
+			{
+				Salario += (int)bonus;
+			}
+
+			if (horasExtra != null)
+			{
+                double valorHora = Salario / Jornada;
+				valorHora *= 1.5;
+				double TotalHoraExtra = (int)horasExtra * valorHora;
+				Salario += TotalHoraExtra;
+				
+            }
 
 			if (beneficios != null && beneficios.Any())
 			{
 				foreach (Beneficio Bene in beneficios)
 				{
-					if (Bene.Nome_Ben == "Hora Extra")
-					{
-						int Horas_extras = (int)Bene.valor;
-						double valorHora = Salario / Jornada;
-
-						valorHora *= 1.5;
-						valorHoraExtra = valorHora * Horas_extras;
-						break;
-					}
+					valortotalBene = Bene.valor;
 				}
-
-				if (valorHoraExtra != null)
-				{
-					return Salario + (double)valorHoraExtra;
-				}
-
+				Salario += valortotalBene;
 			}
+
 			return Salario;
 		}
 

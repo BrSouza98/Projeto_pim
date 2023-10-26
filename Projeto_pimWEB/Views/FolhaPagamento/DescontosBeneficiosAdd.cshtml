@@ -1,0 +1,44 @@
+﻿@model Projeto_pimWEB.Models.Classes.FolhaPagamento
+
+
+<form asp-route-id="@ViewBag.idFunc" asp-action="CreatFolhaView">
+	<h4>Descontos imprevistos</h4>
+	<div class="row">
+		<div class="col-sm-12 col-lg-6">
+			<div class="mb-3">
+				<label asp-for="Faltas" class="form-label">Dia(s) de falta(s) não justificadas</label>
+				<input asp-for="Faltas" type="number" class="form-control" placeholder="Ex: 2">
+			</div>
+		</div>
+
+		<div class="col-sm-12 col-lg-6">
+			<div class="mb-3">
+				<label asp-for="Atrasos" class="form-label">Horas de atraso</label>
+				<input asp-for="Atrasos" type="number" class="form-control" placeholder="Ex: 6">
+			</div>
+		</div>
+
+		<h4>Adicionais</h4>
+		<div class="col-sm-12 col-lg-6">
+			<label asp-for="Bonus" class="form-label">Bônus/Premiações</label>
+			<div class="input-group">
+				<span class="input-group-text">R$</span>
+				<input asp-for="Bonus" type="number" class="form-control" placeholder="Ex: 7">
+			</div>
+		</div>
+
+		<div class="col-sm-12 col-lg-6">
+			<label asp-for="HorasExtras" class="form-label">Horas Extras</label>
+			<div class="input-group">
+				<input asp-for="HorasExtras" type="number" class="form-control" placeholder="Ex: 7">
+			</div>
+		</div>
+
+
+		<div class="mt-3">
+			<button type="button" onclick="window.history.back()" class="btn btn-secondary">Voltar</button>
+			<button type="submit" class="btn btn-primary">Continuar </button>
+		</div>
+	</div>
+
+</form>
