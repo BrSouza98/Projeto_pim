@@ -46,46 +46,59 @@
 				{
 					<tr>
 						<th scope="row" class="d-none d-lg-table-cell">@func.id_cod_func</th>
-							<td>@func.Nome</td>
+						<td>@func.Nome</td>
 						<td class="d-none d-lg-table-cell">@func.Email</td>
-							<td>@func.Telefone</td>
+						<td>@func.Telefone</td>
 						<td class="d-none d-lg-table-cell">@func.Departamento</td>
-							<td>@func.Cargo</td>
-							<td class="">
+						<td>@func.Cargo</td>
+						<td class="">
 
 
-								<div class="btn-group">
-									<button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-										<i class="bi bi-gear-fill"></i>
-									</button>
-									<ul class="dropdown-menu">
-										<li>
-										</li>
-										<li>
+							<div class="btn-group">
+								<button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+									<i class="bi bi-gear-fill"></i>
+								</button>
+								<ul class="dropdown-menu">
+									<li>
+										<a asp-controller="Funcionario" asp-route-id="@func.id_cod_func" asp-action="Registro_depen" class="dropdown-item d-flex justify-content-between">Dependentes <i class="bi bi-people-fill"></i></a>
+									</li>
+									<li>
 										<a asp-controller="Funcionario" asp-route-id="@func.id_cod_func" asp-action="Detalhes" class="dropdown-item d-flex justify-content-between">Detalhes <i class="bi bi-person-lines-fill"></i></a>
-										</li>
-										<li>
+									</li>
+									<li>
 										<a asp-controller="Funcionario" asp-route-id="@func.id_cod_func" asp-action="Editar" class="dropdown-item d-flex justify-content-between">Editar <i class="bi bi-pencil-square"></i></a>
-										</li>
+									</li>
+									<li>
+										<hr class="dropdown-divider">
+									</li>
+									<li>
+										<!-- Button trigger modal -->
+										<button type="button" class="dropdown-item text-danger d-flex justify-content-between" data-bs-toggle="modal" data-bs-target="#Modal-Funcionario-@func.id_cod_func">
+											Desativar <i class="bi bi-person-fill-x"></i>
+										</button>
+									</li>
+								</ul>
+							</div>
+
+							<div class="btn-group">
+								<button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #460DFC">
+									<i class="bi bi-table"></i>
+								</button>
+								<ul class="dropdown-menu">
+									<li>
+									</li>
 									<li>
 										<a asp-controller="FolhaPagamento" asp-route-id="@func.id_cod_func" asp-action="RegistroFolha_Func" class="dropdown-item d-flex justify-content-between">Folhas do funcionario <i class="bi bi-file-earmark-spreadsheet-fill ms-5"></i></a>
 									</li>
 									<li>
 										<a asp-controller="FolhaPagamento" asp-route-id="@func.id_cod_func" asp-action="DescontosBeneficiosAdd" class="dropdown-item d-flex justify-content-between">Gerar Folha <i class="bi bi-file-earmark-fill"></i></a>
 									</li>
-
-										<li>
-											<hr class="dropdown-divider">
-										</li>
-										<li>
-											<!-- Button trigger modal -->
-										<button type="button" class="dropdown-item text-danger d-flex justify-content-between" data-bs-toggle="modal" data-bs-target="#Modal-Funcionario-@func.id_cod_func">
-											Desativar <i class="bi bi-person-fill-x"></i>
-										</button>					
-										</li>
-									</ul>
-								</div>
-							</td>
+									<li>
+										<a asp-controller="FolhaPagamento" asp-route-id="@func.id_cod_func" asp-action="CreateDesconto" class="dropdown-item d-flex justify-content-between">Inserir Desconto<i class="bi bi-file-earmark-fill"></i></a>
+									</li>
+								</ul>
+							</div>
+						</td>
 					</tr>
 				}
 			}
@@ -94,7 +107,7 @@
 </table>
 
 
-@if(Model != null)
+@if (Model != null)
 {
 	foreach (var func in Model)
 	{
@@ -112,7 +125,7 @@
 						</p>
 					</div>
 					<div class="modal-footer">
-                        <a asp-controller="Funcionario" asp-route-id="@func.id_cod_func" asp-action="Desativar" class="btn btn-danger">Desativar</a>
+						<a asp-controller="Funcionario" asp-route-id="@func.id_cod_func" asp-action="Desativar" class="btn btn-danger">Desativar</a>
 						<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
 					</div>
 				</div>
