@@ -9,10 +9,14 @@ namespace Projeto_pimWEB.Metodos
         public List<FolhaPagamento> GetAllFolhaPagamento_FK(int id);
         public List<FolhaPagamento> GetAllFolhas();
 
-
+        // Beneficios
 		public Beneficio CreateBeneficio(Beneficio entity);
-        public Desconto CreateDesconto(Desconto entity);
-        public List<Desconto> GetAllDescontos(int id);
+        public List<Beneficio> GetAllBeneficiosFK(int id);
+
+        // Descontos
+		public Desconto CreateDesconto(Desconto entity);
+        public List<Desconto> GetAllDescontosFK(int id);
+
 
     }
 }

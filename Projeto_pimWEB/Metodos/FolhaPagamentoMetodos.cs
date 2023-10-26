@@ -42,6 +42,11 @@ namespace Projeto_pimWEB.Metodos
 			return entity;
         }
 
+		public List<Beneficio> GetAllBeneficiosFK(int id)
+		{
+			return _mdbc.beneficios.Where(i => i.id_cod_Ben == id).ToList();
+		}
+
 		// Metodos para Descontos.
 		public Desconto CreateDesconto(Desconto entity)
 		{
@@ -50,7 +55,7 @@ namespace Projeto_pimWEB.Metodos
 			return entity;
 		}
 
-        public List<Desconto> GetAllDescontos(int id)
+        public List<Desconto> GetAllDescontosFK(int id)
         {
 			return _mdbc.descontos.Where(i => i.Funcionarioid_cod_func == id).ToList();
         }

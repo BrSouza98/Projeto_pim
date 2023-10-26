@@ -17,6 +17,14 @@
 			<th scope="col">INSS</th>
 			<th scope="col">IRRF</th>
 			<th scope="col">FGTS</th>
+			<th scope="col">Horas Extras</th>
+			<th scope="col">Bonus</th>
+			<th scope="col">Atrasos por horas</th>
+			<th scope="col">Faltas </th>
+			<th scope="col">Motivo desc </th>
+			<th scope="col">Valor </th>
+			<th scope="col">Beneficio </th>
+			<th scope="col">Valor </th>
 		</tr>
 	</thead>
 	<tbody>
@@ -33,8 +41,34 @@
 						<td>@fp.Inss</td>
 						<td>@fp.Irrf</td>
 						<td>@fp.Fgts</td>
+						<td>@fp.HorasExtras</td>
+						<td>@fp.Bonus</td>
+						<td>@fp.Atrasos</td>
+						<td>@fp.Faltas</td>
+					@if(fp.desconto != null)
+					{
+						<td>@fp.desconto.Motivo</td>
+						<td>@fp.desconto.Valor</td>
+					}
+					else
+					{
+						<td>0</td>
+						<td>0</td>
+					}
+					@if(fp.beneficio != null)
+					{
+						<td>@fp.beneficio.Nome_Ben</td>
+						<td>@fp.beneficio.valor</td>
+					}
+					else
+					{
+						<td>0</td>
+						<td>0</td>
+					}
 					</tr>
 				}
 			}
 	</tbody>
 </table>
+
+					<!-- Precisa adicionar um botao de voltar-->

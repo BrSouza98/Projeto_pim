@@ -29,14 +29,12 @@ namespace Projeto_pimWEB.Controllers
 
 		public IActionResult CreatFolhaView(int id, FolhaPagamento folha)
 		{
-			// Lista de beneficios
-			// Lista de descontos
-
 			Funcionario func = _metodos.GetFuncionario(id);
 			func.dependentes = _metodos.GetAllDependentesFK(id);
 
 			folha.Funcionario = func;
-			folha.Descontos = _metodosFolha.GetAllDescontos(id);
+			folha.Descontos = _metodosFolha.GetAllDescontosFK(id);
+			folha.Beneficios = _metodosFolha.GetAllBeneficiosFK(id);
 
 
 			folha.Jornada = Calculos.CalcJornada(func.HoraSemanais);
@@ -60,7 +58,7 @@ namespace Projeto_pimWEB.Controllers
 		}
 
 
-		public IActionResult CreateDesconto(int id)
+		public IActionResult CreateDescontos(int id)
 		{
 			Desconto desconto = new Desconto();
 			desconto.Funcionario = _metodos.GetFuncionario(id);
@@ -71,25 +69,84 @@ namespace Projeto_pimWEB.Controllers
 		}
 
 		[HttpPost]
-		public IActionResult CreateDesconto(int id, Desconto desconto)
+		public IActionResult CreateDescontos(int id, Desconto desconto)
 		{
 			
 			_metodosFolha.CreateDesconto(desconto);
-			return RedirectToAction("CreatFolha", new { action = "CreatFolha", id });
+			return RedirectToAction("CreatFolhaView", new { action = "CreatFolhaView", id });
 			
 
 		}
 
 
-		public IActionResult CreateBenefios(int id)
+		public IActionResult CreateBeneficios(int id)
 		{
-			return View();
+			Beneficio beneficio = new Beneficio();
+			beneficio.Funcionario = _metodos.GetFuncionario(id);
+			return View(beneficio);
+		}
+
+		[HttpPost]
+		public IActionResult CreateBeneficios(int id, Beneficio beneficio)
+		{
+
+			_metodosFolha.CreateBeneficio(beneficio);
+			return RedirectToAction("CreatFolhaView", new { action = "CreatFolhaView", id });
 		}
 
 		public IActionResult RegistroFolha_Func(int id)
 		{
+			List<FolhaPagamento> folhas = _metodosFolha.GetAllFolhaPagamento_FK(id);
+			List<Desconto> descontos = _metodosFolha.GetAllDescontosFK(id);
+			List<Beneficio> beneficios = _metodosFolha.GetAllBeneficiosFK(id);
+
+			List<FolhaPagamento> Allfolhas = new List<FolhaPagamento>();
+
+			foreach(var folha in folhas)
+			{
+				if(descontos != null && descontos.Any())
+				{
+					foreach (var desconto in descontos)
+					{
+						if (beneficios != null && beneficios.Any())
+						{
+							foreach (var beneficio in beneficios )
+							{
+								if (folha.id_cod_func == desconto.Funcionarioid_cod_func && folha.id_cod_func == beneficio.Funcionarioid_cod_func)
+								{
+									folha.desconto = desconto;
+									folha.beneficio = beneficio;
+									Allfolhas.Add(folha);
+								}
+							}
+						}
+						else
+						{
+							folha.desconto = desconto;
+							Allfolhas.Add(folha);
+						}
+					}
+				}
+				else
+				{
+					if(beneficios != null && beneficios.Any())
+					{
+						foreach(var beneficio in beneficios)
+						{
+							if (folha.id_cod_func == beneficio.Funcionarioid_cod_func)
+							{
+								
+								folha.beneficio = beneficio;
+								Allfolhas.Add(folha);
+							}
+						}
+					}
+				}
+				
+			}
+
 			Funcionario func = _metodos.GetFuncionario(id);
-			func.Folhas = _metodosFolha.GetAllFolhaPagamento_FK(id);
+			func.Folhas = Allfolhas;
 
 			return View(func);
 		}

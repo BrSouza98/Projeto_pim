@@ -10,7 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-route-id="@Model.Funcionario.id_cod_func" asp-action="CreateDesconto">
+        <form asp-route-id="@Model.Funcionario.id_cod_func" asp-action="CreateDescontos" method="post">
             <input asp-for="Funcionarioid_cod_func" type="hidden" value="@Model.Funcionario.id_cod_func" />
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
