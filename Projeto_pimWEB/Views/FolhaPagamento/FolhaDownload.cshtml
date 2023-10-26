@@ -1,0 +1,83 @@
+﻿@{
+    Layout = "";
+    ViewData["Title"] = "Baixar folha";
+}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Projeto PIM</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Projeto_pimWEB.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/bootstrap-icons/font/bootstrap-icons.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/animate.css/animate.min.css" />
+    <link href="https://cdn.datatables.net/v/dt/dt-1.13.6/datatables.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+</head>
+<body>
+    <div class="m-5" id="content">
+        <h2>EMPREGADOR</h2>
+        <h2></h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Cód</th>
+                    <th scope="col">Descrição</th>
+                    <th scope="col">Referência</th>
+                    <th scope="col">Proventos</th>
+                    <th scope="col">Descontos</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>SALARIO BASE</td>
+                    <td>220:00</td>
+                    <td>5.000,00</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>HORA EXTRA</td>
+                    <td>15</td>
+                    <td>511,20</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td colspan="2">DSR</td>
+                    <td></td>
+                    <td>78,64</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <button id="generate-pdf">Geerar pdf</button>
+
+
+</body>
+<script>
+    const btnGenerate = document.querySelector("#generate-pdf")
+
+    btnGenerate.addEventListener("click", () => {
+        //conteudo
+        const content = document.querySelector("#content")
+
+        //configuração do arquivo final pdf
+        const options = {
+            margin: [10, 10, 10, 10],
+            filename: "arquivo.pdf",
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+        }
+        //gerar e baixar o pdf
+        html2pdf().set(options).from(content).save();
+    })
+
+</script>
+</html>
