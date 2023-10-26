@@ -4,7 +4,7 @@
     ViewData["Title"] = "CreateDesconto";
 }
 
-<h1>CreateDesconto</h1>
+<h1>Desconto do(a) funcionario: @Model.Funcionario.Nome</h1>
 
 <h4>Desconto</h4>
 <hr />
@@ -24,6 +24,11 @@
                 <span asp-validation-for="Valor" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="AnoMes" class="control-label">Mês/Ano</label>
+                <input asp-for="AnoMes" value="@Model.AnoMes" class="form-control" />
+                <span asp-validation-for="AnoMes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
@@ -31,7 +36,7 @@
 </div>
 
 <div>
-    <a onclick="window.history.back()">Back to List</a>
+    <button onclick="window.history.back()">Back to List</button>
 </div>
 
 @section Scripts {

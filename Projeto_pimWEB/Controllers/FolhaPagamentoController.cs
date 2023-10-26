@@ -29,10 +29,14 @@ namespace Projeto_pimWEB.Controllers
 
 		public IActionResult CreatFolhaView(int id, FolhaPagamento folha)
 		{
+
+
 			Funcionario func = _metodos.GetFuncionario(id);
 			func.dependentes = _metodos.GetAllDependentesFK(id);
 
 			folha.Funcionario = func;
+
+
 			folha.Descontos = _metodosFolha.GetAllDescontosFK(id);
 			folha.Beneficios = _metodosFolha.GetAllBeneficiosFK(id);
 
@@ -62,6 +66,7 @@ namespace Projeto_pimWEB.Controllers
 		{
 			Desconto desconto = new Desconto();
 			desconto.Funcionario = _metodos.GetFuncionario(id);
+			desconto.AnoMes = DateTime.Now.ToString("MM/yyyy");
 
 
 			return View(desconto);

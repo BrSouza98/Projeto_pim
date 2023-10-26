@@ -10,6 +10,8 @@ namespace Projeto_pimWEB.Models.Classes
         public string Motivo {  get; set; }
         public double Valor { get; set; }
 
+		public string AnoMes { get; set; }
+
         [NotMapped]
         public FolhaPagamento Folha_Pagamento {  get; set; }
 
