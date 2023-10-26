@@ -11,7 +11,8 @@ namespace Projeto_pimWEB.Metodos
 
 
 		public Beneficio CreateBeneficio(Beneficio entity);
-        public Desconto CreateBeneficio(Desconto entity);
+        public Desconto CreateDesconto(Desconto entity);
+        public List<Desconto> GetAllDescontos(int id);
 
     }
 }

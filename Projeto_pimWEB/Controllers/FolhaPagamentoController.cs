@@ -22,6 +22,11 @@ namespace Projeto_pimWEB.Controllers
 		}
 
 
+		public IActionResult DescontosBeneficiosAdd()
+		{
+			return View();
+		}
+
 		public IActionResult CreatFolha(int id)
 		{
 			// Lista de beneficios
@@ -32,9 +37,11 @@ namespace Projeto_pimWEB.Controllers
 
 			FolhaPagamento folha = new FolhaPagamento();
 			folha.Funcionario = func;
+			folha.Descontos = _metodosFolha.GetAllDescontos(id);
+
 
 			folha.Jornada = Calculos.CalcJornada(func.HoraSemanais);
-			folha.SalarioBruto = Math.Round(Calculos.CalcSalarioBruto(func.Salario, folha.Beneficios, folha.Jornada), 2);
+			folha.SalarioBruto = Math.Round(Calculos.CalcSalarioBruto(func.Salario, folha.Beneficios, folha.Descontos, folha.Jornada, folha.HorasExtras));
 			folha.Inss = Math.Round(Calculos.CalcINSS(folha.SalarioBruto), 2);
 			folha.Irrf = Math.Round(Calculos.CalcIRRF(folha.SalarioBruto, folha.Inss, func.dependentes), 2);
 			folha.Fgts = Math.Round(Calculos.CalcFGTS(folha.SalarioBruto), 2);
@@ -46,8 +53,9 @@ namespace Projeto_pimWEB.Controllers
 		}
 
 		[HttpPost]
-		public IActionResult CreatFolha(FolhaPagamento fp)
+		public IActionResult CreatFolha(FolhaPagamento fp, int id)
 		{
+			
 			_metodosFolha.CreateFolha(fp);
 			return RedirectToAction("Registro", "Funcionario");
 		}
@@ -55,9 +63,24 @@ namespace Projeto_pimWEB.Controllers
 
 		public IActionResult CreateDesconto(int id)
 		{
-			return View();
+			Desconto desconto = new Desconto();
+			desconto.Funcionario = _metodos.GetFuncionario(id);
+
+
+			return View(desconto);
 
 		}
+
+		[HttpPost]
+		public IActionResult CreateDesconto(int id, Desconto desconto)
+		{
+			
+			_metodosFolha.CreateDesconto(desconto);
+			return RedirectToAction("CreatFolha", new { action = "CreatFolha", id });
+			
+
+		}
+
 
 		public IActionResult CreateBenefios(int id)
 		{

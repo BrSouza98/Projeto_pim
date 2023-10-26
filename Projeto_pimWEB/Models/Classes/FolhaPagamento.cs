@@ -24,7 +24,10 @@ namespace Projeto_pimWEB.Models.Classes
         public double Inss { get ; set; }
         public double Irrf { get; set; }
         public double SalarioLiquido { get; set; }
-        
+
+        public int? HorasExtras { get; set; }
+
+
         public double Fgts { get; set; }
 
         [NotMapped]

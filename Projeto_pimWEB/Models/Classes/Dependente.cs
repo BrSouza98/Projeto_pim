@@ -22,9 +22,8 @@ namespace Projeto_pimWEB.Models.Classes
 		[MaxLength(15)]
 		public string Parentesco {  get; set; }
 
-
-        [ForeignKey(nameof(Dependente))]
         public int funcionarioid_cod_func { get; set; }
+        [ForeignKey("funcionarioid_cod_func")]
         public Funcionario funcionario { get; set; }
 
         
