@@ -37,7 +37,9 @@ namespace Projeto_pimWEB.Controllers
 			folha.Funcionario = func;
 
 
-			folha.Descontos = _metodosFolha.GetAllDescontosFK(id);
+            folha.DataEmissao = DateTime.Now.ToString("dd/MM/yyyy");
+            folha.MesAnoRef = DateTime.Now.ToString("MM/yyyy");
+            folha.Descontos = _metodosFolha.GetAllDescontosFK(id, folha.MesAnoRef);
 			folha.Beneficios = _metodosFolha.GetAllBeneficiosFK(id);
 
 
@@ -47,8 +49,7 @@ namespace Projeto_pimWEB.Controllers
 			folha.Irrf = Math.Round(Calculos.CalcIRRF(folha.SalarioBruto, folha.Inss, func.dependentes), 2);
 			folha.Fgts = Math.Round(Calculos.CalcFGTS(folha.SalarioBruto), 2);
 			folha.SalarioLiquido = Math.Round(Calculos.CalcSalarioLiquido(folha.Inss, folha.Irrf, folha.SalarioBruto), 2);
-			folha.DataEmissao = DateTime.Now.ToString("dd/MM/yyyy");
-			folha.MesAnoRef = DateTime.Now.ToString("MM/yyyy");
+			
 
 			return View(folha);
 		}
@@ -101,6 +102,7 @@ namespace Projeto_pimWEB.Controllers
 
 		public IActionResult RegistroFolha_Func(int id)
 		{
+            /*
 			List<FolhaPagamento> folhas = _metodosFolha.GetAllFolhaPagamento_FK(id);
 			List<Desconto> descontos = _metodosFolha.GetAllDescontosFK(id);
 			List<Beneficio> beneficios = _metodosFolha.GetAllBeneficiosFK(id);
@@ -152,8 +154,9 @@ namespace Projeto_pimWEB.Controllers
 
 			Funcionario func = _metodos.GetFuncionario(id);
 			func.Folhas = Allfolhas;
-
-			return View(func);
+			*/
+            return View();
+			
 		}
 
 		public IActionResult Registro_Folhas()
@@ -176,6 +179,11 @@ namespace Projeto_pimWEB.Controllers
 			}
 
 			return View(ListaFinais);
+		}
+
+		public IActionResult FolhaDownload()
+		{
+			return View();
 		}
 	}
 }

@@ -1,5 +1,6 @@
 ﻿using Projeto_pimWEB.Data;
 using Projeto_pimWEB.Models.Classes;
+using System.Drawing;
 
 namespace Projeto_pimWEB.Metodos
 {
@@ -55,9 +56,9 @@ namespace Projeto_pimWEB.Metodos
 			return entity;
 		}
 
-        public List<Desconto> GetAllDescontosFK(int id)
+        public List<Desconto> GetAllDescontosFK(int id, string data)
         {
-			return _mdbc.descontos.Where(i => i.Funcionarioid_cod_func == id).ToList();
+			return _mdbc.descontos.Where(i => i.Funcionarioid_cod_func == id && i.AnoMes == data).ToList();
         }
     }
 }

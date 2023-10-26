@@ -15,7 +15,7 @@ namespace Projeto_pimWEB.Metodos
 
         // Descontos
 		public Desconto CreateDesconto(Desconto entity);
-        public List<Desconto> GetAllDescontosFK(int id);
+        public List<Desconto> GetAllDescontosFK(int id, string data);
 
 
     }
