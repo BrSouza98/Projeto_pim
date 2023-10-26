@@ -39,7 +39,7 @@ namespace Projeto_pimWEB.Controllers
 
             folha.DataEmissao = DateTime.Now.ToString("dd/MM/yyyy");
             folha.MesAnoRef = DateTime.Now.ToString("MM/yyyy");
-            folha.Descontos = _metodosFolha.GetAllDescontosFK(id, folha.MesAnoRef);
+            folha.Descontos = _metodosFolha.GetAllDescontosFK(id);
 			folha.Beneficios = _metodosFolha.GetAllBeneficiosFK(id);
 
 
@@ -67,8 +67,6 @@ namespace Projeto_pimWEB.Controllers
 		{
 			Desconto desconto = new Desconto();
 			desconto.Funcionario = _metodos.GetFuncionario(id);
-			desconto.AnoMes = DateTime.Now.ToString("MM/yyyy");
-
 
 			return View(desconto);
 
@@ -102,60 +100,42 @@ namespace Projeto_pimWEB.Controllers
 
 		public IActionResult RegistroFolha_Func(int id)
 		{
-            /*
 			List<FolhaPagamento> folhas = _metodosFolha.GetAllFolhaPagamento_FK(id);
-			List<Desconto> descontos = _metodosFolha.GetAllDescontosFK(id);
-			List<Beneficio> beneficios = _metodosFolha.GetAllBeneficiosFK(id);
+			List<Desconto>? descontos = _metodosFolha.GetAllDescontosFK(id);
+			List<Beneficio>? beneficios = _metodosFolha.GetAllBeneficiosFK(id);
 
 			List<FolhaPagamento> Allfolhas = new List<FolhaPagamento>();
 
 			foreach(var folha in folhas)
 			{
-				if(descontos != null && descontos.Any())
+				if (descontos != null && descontos.Any())
 				{
-					foreach (var desconto in descontos)
+					foreach(var desconto in descontos)
 					{
-						if (beneficios != null && beneficios.Any())
+						if(desconto != null)
 						{
-							foreach (var beneficio in beneficios )
-							{
-								if (folha.id_cod_func == desconto.Funcionarioid_cod_func && folha.id_cod_func == beneficio.Funcionarioid_cod_func)
-								{
-									folha.desconto = desconto;
-									folha.beneficio = beneficio;
-									Allfolhas.Add(folha);
-								}
-							}
+							folha.Descontos.Add(desconto);
 						}
-						else
-						{
-							folha.desconto = desconto;
-							Allfolhas.Add(folha);
-						}
+						
 					}
 				}
-				else
+
+				if(beneficios != null && beneficios.Any())
 				{
-					if(beneficios != null && beneficios.Any())
+					foreach(var beneficio in beneficios)
 					{
-						foreach(var beneficio in beneficios)
-						{
-							if (folha.id_cod_func == beneficio.Funcionarioid_cod_func)
-							{
-								
-								folha.beneficio = beneficio;
-								Allfolhas.Add(folha);
-							}
-						}
+						folha.Beneficios.Add(beneficio);
 					}
 				}
-				
+				Allfolhas.Add(folha);
 			}
+			
 
 			Funcionario func = _metodos.GetFuncionario(id);
 			func.Folhas = Allfolhas;
-			*/
-            return View();
+
+
+			return View(func);
 			
 		}
 

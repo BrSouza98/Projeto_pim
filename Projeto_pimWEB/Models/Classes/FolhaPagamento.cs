@@ -32,15 +32,14 @@ namespace Projeto_pimWEB.Models.Classes
 		public double Fgts { get; set; }
 
         [NotMapped]
-        public ICollection<Desconto> Descontos { get; set; }
-		[NotMapped]
-		public Desconto desconto { get; set; }
+        public  List<Desconto> Descontos { get; set; }
         [NotMapped]
-        public ICollection<Beneficio> Beneficios { get; set; }
-		[NotMapped]
-		public Beneficio beneficio { get; set; }
+        public  List<Beneficio> Beneficios { get; set; }
 
-       
-
+		public FolhaPagamento()
+        {
+            Descontos = new List<Desconto>();
+            Beneficios = new List<Beneficio>();
+        }
     }
 }

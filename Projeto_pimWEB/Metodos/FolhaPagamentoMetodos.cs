@@ -19,6 +19,7 @@ namespace Projeto_pimWEB.Metodos
 			_mdbc.SaveChanges();
 			return fp;
 		}
+		
 
 		public List<FolhaPagamento> GetAllFolhaPagamento_FK(int id)
 		{
@@ -56,9 +57,9 @@ namespace Projeto_pimWEB.Metodos
 			return entity;
 		}
 
-        public List<Desconto> GetAllDescontosFK(int id, string data)
+        public List<Desconto> GetAllDescontosFK(int id)
         {
-			return _mdbc.descontos.Where(i => i.Funcionarioid_cod_func == id && i.AnoMes == data).ToList();
+			return _mdbc.descontos.Where(i => i.Funcionarioid_cod_func == id).ToList();
         }
-    }
+	}
 }

@@ -2,14 +2,22 @@
 
 @{
 	ViewData["Title"] = "Registro de Folhas";
+
 }
 
-<h1>Folhas do funcionario: @Model.Nome - ID: @Model.id_cod_func</h1>
 
-<table class="table" id="RegistroFP_func">
+
+<h1>
+	Registro de folhas.
+</h1>
+<h4>
+	Funcionario(a): @Model.Nome
+</h4>
+
+<table class="table">
 	<thead>
 		<tr>
-			<th scope="col">ID</th>
+			<th scope="col">ID Folha</th>
 			<th scope="col">Data de emissão</th>
 			<th scope="col">Mês e ano</th>
 			<th scope="col">Salario Liquido</th>
@@ -21,54 +29,91 @@
 			<th scope="col">Bonus</th>
 			<th scope="col">Atrasos por horas</th>
 			<th scope="col">Faltas </th>
-			<th scope="col">Motivo desc </th>
-			<th scope="col">Valor </th>
-			<th scope="col">Beneficio </th>
-			<th scope="col">Valor </th>
 		</tr>
 	</thead>
 	<tbody>
-			@if (Model.Folhas != null && Model.Folhas.Any())
+			@if (Model != null)
 			{
-				foreach (var fp in Model.Folhas)
+				<tr>
+				@foreach(var fp in Model.Folhas)
 				{
-					<tr>
-						<td>@fp.id_cod_FP</td>
-						<td>@fp.DataEmissao</td>
-						<td>@fp.MesAnoRef</td>
-						<td>@fp.SalarioLiquido</td>
-						<td>@fp.SalarioBruto</td>
-						<td>@fp.Inss</td>
-						<td>@fp.Irrf</td>
-						<td>@fp.Fgts</td>
-						<td>@fp.HorasExtras</td>
-						<td>@fp.Bonus</td>
-						<td>@fp.Atrasos</td>
-						<td>@fp.Faltas</td>
-					@if(fp.desconto != null)
-					{
-						<td>@fp.desconto.Motivo</td>
-						<td>@fp.desconto.Valor</td>
-					}
-					else
-					{
-						<td>0</td>
-						<td>0</td>
-					}
-					@if(fp.beneficio != null)
-					{
-						<td>@fp.beneficio.Nome_Ben</td>
-						<td>@fp.beneficio.valor</td>
-					}
-					else
-					{
-						<td>0</td>
-						<td>0</td>
-					}
-					</tr>
+					<td>@fp.id_cod_FP</td>
+					<td>@fp.DataEmissao</td>
+					<td>@fp.MesAnoRef</td>
+					<td>@fp.SalarioLiquido</td>
+					<td>@fp.SalarioBruto</td>
+					<td>@fp.Inss</td>
+					<td>@fp.Irrf</td>
+					<td>@fp.Fgts</td>
+					<td>@fp.HorasExtras</td>
+					<td>@fp.Bonus</td>
+					<td>@fp.Atrasos</td>
+					<td>@fp.Faltas</td>
 				}
+				</tr>
+				
 			}
 	</tbody>
+</table>
+<br />
+
+<h4> Todos os descontos</h4>
+<table class="table">
+	@if (Model.Folhas != null)
+	{
+		@foreach (var fp in Model.Folhas)
+		{
+			<thead>
+				<tr>
+					<th scope="col">Motivo Descontos</th>
+					<th scope="col">Valores</th>
+
+				</tr>
+			</thead>
+
+			@foreach (var desc in fp.Descontos)
+			{
+
+				<tbody>
+					<tr>
+						<td>@desc.Motivo</td>
+						<td>@desc.Valor</td>
+					</tr>
+				</tbody>
+			}
+		}
+		
+	}
+</table>
+<br />
+
+<h4> Todos os beneficios</h4>
+<table class="table">
+	@if (Model.Folhas != null)
+	{
+		@foreach (var fp in Model.Folhas)
+		{
+			<thead>
+				<tr>
+					<th scope="col">Beneficios</th>
+					<th scope="col">Valores</th>
+
+				</tr>
+			</thead>
+
+			@foreach (var bene in fp.Beneficios)
+			{
+
+				<tbody>
+					<tr>
+						<td>@bene.Nome_Ben</td>
+						<td>@bene.valor</td>
+					</tr>
+				</tbody>
+			}
+		}
+
+	}
 </table>
 
 					<!-- Precisa adicionar um botao de voltar-->
