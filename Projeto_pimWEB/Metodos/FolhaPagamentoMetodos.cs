@@ -31,7 +31,7 @@ namespace Projeto_pimWEB.Metodos
 			return _mdbc.folhaPagamento.ToList();
 		}
 
-		public FolhaPagamento GetFolhaPagamento(int id)
+		public FolhaPagamento GetFolhaPagamento_PK(int id)
 		{
 			return _mdbc.folhaPagamento.FirstOrDefault(i => i.id_cod_FP == id);
 		}

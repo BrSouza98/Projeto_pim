@@ -30,18 +30,15 @@ namespace Projeto_pimWEB.Controllers
 		public IActionResult CreatFolhaView(int id, FolhaPagamento folha)
 		{
 
-
 			Funcionario func = _metodos.GetFuncionario(id);
 			func.dependentes = _metodos.GetAllDependentesFK(id);
 
 			folha.Funcionario = func;
 
-
             folha.DataEmissao = DateTime.Now.ToString("dd/MM/yyyy");
             folha.MesAnoRef = DateTime.Now.ToString("MM/yyyy");
             folha.Descontos = _metodosFolha.GetAllDescontosFK(id);
 			folha.Beneficios = _metodosFolha.GetAllBeneficiosFK(id);
-
 
 			folha.Jornada = Calculos.CalcJornada(func.HoraSemanais);
 			folha.SalarioBruto = Math.Round(Calculos.CalcSalarioBruto(func.Salario, folha.Beneficios, folha.Descontos, folha.Jornada, folha.HorasExtras, folha.Bonus, folha.Faltas, folha.Atrasos));
@@ -50,7 +47,6 @@ namespace Projeto_pimWEB.Controllers
 			folha.Fgts = Math.Round(Calculos.CalcFGTS(folha.SalarioBruto), 2);
 			folha.SalarioLiquido = Math.Round(Calculos.CalcSalarioLiquido(folha.Inss, folha.Irrf, folha.SalarioBruto), 2);
 			
-
 			return View(folha);
 		}
 
@@ -77,7 +73,7 @@ namespace Projeto_pimWEB.Controllers
 		{
 			
 			_metodosFolha.CreateDesconto(desconto);
-			return RedirectToAction("CreatFolhaView", new { action = "CreatFolhaView", id });
+			return RedirectToAction("Registro", "Funcionario");
 			
 
 		}
@@ -95,7 +91,7 @@ namespace Projeto_pimWEB.Controllers
 		{
 
 			_metodosFolha.CreateBeneficio(beneficio);
-			return RedirectToAction("CreatFolhaView", new { action = "CreatFolhaView", id });
+			return RedirectToAction("Registro", "Funcionario");
 		}
 
 		public IActionResult RegistroFolha_Func(int id)
@@ -134,6 +130,7 @@ namespace Projeto_pimWEB.Controllers
 			Funcionario func = _metodos.GetFuncionario(id);
 			func.Folhas = Allfolhas;
 
+		
 
 			return View(func);
 			
@@ -161,9 +158,15 @@ namespace Projeto_pimWEB.Controllers
 			return View(ListaFinais);
 		}
 
-		public IActionResult FolhaDownload()
+		public IActionResult FolhaDownload(int id)
 		{
-			return View();
+			FolhaPagamento folha = _metodosFolha.GetFolhaPagamento_PK(id);
+			folha.Funcionario = _metodos.GetFuncionario(folha.id_cod_func);
+			folha.Descontos = _metodosFolha.GetAllDescontosFK(folha.id_cod_func);
+			folha.Beneficios = _metodosFolha.GetAllBeneficiosFK(folha.id_cod_func);
+
+
+			return View(folha);
 		}
 	}
 }

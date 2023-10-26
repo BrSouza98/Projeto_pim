@@ -29,6 +29,7 @@
 			<th scope="col">Bonus</th>
 			<th scope="col">Atrasos por horas</th>
 			<th scope="col">Faltas </th>
+			<th scope="col"></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -49,6 +50,11 @@
 					<td>@fp.Bonus</td>
 					<td>@fp.Atrasos</td>
 					<td>@fp.Faltas</td>
+					<td>
+						<div>
+							<a asp-controller="FolhaPagamento" asp-route-id="@fp.id_cod_FP" asp-action="FolhaDownload" class="btn btn-primary">Baixar folha </a>
+						</div>
+					</td>
 				}
 				</tr>
 				

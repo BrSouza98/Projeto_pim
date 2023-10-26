@@ -5,7 +5,7 @@ namespace Projeto_pimWEB.Metodos
     public interface IFolhaPagamentoRepository
     {
         public FolhaPagamento CreateFolha(FolhaPagamento entity);
-        public FolhaPagamento GetFolhaPagamento(int id);
+        public FolhaPagamento GetFolhaPagamento_PK(int id);
         public List<FolhaPagamento> GetAllFolhaPagamento_FK(int id);
         public List<FolhaPagamento> GetAllFolhas();
 
