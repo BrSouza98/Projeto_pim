@@ -27,8 +27,16 @@ namespace Projeto_pimWEB.Models.Classes
 
         public int? HorasExtras { get; set; }
 
+        public int? Bonus { get; set; }
 
-        public double Fgts { get; set; }
+        public int? Faltas { get; set; }
+
+        public int? Atrasos { get; set; }
+
+
+
+
+		public double Fgts { get; set; }
 
         [NotMapped]
         public ICollection<Desconto> Descontos { get; set; }

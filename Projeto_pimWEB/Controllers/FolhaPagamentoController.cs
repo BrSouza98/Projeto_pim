@@ -21,13 +21,13 @@ namespace Projeto_pimWEB.Controllers
 			_metodosFolha = metodoFolha;
 		}
 
-
-		public IActionResult DescontosBeneficiosAdd()
+		public IActionResult DescontosBeneficiosAdd(int id)
 		{
+			ViewBag.idFunc = id;
 			return View();
 		}
 
-		public IActionResult CreatFolha(int id)
+		public IActionResult CreatFolhaView(int id, FolhaPagamento folha)
 		{
 			// Lista de beneficios
 			// Lista de descontos
@@ -35,13 +35,12 @@ namespace Projeto_pimWEB.Controllers
 			Funcionario func = _metodos.GetFuncionario(id);
 			func.dependentes = _metodos.GetAllDependentesFK(id);
 
-			FolhaPagamento folha = new FolhaPagamento();
 			folha.Funcionario = func;
 			folha.Descontos = _metodosFolha.GetAllDescontos(id);
 
 
 			folha.Jornada = Calculos.CalcJornada(func.HoraSemanais);
-			folha.SalarioBruto = Math.Round(Calculos.CalcSalarioBruto(func.Salario, folha.Beneficios, folha.Descontos, folha.Jornada, folha.HorasExtras));
+			folha.SalarioBruto = Math.Round(Calculos.CalcSalarioBruto(func.Salario, folha.Beneficios, folha.Descontos, folha.Jornada, folha.HorasExtras, folha.Bonus, folha.Faltas, folha.Atrasos));
 			folha.Inss = Math.Round(Calculos.CalcINSS(folha.SalarioBruto), 2);
 			folha.Irrf = Math.Round(Calculos.CalcIRRF(folha.SalarioBruto, folha.Inss, func.dependentes), 2);
 			folha.Fgts = Math.Round(Calculos.CalcFGTS(folha.SalarioBruto), 2);

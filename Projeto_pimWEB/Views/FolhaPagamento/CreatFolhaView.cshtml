@@ -7,11 +7,6 @@ ViewData["Title"] = "CreatFolha";
 <h1>Folha de Pagamento de Salário</h1>
 
 <hr />
-<div>
-	
-	<button asp-action="" class="btn btn-success">Adicionar Benefícios</button>
-	<button asp-action="" class="btn btn-warning">Adicionar Descontos</button>
-</div>
 <div class="row">
 	<div class="">
 		<h2>Dados do funcionário</h2>
@@ -78,22 +73,17 @@ ViewData["Title"] = "CreatFolha";
 			<input asp-for="SalarioLiquido" type="hidden" class="form-control" />
 			<input asp-for="Fgts" type="hidden" class="form-control" />
 			<div class="form-group">
-				<button onclick="window.history.back()" class="btn btn-secondary">Voltar</button>
 				<button type="submit" value="Create" class="btn btn-dark"> Salvar Folha </button>
 			</div>
 		</form>
 	</div>
 </div>
 
-<<<<<<< HEAD
-<div>
-	<button onclick="window.history.back()" class="btn btn-secondary">Back to List</button>
-	<button asp-action="" class="btn btn-secondary">Adicionar Beneficios</button>
-	<a asp-controller="FolhaPagamento" asp-route-id="@Model.Funcionario.id_cod_func " asp-action="CreateDesconto" class="btn btn-secondary">Adicionar Descontos</a>
-</div>
-=======
 
->>>>>>> c9acc4d32ec73fb7abc556da7ff5e81199ef3b21
+<div>
+	<button onclick="window.history.back()" role="none" class="btn btn-secondary">Back to List</button>
+</div>
+
 
 @section Scripts {
 @{
