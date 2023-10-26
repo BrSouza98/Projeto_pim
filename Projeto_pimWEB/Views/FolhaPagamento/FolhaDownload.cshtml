@@ -19,17 +19,43 @@
 
 </head>
 <body>
-    <div class="m-5" id="content">
-        <h2>EMPREGADOR</h2>
-        <h2></h2>
-        <table class="table table-bordered">
+    <div class="ms-1 me-3" style="height: 700px" id="content">
+        <div class="d-flex justify-content-between">
+        <div>
+            <h2 class="fs-4">EMPREGADOR</h2>
+            <p>nome</p>
+            <p>Endereço</p>
+            <p>CNPJ</p>
+        </div>
+            <h2 class="fs-4">Recibo de Pagamento de Salário</h2>
+        </div>
+        <div class="d-flex justify-content-between">
+            <div class="">
+                <h3 class="fs-6">NOME</h3>
+                <p>Renatão de 4</p>
+            </div>
+            <div class="">
+                <h3 class="fs-6">DEPARTAMENTO</h3>
+                <p>PUTAMETRIA</p>
+            </div>
+            <div class="">
+                <h3 class="fs-6">CARGO</h3>
+                <p>Putólogo chefe</p>
+            </div>
+            <div class="">
+                <h3 class="fs-6">PERÍODO</h3>
+                <p>10/sempre</p>
+            </div>
+
+        </div>
+        <table class="table table-bordered text-center">
             <thead>
                 <tr>
-                    <th scope="col">Cód</th>
+                    <th scope="col" style="width: 1rem;">Cód</th>
                     <th scope="col">Descrição</th>
                     <th scope="col">Referência</th>
-                    <th scope="col">Proventos</th>
-                    <th scope="col">Descontos</th>
+                    <th scope="col" style="width: 15rem;">Proventos</th>
+                    <th scope="col" style="width: 15rem;">Descontos</th>
 
                 </tr>
             </thead>
@@ -42,23 +68,66 @@
                     <td></td>
                 </tr>
                 <tr>
-                    <th scope="row">2</th>
+                    <th scope="row"></th>
                     <td>HORA EXTRA</td>
                     <td>15</td>
                     <td>511,20</td>
                     <td></td>
                 </tr>
                 <tr>
-                    <th scope="row">3</th>
-                    <td colspan="2">DSR</td>
+                    <th scope="row"></th>
+                    <td>DSR</td>
                     <td></td>
                     <td>78,64</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row"></th>
+                    <td>algo</td>
+                    <td>????</td>
+                    <td>provento????</td>
+                    <td>desconto????</td>
+                </tr>
+                <tr>
+                    <th scope="row"></th>
+                    <td>INSS</td>
+                    <td>11,68%</td>
+                    <td></td>
+                    <td>828,39</td>
+                </tr>
+                <tr>
+                    <th scope="row"></th>
+                    <td>IRRF</td>
+                    <td>27,50%</td>
+                    <td></td>
+                    <td>852,54</td>
+                </tr>
+                <tr>
+                    <th scope="row"></th>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <p>Total de proventos:</p>
+                        <p>5.580,00</p>
+                    </td>
+                    <td>
+                        <p>Total de Descontos:</p>
+                        <p>1.677,93</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"></th>
+                    <td></td>
+                    <td></td>
+                    <td>Liquído a receber -></td>
+                    <td>3,902,07</td>
                 </tr>
             </tbody>
         </table>
     </div>
-    <button id="generate-pdf">Geerar pdf</button>
-
+    <div class="d-flex justify-content-center">
+    <button type="button" class="btn btn-dark" id="generate-pdf">Gerar PDF</button>
+    </div>
 
 </body>
 <script>
@@ -70,10 +139,10 @@
 
         //configuração do arquivo final pdf
         const options = {
-            margin: [10, 10, 10, 10],
+            margin: [0, 0, 0, 0],
             filename: "arquivo.pdf",
             html2canvas: { scale: 2 },
-            jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+            jsPDF: { unit: "mm", format: "a4", orientation: "landscape" }
         }
         //gerar e baixar o pdf
         html2pdf().set(options).from(content).save();
