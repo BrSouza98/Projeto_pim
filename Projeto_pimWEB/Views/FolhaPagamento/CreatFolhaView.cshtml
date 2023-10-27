@@ -1,123 +1,157 @@
 ﻿@model Projeto_pimWEB.Models.Classes.FolhaPagamento
 
 @{
-ViewData["Title"] = "CreatFolha";
+    ViewData["Title"] = "Confirmar folha";
 }
 
 <h1>Folha de Pagamento de Salário</h1>
+<hr />
+<h2>Dados do funcionário</h2>
+<div class="d-flex m-3 flex-wrap">
+    <div class="form-group me-5">
+        <h4 class="fw-normal">Nome:</h4>
+        <p class="fw-bold text-uppercase">@Model.Funcionario.Nome</p>
+    </div>
 
-<table class="table">
-	<thead>
-		<tr>
-			<th scope="col" class="d-none d-lg-table-cell">#</th>
-			<th scope="col">Motivo</th>
-			<th scope="col">Valor</th>
-			
-		</tr>
-	</thead>
-	<tbody>
-		@if (Model.Descontos != null && Model.Descontos.Any())
-		{
-			foreach (var fp in Model.Descontos)
-		{
-				<tr>
-					<th scope="row" class="d-none d-lg-table-cell">@fp.Funcionario.id_cod_func</th>
-					<td>@fp.Motivo</td>
-					<td>@fp.Valor</td>
-					
-				</tr>
-			}
-		}
-	</tbody>
-</table>
+    <div class="form-group me-5">
+        <h4 class="fw-normal">Departamento:</h4>
+        <p class="fw-bold text-uppercase">@Model.Funcionario.Departamento</p>
+    </div>
+
+    <div class="form-group">
+        <h4 class="fw-normal">Cargo:</h4>
+        <p class="fw-bold text-uppercase">@Model.Funcionario.Cargo</p>
+    </div>
+</div>
+<div class="row d-flex flex-wrap mb-4" style="width: 100%;">
+    <div class="">
+
+
+        <h2>Dados da folha</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Dt Emissão</th>
+                    <th scope="col">Ref</th>
+                    <th scope="col">Sal Bruto</th>
+                    <th scope="col">INSS</th>
+                    <th scope="col">IRRF</th>
+                    <th scope="col">FGTS</th>
+                    <th scope="col">Sal Liq.</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Model.DataEmissao</td>
+                    <td>@Model.MesAnoRef</td>
+                    <td>R$ @Model.SalarioBruto</td>
+                    <td>R$ @Model.Inss</td>
+                    <td>R$ @Model.Irrf</td>
+                    <td>R$ @Model.Fgts</td>
+                    <td>R$ @Model.SalarioLiquido</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+</div>
+<div class="d-flex justify-content-around">
+    @if (Model.Descontos != null && Model.Descontos.Any())
+    {
+        <div>
+            <h3>Descontos inclusos</h3>
+
+            <table class="table m-auto mt-3 border border-dark" style="width: ;">
+                <thead>
+                    <tr>
+                        <th class="col-6" scope="col">Motivo</th>
+                        <th scope="col">Valor</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+
+                    @foreach (var fp in Model.Descontos)
+                    {
+                        <tr>
+                            <td>@fp.Motivo</td>
+                            <td>R$ @fp.Valor</td>
+
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+
+    @if (Model.Beneficios != null && Model.Beneficios.Any())
+    {
+        <div>
+            <h3>Beneficios inclusos</h3>
+            <table class="table m-auto mt-3 border border-dark" style="width: ;">
+                <thead>
+                    <tr>
+                        <th class="col-4" scope="col">Nome</th>
+                        <th class="col-4" scope="col">Valor</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var fp in Model.Beneficios)
+                    {
+                        <tr>
+                            <td>@fp.Nome_Ben</td>
+                            <td>R$ @fp.valor</td>
+
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
+
 
 
 
 <hr />
-<div class="row">
-	<div class="">
-		<h2>Dados do funcionário</h2>
-		<div class="d-flex m-3">
-			<div class="form-group me-5">
-				<h4>Nome:</h4>
-				<p>@Model.Funcionario.Nome</p>
-			</div>
 
-			<div class="form-group me-4">
-				<h4>Departamento:</h4>
-				<p>@Model.Funcionario.Departamento</p>
-			</div>
-
-			<div class="form-group">
-				<h4>Cargo:</h4>
-				<p>@Model.Funcionario.Cargo</p>
-			</div>
-			</div>
-		
-	<h2>Dados da folha</h2>
-	<div class="m-3">
-		<div class="d-flex">
-		<div class="form-group me-3">
-			<h4>Data de Emissão:</h4>
-			<p>@Model.DataEmissao</p>
-		</div>
-
-		<div class="form-group">
-			<h4>Referencia: </h4>
-			<p>@Model.MesAnoRef</p>
-		</div>
-		</div>
-
-		<div class="form-group">
-			<h4>Salário bruto: </h4>
-			<p>R$@Model.SalarioBruto</p>
-		</div>
-		<h3>Descontos</h3>
-		<div class="form-group ms-1">
-			<h4>INSS: </h4>
-			<p>R$@Model.Inss</p>
-		</div>
-		<div class="form-group ms-1">
-				<h4>IRRF: </h4>
-				<p>R$@Model.Irrf</p>
-		</div>
-			<div class="form-group ms-1">
-				<h4>FGTS: </h4>
-				<p>R$@Model.Fgts</p>
-			</div>
-	</div>
-
-		<!--Separa apenas os dados a serem enviados, permitindo salvar a folha no banco de dados-->
-		<form asp-action="CreatFolha" asp-route-id="@Model.Funcionario.id_cod_func" method="post">
-			<input asp-for="id_cod_func" type="hidden" value="@Model.Funcionario.id_cod_func" />
-			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-			<input asp-for="DataEmissao" type="hidden" class="form-control" />
-			<input asp-for="MesAnoRef" type="hidden" class="form-control" />
-			<input asp-for="Jornada" type="hidden" class="form-control" />
-			<input asp-for="SalarioBruto" type="hidden" class="form-control" />
-			<input asp-for="Inss" type="hidden" class="form-control" />
-			<input asp-for="Irrf" type="hidden" class="form-control" />
-			<input asp-for="SalarioLiquido" type="hidden" class="form-control" />
-			<input asp-for="Fgts" type="hidden" class="form-control" />
-			<input asp-for="HorasExtras" type="hidden" class="form-control" />
-			<input asp-for="Bonus" type="hidden" class="form-control" />
-			<input asp-for="Atrasos" type="hidden" class="form-control" />
-			<input asp-for="Faltas" type="hidden" class="form-control" />
-			<div class="form-group">
-				<button type="submit" value="Create" class="btn btn-dark"> Salvar Folha </button>
-			</div>
-		</form>
-	</div>
-</div>
+<!--Separa apenas os dados a serem enviados, permitindo salvar a folha no banco de dados-->
+<form asp-action="CreatFolha" asp-route-id="@Model.Funcionario.id_cod_func" method="post">
+    <input asp-for="id_cod_func" type="hidden" value="@Model.Funcionario.id_cod_func" />
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input asp-for="DataEmissao" type="hidden" class="form-control" />
+    <input asp-for="MesAnoRef" type="hidden" class="form-control" />
+    <input asp-for="Jornada" type="hidden" class="form-control" />
+    <input asp-for="SalarioBruto" type="hidden" class="form-control" />
+    <input asp-for="Inss" type="hidden" class="form-control" />
+    <input asp-for="Irrf" type="hidden" class="form-control" />
+    <input asp-for="SalarioLiquido" type="hidden" class="form-control" />
+    <input asp-for="Fgts" type="hidden" class="form-control" />
+    <input asp-for="HorasExtras" type="hidden" class="form-control" />
+    <input asp-for="Bonus" type="hidden" class="form-control" />
+    <input asp-for="Atrasos" type="hidden" class="form-control" />
+    <input asp-for="Faltas" type="hidden" class="form-control" />
+    <div class="d-flex justify-content-center">
+    <div>
+        <button style="width: 7rem;" onclick="window.history.back()" role="none" class="btn btn-secondary me-5">Voltar</button>
+    </div>
+    <div class="form-group">
+            <button style="width: 7rem; type="submit" value="Create" class="btn btn-dark"> Salvar Folha </button>
+    </div>
+    </div>
+</form>
 
 
-<div>
-	<button onclick="window.history.back()" role="none" class="btn btn-secondary">Back to List</button>
-</div>
 
 
 @section Scripts {
-@{
-await Html.RenderPartialAsync("_ValidationScriptsPartial");
-}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

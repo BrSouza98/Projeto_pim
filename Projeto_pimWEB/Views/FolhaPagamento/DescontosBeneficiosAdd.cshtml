@@ -2,7 +2,8 @@
 
 
 <form asp-route-id="@ViewBag.idFunc" asp-action="CreatFolhaView">
-	<h4>Descontos imprevistos</h4>
+	<div style="width: 80%" class="m-auto mt-5">
+	<h4>Imprevistos</h4>
 	<div class="row">
 		<div class="col-sm-12 col-lg-6">
 			<div class="mb-3">
@@ -35,10 +36,10 @@
 		</div>
 
 
-		<div class="mt-3">
-			<button type="button" onclick="window.history.back()" class="btn btn-secondary">Voltar</button>
-			<button type="submit" class="btn btn-primary">Continuar </button>
+		<div class="mt-3 d-flex justify-content-center">
+			<button style="width: 7rem;" type="button" onclick="window.history.back()" class="btn btn-secondary">Voltar</button>
+			<button style="width: 7rem;" type="submit" class="btn btn-dark ms-3">Continuar </button>
 		</div>
 	</div>
-
+	</div>
 </form>
