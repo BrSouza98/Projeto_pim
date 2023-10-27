@@ -4,10 +4,7 @@ const handlePhone = (event) => {
     input.value = phoneMask(input.value)
 }
 
-const handleCpf = (event) => {
-    let input = event.target
-    input.value = cpfMask(input.value)
-}
+
 
 const handleRg = (event) => {
     let input = event.target
@@ -65,17 +62,22 @@ function renderCep(data) {
 }
 
 const cepApi = (cep) => {
-    cepFormatado = cepMask(cep)
-    let api = `https://viacep.com.br/ws/${cepFormatado}/json/`
     const cepHtml = document.querySelector("#cep");
+    cepHtml.value = cepMask(cep)
+    let api = `https://viacep.com.br/ws/${cepHtml.value}/json/`
+    
 
-    if (cepFormatado.length == 8) {
+    if (cepHtml.value.length == 8) {
         fetch(api)
             .then((response) => {
                 response.json().then((data) => {
-                    cepHtml.classList.remove("border-warning")
-                    cepHtml.classList.add("border-success")
-                    renderCep(data)
+                    if (data.erro == true) {
+                        cepHtml.classList.add("border-danger");
+                    } else {
+                        cepHtml.classList.remove("border-warning")
+                        cepHtml.classList.add("border-success")
+                        renderCep(data)
+                    }
                 })
             })
     } else {
@@ -87,8 +89,6 @@ const cepApi = (cep) => {
 
 function cepMask(v) {
     v = v.replace(/\D/g, '');
-    v = v.replace(/(\d{5})(\d{3})/, "$1-$2")
-
     return v
 }
 
