@@ -27,7 +27,7 @@
 	Funcionario(a): @Model.Nome
 </h4>
 
-<table class="table">
+<table class="table table-striped">
 	<thead>
 		<tr>
 			<th scope="col">ID</th>
@@ -38,9 +38,6 @@
 			<th scope="col">INSS</th>
 			<th scope="col">IRRF</th>
 			<th scope="col">FGTS</th>
-			<th scope="col">Horas Extras</th>
-			<th scope="col">Bonus</th>
-			<th scope="col">Atraso horas</th>
 			<th scope="col">Faltas </th>
 			<th scope="col"></th>
 		</tr>
@@ -59,13 +56,10 @@
 						<td>@fp.Inss</td>
 						<td>@fp.Irrf</td>
 						<td>@fp.Fgts</td>
-						<td>@fp.HorasExtras</td>
-						<td>@fp.Bonus</td>
-						<td>@fp.Atrasos</td>
 						<td>@fp.Faltas</td>
 						<td>
 							<div>
-								<a asp-controller="FolhaPagamento" asp-route-id="@fp.id_cod_FP" asp-action="FolhaDownload" class="btn btn-primary">Baixar folha </a>
+							<a asp-controller="FolhaPagamento" asp-route-id="@fp.id_cod_FP" asp-action="FolhaDownload" target="_blank"><button class="btn btn-dark"><i class="bi bi-download"></i></button></a>
 							</div>
 						</td>
 					</tr>
@@ -79,31 +73,31 @@
 
 <h4> Todos os descontos</h4>
 
-<table class="table">
+<table class="table table-striped">
 	@if (Model.Folhas != null)
 	{
 		@foreach (var fp in Model.Folhas)
 		{
-			<thead>
+
+			<thead class="text-center">
 				<tr>
-					<th scope="col">Motivo Descontos</th>
+					<th scope="col">Motivos</th>
 					<th scope="col">Valores</th>
 					<th scope="col"></th>
-
 				</tr>
 			</thead>
 
 			@foreach (var desc in fp.Descontos)
 			{
 
-				<tbody>
+				<tbody class="text-center">
 					<tr>
 						<td>@desc.Motivo</td>
 						<td>@desc.Valor</td>
-						<td>
-							<div class="btn-group" role="group">
-								<button type="button" class="btn btn-danger m-2" data-bs-toggle="modal" data-bs-target="#Modal-Descontos-@desc.id_cod_des" style="width: 5rem;">
-									Apagar
+						<td class="text-center">
+							<div class="btn-group-sm" role="group">
+								<button type="button" class="btn btn-danger" style="width: 6rem;" data-bs-toggle="modal" data-bs-target="#Modal-Descontos-@desc.id_cod_des">
+								 <i class="bi bi-trash3"></i> Remover 
 								</button>
 							</div>
 						</td>
@@ -111,6 +105,7 @@
 				</tbody>
 				
 			}
+			
 			break;
 		}
 	}
@@ -153,31 +148,30 @@
 
 <h4> Todos os beneficios</h4>
 
-<table class="table">
+<table class="table table-striped">
 	@if (Model.Folhas != null)
 	{
 		@foreach (var fp in Model.Folhas)
 		{
-			<thead>
+			<thead class="text-center">
 				<tr>
 					<th scope="col">Beneficios</th>
 					<th scope="col">Valores</th>
-					<th scope="col"> </th>
-
+					<th scope="col"></th>
 				</tr>
 			</thead>
 
 			@foreach (var bene in fp.Beneficios)
 			{
 
-				<tbody>
+				<tbody class="text-center">
 					<tr>
 						<td>@bene.Nome_Ben</td>
 						<td>@bene.valor</td>
 						<td>
-							<div class="btn-group" role="group">
-								<button type="button" class="btn btn-danger m-2" data-bs-toggle="modal" data-bs-target="#Modal-Beneficio-@bene.id_cod_Ben" style="width: 5rem;">
-									Apagar
+							<div class="btn-group-sm" role="group">
+								<button type="button" class="btn btn-danger" style="width: 6rem;" data-bs-toggle="modal" data-bs-target="#Modal-Beneficio-@bene.id_cod_Ben">
+									<i class="bi bi-trash3"></i> Remover
 								</button>
 							</div>
 						</td>
