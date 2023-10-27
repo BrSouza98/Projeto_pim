@@ -3,11 +3,14 @@
 @{
     Layout = "";
     ViewData["Title"] = "Baixar folha";
-    double TotalHoraExtra;
+    double TotalHoraExtra = 0;
+    if(Model.HorasExtras >= 0){
     double valorHora = Model.SalarioBruto / Model.Funcionario.HoraSemanais;
     valorHora *= 1.5;
     TotalHoraExtra = Math.Round((int)Model.HorasExtras* valorHora, 2);
-    double TotalDesconto =Math.Round(Model.SalarioBruto - Model.SalarioLiquido, 2);
+    }
+    double TotalDesconto = Math.Round(Model.SalarioBruto - Model.SalarioLiquido, 2);
+
 }
 
 <!DOCTYPE html>
@@ -73,6 +76,7 @@
                     <td>@Model.Funcionario.Salario</td>
                     <td></td>
                 </tr>
+                @if(Model.HorasExtras > 0){
                 <tr>
                     <th scope="row"></th>
                     <td>HORA EXTRA</td>
@@ -80,6 +84,7 @@
                     <td>@TotalHoraExtra</td>
                     <td></td>
                 </tr>
+                }
                 @if (Model.Beneficios.Count >= 0)
                 {
                     foreach (var Beneficio in Model.Beneficios)
