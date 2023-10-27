@@ -52,7 +52,6 @@ namespace Projeto_pimWEB.Metodos
             func_db.TemAcesso = funcionario.TemAcesso;
             func_db.Formacao = funcionario.Formacao;
             func_db.PIS = funcionario.PIS;
-            func_db.CTPS = funcionario.CTPS;
             func_db.Genero = funcionario.Genero;
             func_db.DtNascimento = funcionario.DtNascimento;
             func_db.CPF = funcionario.CPF;

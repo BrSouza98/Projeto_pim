@@ -92,6 +92,7 @@ function cepMask(v) {
     return v
 }
 
+
 function validarPIS(pis) {
     var multiplicadorBase = "3298765432";
     var total = 0;
@@ -100,7 +101,9 @@ function validarPIS(pis) {
     var multiplicador = 0;
     var digito = 99;
 
-    document.getElementById('');
+    pisHtml = document.getElementById('pis')
+
+    pisHtml.value = pis.replace(/[^\d]+/g, '');
     
     // Retira a mascara
     var numeroPIS = pis.replace(/[^\d]+/g, '');
@@ -116,7 +119,8 @@ function validarPIS(pis) {
         numeroPIS === "77777777777" || 
         numeroPIS === "88888888888" || 
         numeroPIS === "99999999999") {
-        return false;
+        pisHtml.classList.add("border-danger");
+       return false
     } else {
         for (var i = 0; i < 10; i++) {
             multiplicando = parseInt( numeroPIS.substring( i, i + 1 ) );
@@ -124,11 +128,18 @@ function validarPIS(pis) {
             total += multiplicando * multiplicador;
         }
 
+        //Ex: 170.33259.50-4
+        pisHtml.value = pis.replace(/(\d{3})(\d{5})(\d{2})(\d)/, "$1.$2.$3-$4");
+
         resto = 11 - total % 11;
         resto = resto === 10 || resto === 11 ? 0 : resto;
 
         digito = parseInt("" + numeroPIS.charAt(10));
-        return resto === digito;
+
+        if (resto === digito) {
+         pisHtml.classList.add("border-success");
+            pisHtml.classList.remove("border-danger");
+         return true
+        }
     }
 }
-

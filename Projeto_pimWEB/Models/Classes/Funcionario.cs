@@ -22,7 +22,6 @@ namespace Projeto_pimWEB.Models.Classes
 		[Required(ErrorMessage = "Campo obrigatorio.")]
 		public int HoraSemanais { get; set; }
 
-        
         public bool Ativo { get; set; }
         public bool TemAcesso { get; set; }
 
@@ -31,11 +30,9 @@ namespace Projeto_pimWEB.Models.Classes
 		public string Formacao { get; set; }
 
 		[Required(ErrorMessage = "Campo obrigatorio.")]
-        [StringLength(11, ErrorMessage ="Informe apenas 11 caracteres.")]
+        [StringLength(14, ErrorMessage ="Informe apenas 11 caracteres.")]
 		public string PIS { get; set; }
 
-		[Required(ErrorMessage = "Campo obrigatorio.")]
-		public string CTPS { get; set; }
 
         [NotMapped]
         public FolhaPagamento FpRecente { get; set; }
