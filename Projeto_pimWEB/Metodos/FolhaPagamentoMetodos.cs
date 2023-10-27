@@ -47,7 +47,7 @@ namespace Projeto_pimWEB.Metodos
 
 		public List<Beneficio> GetAllBeneficiosFK(int id)
 		{
-			return _mdbc.beneficios.Where(i => i.id_cod_Ben == id).ToList();
+			return _mdbc.beneficios.Where(i => i.Funcionarioid_cod_func == id).ToList();
 		}
 
 		public Beneficio GetBeneficio_PK(int id) 
