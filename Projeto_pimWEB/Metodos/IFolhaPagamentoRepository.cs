@@ -13,10 +13,15 @@ namespace Projeto_pimWEB.Metodos
         // Beneficios
 		public Beneficio CreateBeneficio(Beneficio entity);
         public List<Beneficio> GetAllBeneficiosFK(int id);
+        public Beneficio GetBeneficio_PK(int id);
+        public bool Delete_beneficio(int id);
 
-        // Descontos
+		// Descontos
 		public Desconto CreateDesconto(Desconto entity);
         public List<Desconto> GetAllDescontosFK(int id);
+        public Desconto GetDescontos_PK(int id);
+        public bool Delete_desconto (int id);
+
 
     }
 }

@@ -53,45 +53,20 @@ namespace Projeto_pimWEB.Controllers
 		[HttpPost]
 		public IActionResult CreatFolha(FolhaPagamento fp, int id)
 		{
+			try
+			{
+				var func = _metodos.GetFuncionario(id);
+                _metodosFolha.CreateFolha(fp);
+				TempData["MensagemSucesso"] = $"Folha de pagamento do(a) funcionario(a) {func.Nome} foi salva com sucesso.";
+                return RedirectToAction("Registro", "Funcionario");
+            }
+			catch (Exception ex)
+			{
+				TempData["MensagemErro"] = "Ops, não foi possivel salvar a folha de pagamento. \n" +
+					$"Mais detalhes: {ex.Message}";
+                return RedirectToAction("Registro", "Funcionario");
+            }
 			
-			_metodosFolha.CreateFolha(fp);
-			return RedirectToAction("Registro", "Funcionario");
-		}
-
-
-		public IActionResult CreateDescontos(int id)
-		{
-			Desconto desconto = new Desconto();
-			desconto.Funcionario = _metodos.GetFuncionario(id);
-
-			return View(desconto);
-
-		}
-
-		[HttpPost]
-		public IActionResult CreateDescontos(int id, Desconto desconto)
-		{
-			
-			_metodosFolha.CreateDesconto(desconto);
-			return RedirectToAction("Registro", "Funcionario");
-			
-
-		}
-
-
-		public IActionResult CreateBeneficios(int id)
-		{
-			Beneficio beneficio = new Beneficio();
-			beneficio.Funcionario = _metodos.GetFuncionario(id);
-			return View(beneficio);
-		}
-
-		[HttpPost]
-		public IActionResult CreateBeneficios(int id, Beneficio beneficio)
-		{
-
-			_metodosFolha.CreateBeneficio(beneficio);
-			return RedirectToAction("Registro", "Funcionario");
 		}
 
 		public IActionResult RegistroFolha_Func(int id)
@@ -102,38 +77,38 @@ namespace Projeto_pimWEB.Controllers
 
 			List<FolhaPagamento> Allfolhas = new List<FolhaPagamento>();
 
-			foreach(var folha in folhas)
+			foreach (var folha in folhas)
 			{
 				if (descontos != null && descontos.Any())
 				{
-					foreach(var desconto in descontos)
+					foreach (var desconto in descontos)
 					{
-						if(desconto != null)
+						if (desconto != null)
 						{
 							folha.Descontos.Add(desconto);
 						}
-						
+
 					}
 				}
 
-				if(beneficios != null && beneficios.Any())
+				if (beneficios != null && beneficios.Any())
 				{
-					foreach(var beneficio in beneficios)
+					foreach (var beneficio in beneficios)
 					{
 						folha.Beneficios.Add(beneficio);
 					}
 				}
 				Allfolhas.Add(folha);
 			}
-			
+
 
 			Funcionario func = _metodos.GetFuncionario(id);
 			func.Folhas = Allfolhas;
 
-		
+
 
 			return View(func);
-			
+
 		}
 
 		public IActionResult Registro_Folhas()
@@ -143,11 +118,11 @@ namespace Projeto_pimWEB.Controllers
 
 			List<FolhaPagamento> ListaFinais = new List<FolhaPagamento>();
 
-			foreach(FolhaPagamento fp in folha)
+			foreach (FolhaPagamento fp in folha)
 			{
-				foreach(Funcionario funcionario in func)
+				foreach (Funcionario funcionario in func)
 				{
-					if(fp.id_cod_func == funcionario.id_cod_func)
+					if (fp.id_cod_func == funcionario.id_cod_func)
 					{
 						fp.Funcionario = funcionario;
 						ListaFinais.Add(fp);
@@ -168,5 +143,94 @@ namespace Projeto_pimWEB.Controllers
 
 			return View(folha);
 		}
+
+		// Descontos
+		public IActionResult CreateDescontos(int id)
+		{
+			Desconto desconto = new Desconto();
+			desconto.Funcionario = _metodos.GetFuncionario(id);
+
+			return View(desconto);
+
+		}
+
+		[HttpPost]
+		public IActionResult CreateDescontos(int id, Desconto desconto)
+		{
+			
+			_metodosFolha.CreateDesconto(desconto);
+			return RedirectToAction("Registro", "Funcionario");
+			
+
+		}
+		public IActionResult DeleteDesconto(int id)
+		{
+			try
+			{
+				var desconto = _metodosFolha.GetDescontos_PK(id);
+				bool apagado = _metodosFolha.Delete_desconto(id);
+
+				if (apagado)
+				{
+					TempData["MensagemSucesso"] = $"Desconto: {desconto.Motivo} foi apagado com sucesso.";
+					return RedirectToAction("RegistroFolha_Func", new { action = "RegistroFolha_Func", id = desconto.Funcionarioid_cod_func });
+				}
+				return RedirectToAction("RegistroFolha_Func", new { action = "RegistroFolha_Func", id = desconto.Funcionarioid_cod_func });
+			}
+			catch (Exception ex)
+			{
+				
+				var desconto = _metodosFolha.GetDescontos_PK(id);
+				TempData["MensagemErro"] = $"Ops, houve um erro ao tentar deletar o desconto {desconto.Motivo}. \n" +
+					$"Mais detalhes:{ex.Message}";
+				return RedirectToAction("RegistroFolha_Func", new { action = "RegistroFolha_Func", id = desconto.Funcionarioid_cod_func });
+			}
+
+		}
+
+
+
+		// Beneficios
+
+		public IActionResult CreateBeneficios(int id)
+		{
+			Beneficio beneficio = new Beneficio();
+			beneficio.Funcionario = _metodos.GetFuncionario(id);
+			return View(beneficio);
+		}
+
+		[HttpPost]
+		public IActionResult CreateBeneficios(int id, Beneficio beneficio)
+		{
+
+			_metodosFolha.CreateBeneficio(beneficio);
+			return RedirectToAction("Registro", "Funcionario");
+		}
+
+		public IActionResult DeleteBeneficio(int id)
+		{
+			try
+			{
+				var beneficio = _metodosFolha.GetBeneficio_PK(id);
+				bool apagado = _metodosFolha.Delete_beneficio(id);
+
+				if (apagado)
+				{
+					TempData["MensagemSucesso"] = $"Beneficio: {beneficio.Nome_Ben} foi apagado com sucesso.";
+					return RedirectToAction("RegistroFolha_Func", new { action = "RegistroFolha_Func", id = beneficio.Funcionarioid_cod_func });
+				}
+				return RedirectToAction("RegistroFolha_Func", new { action = "RegistroFolha_Func", id = beneficio.Funcionarioid_cod_func });
+			}
+			catch (Exception ex)
+			{
+				var beneficio = _metodosFolha.GetBeneficio_PK(id);
+				TempData["MensagemErro"] = $"Ops, houve um erro ao tentar deletar o beneficio {beneficio.Nome_Ben}. \n" +
+					$"Mais detalhes:{ex.Message}";
+				return RedirectToAction("RegistroFolha_Func", new { action = "RegistroFolha_Func", id = beneficio.Funcionarioid_cod_func });
+			}
+			
+		}
+
+		
 	}
 }

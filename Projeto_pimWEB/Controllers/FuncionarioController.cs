@@ -179,7 +179,7 @@ namespace Projeto_pimWEB.Controllers
         {
             try
             {
-				Dependente dependente = _metodos.GetDependente(id);
+				var dependente = _metodos.GetDependente(id);
                 if (ModelState.IsValid)
                 {
                     bool apagado = _metodos.Delete_Depen(id);

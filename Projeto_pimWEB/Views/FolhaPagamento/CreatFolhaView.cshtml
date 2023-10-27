@@ -88,7 +88,7 @@ ViewData["Title"] = "CreatFolha";
 	</div>
 
 		<!--Separa apenas os dados a serem enviados, permitindo salvar a folha no banco de dados-->
-		<form asp-action="CreatFolha" method="post">
+		<form asp-action="CreatFolha" asp-route-id="@Model.Funcionario.id_cod_func" method="post">
 			<input asp-for="id_cod_func" type="hidden" value="@Model.Funcionario.id_cod_func" />
 			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 			<input asp-for="DataEmissao" type="hidden" class="form-control" />

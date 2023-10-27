@@ -1,4 +1,5 @@
-﻿using Projeto_pimWEB.Data;
+﻿using Microsoft.EntityFrameworkCore.Diagnostics;
+using Projeto_pimWEB.Data;
 using Projeto_pimWEB.Models.Classes;
 using System.Drawing;
 
@@ -49,6 +50,20 @@ namespace Projeto_pimWEB.Metodos
 			return _mdbc.beneficios.Where(i => i.id_cod_Ben == id).ToList();
 		}
 
+		public Beneficio GetBeneficio_PK(int id) 
+		{
+			return _mdbc.beneficios.FirstOrDefault(i => i.id_cod_Ben == id);
+		}
+
+		public bool Delete_beneficio(int id)
+		{
+			var beneficio = GetBeneficio_PK(id) ?? throw new Exception("Houve um erro para deletar o beneficio");
+
+			_mdbc.beneficios.Remove(beneficio);
+			_mdbc.SaveChanges();
+			return true;
+		}
+
 		// Metodos para Descontos.
 		public Desconto CreateDesconto(Desconto entity)
 		{
@@ -61,5 +76,20 @@ namespace Projeto_pimWEB.Metodos
         {
 			return _mdbc.descontos.Where(i => i.Funcionarioid_cod_func == id).ToList();
         }
+
+		public Desconto GetDescontos_PK(int id)
+		{
+			return _mdbc.descontos.FirstOrDefault(i => i.id_cod_des == id);
+		}
+
+		public bool Delete_desconto(int id)
+		{
+			var desconto = GetDescontos_PK(id) ?? throw new Exception("Houve um erro para deletar o desconto");
+
+			_mdbc.descontos.Remove(desconto);
+			_mdbc.SaveChanges();
+			return true;
+
+		}
 	}
 }
