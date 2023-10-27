@@ -5,31 +5,35 @@
 }
 
 <h1>Editando dependente: @Model.Nome</h1>
+
 <hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="row d-flex justify-content-center m-auto mt-5">
+    <div class="col-md-4 p-4 border border-dark rounded-3">
+        <h3 class="mb-3">Dados do dependente</h3>
+
         <form asp-controller="Funcionario" asp-route-id="@Model.funcionarioid_cod_func" asp-action="Alterar_depen" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="id_cod_dep" />
-            <div class="form-group">
+            <div class="form-group mb-3">
                 <label asp-for="Nome" class="control-label"></label>
                 <input asp-for="Nome" class="form-control" />
                 <span asp-validation-for="Nome" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mb-3">
                 <label asp-for="DtNascimento" class="control-label">Data de nascimento</label>
                 <input asp-for="DtNascimento" type="date" class="form-control" />
                 <span asp-validation-for="DtNascimento" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mb-3">
                 <label asp-for="Parentesco" class="control-label"></label>
                 <input asp-for="Parentesco" class="form-control" />
                 <span asp-validation-for="Parentesco" class="text-danger"></span>
             </div>
 
-
-            <button type="submit" class="btn btn-primary">Alterar</button>
-            <a class="btn btn-secondary" asp-controller="Funcionario" asp-route-id="@Model.funcionarioid_cod_func" asp-action="Registro_depen" role="button">Voltar</a>
+            <div class="form-group d-flex justify-content-around">
+                <a class="btn btn-secondary botao" asp-controller="Funcionario" asp-route-id="@Model.funcionarioid_cod_func" asp-action="Registro_depen" role="button">Voltar</a>
+            <button type="submit" class="btn btn-dark botao">Alterar</button>
+        </div>
         </form>
     </div>
 </div>

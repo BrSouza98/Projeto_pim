@@ -25,6 +25,9 @@ body {
   color: var(--cor-2);
 }
 
+.botao{
+    width: 7rem;
+}
 
 .nav-bar, .logo{
     background-color: var(--cor-1);

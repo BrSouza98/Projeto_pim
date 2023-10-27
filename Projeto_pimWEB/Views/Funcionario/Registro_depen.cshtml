@@ -22,14 +22,15 @@
 
 }
 <br />
-
+@if (Model.dependentes != null)
+{
 <table class="table">
     <thead>
         <tr>
-            <th scope="col">#</th>
-            <th scope="col">Nome</th>
-            <th scope="col">Parentesco</th>
-            <th scope="col">Ações</th>
+            <th class="col-1" scope="col">#</th>
+            <th class="col-4" scope="col">Nome</th>
+            <th class="col-1" scope="col">Parentesco</th>
+            <th class="col-4" scope="col">Ações</th>
         </tr>
     </thead>
     <tbody>
@@ -42,11 +43,12 @@
                     <td>@d.Nome</td>
                     <td>@d.Parentesco</td>
                     <td>
-                        <div class="btn-group" role="group">
-                            <a class="btn btn-primary m-2" style="width: 5rem; asp-controller="Funcionario" asp-route-id="@d.id_cod_dep" asp-action="Editar_depen"> Editar </a>
+                        <div class="d-flex" role="group">
                             <button type="button" class="btn btn-danger m-2" data-bs-toggle="modal" data-bs-target="#Modal-Dependente-@d.id_cod_dep" style="width: 5rem;">
                                 Apagar
                             </button>
+                            <a class="btn btn-dark m-2" style="width: 5rem; asp-controller="Funcionario" asp-route-id="@d.id_cod_dep" asp-action="Editar_depen"> Editar </a>
+
                         </div>
                     </td>
                 </tr>
@@ -65,7 +67,7 @@
 
 
 </table>
-
+}
 
 @if (Model.dependentes != null)
 {
@@ -93,9 +95,10 @@
         </div>
     }
 }
-<a asp-controller="Funcionario" asp-action="Registro" class="btn btn-secondary" role="button">Voltar</a>
-<a asp-controller="Funcionario" asp-route-id="@Model.id_cod_func" asp-action="Create_depen" class="btn btn-primary" role="button">Adicionar dependente</a>
-
+<div class="d-flex justify-content-center mt-5">
+    <a style ="width: 7rem" asp-controller="Funcionario" asp-action="Registro" class="btn btn-secondary me-5" role="button">Voltar</a>
+    <a style ="width: 7rem" asp-controller="Funcionario" asp-route-id="@Model.id_cod_func" asp-action="Create_depen" class="btn btn-dark" role="button">Adicionar</a>
+</div>
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
