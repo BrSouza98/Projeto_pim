@@ -227,12 +227,13 @@
 	</div>
 
 
-	<div class="btn-group mt-4">
-		<a asp-action="Editar" class="btn btn-primary" asp-route-id="@Model?.id_cod_func">Editar</a>
-		<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Modal-Funcionario-@Model.id_cod_func">
+	<div class=" d-flex justify-content-evenly mt-4">
+		<a style="width: 7rem;" asp-controller="Funcionario" asp-action="Registro" class="btn btn-secondary">Voltar</a>
+		<button style="width: 7rem;" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Modal-Funcionario-@Model.id_cod_func">
 			Desativar
 		</button>
-		<a asp-controller="Funcionario" asp-action="Registro" class="btn btn-secondary">Voltar</a>
+		<a asp-action="Editar" style="width: 7rem;" class="btn btn-dark" asp-route-id="@Model?.id_cod_func">Editar</a>
+
 	</div>
 
 	<div class="modal fade" id="Modal-Funcionario-@Model.id_cod_func" tabindex="-1" aria-labelledby="modalConfirmarApagar" aria-hidden="true">
@@ -248,8 +249,8 @@
 					</p>
 				</div>
 				<div class="modal-footer">
-					<a asp-controller="Funcionario" asp-route-id="@Model.id_cod_func" asp-action="Desativar" class="btn btn-danger">Desativar</a>
 					<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+					<a asp-controller="Funcionario" asp-route-id="@Model.id_cod_func" asp-action="Desativar" class="btn btn-danger">Desativar</a>
 				</div>
 			</div>
 		</div>
