@@ -29,18 +29,8 @@
                }
              } " asp-area="" asp-controller="Funcionario" asp-action="Create">Adicionar Funcionario</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link nav-bar @{
-               if (ViewContext.RouteData.Values["Action"].ToString() == "Privacy") {
-                   WriteLiteral("active-page");
-               }
-             } " asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link nav-bar" asp-area="" asp-controller="Login" asp-action="Sair">Sair</a>
-        </li>
     </ul>
-    <div class="dropstart d-sm-none d-md-block">
+    <div class="dropstart d-none d-sm-block">
         <button class="btn btn-lg btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             @Model.Nome <i class="bi bi-person-circle"></i>
         </button>
