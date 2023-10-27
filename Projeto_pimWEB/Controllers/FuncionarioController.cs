@@ -121,8 +121,11 @@ namespace Projeto_pimWEB.Controllers
                     TempData["MensagemSucesso"] = $"Dados alterados com sucesso do(a): {func.Nome}";
                     return RedirectToAction("Registro");
                 }
+                else
+                {
+					return View("Editar", func);
+				}
 
-                return View("Editar", func);
             }
             catch (Exception ex)
             {

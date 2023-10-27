@@ -79,13 +79,25 @@
 
 			@foreach (var desc in fp.Descontos)
 			{
+				if(desc != null)
+				{
+					<tbody>
+						<tr>
+							<td>@desc.Motivo</td>
+							<td>@desc.Valor</td>
+						</tr>
+					</tbody>
+				}
+				else
+				{
+					<tbody>
+						<tr>
+							<td>0</td>
+							<td>0</td>
+						</tr>
+					</tbody>
+				}
 
-				<tbody>
-					<tr>
-						<td>@desc.Motivo</td>
-						<td>@desc.Valor</td>
-					</tr>
-				</tbody>
 			}
 		}
 		

@@ -16,6 +16,11 @@
 			<th scope="col">INSS</th>
 			<th scope="col">IRRF</th>
 			<th scope="col">FGTS</th>
+			<th scope="col">Horas extras</th>
+			<th scope="col">Bonus</th>
+			<th scope="col">Atrasos</th>
+			<th scope="col">Faltas</th>
+			<th> </th>
 		</tr>
 	</thead>
 	<tbody>
@@ -33,6 +38,15 @@
 					<td>R$ @fp.Inss</td>
 					<td>R$ @fp.Irrf</td>
 					<td>R$ @fp.Fgts</td>
+					<td>Horas: @fp.HorasExtras</td>
+					<td>R$ @fp.Bonus</td>
+					<td>Horas: @fp.Atrasos</td>
+					<td>Dias: @fp.Faltas</td>
+					<td>
+						<div>
+							<a asp-controller="FolhaPagamento" asp-route-id="@fp.id_cod_FP" asp-action="FolhaDownload" class="btn btn-primary"> Gerar Folha</a>
+						</div>
+					</td>
 				</tr>
 			}
 		}
