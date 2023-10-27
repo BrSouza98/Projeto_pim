@@ -3,6 +3,11 @@
 @{
     Layout = "";
     ViewData["Title"] = "Baixar folha";
+    double TotalHoraExtra;
+    double valorHora = Model.SalarioBruto / Model.Funcionario.HoraSemanais;
+    valorHora *= 1.5;
+    TotalHoraExtra = Math.Round((int)Model.HorasExtras* valorHora, 2);
+    double TotalDesconto =Math.Round(Model.SalarioBruto - Model.SalarioLiquido, 2);
 }
 
 <!DOCTYPE html>
@@ -34,21 +39,20 @@
         <div class="d-flex justify-content-between">
             <div class="">
                 <h3 class="fs-6">NOME</h3>
-                <p>Renatão de 4</p>
+                <p>@Model.Funcionario.Nome</p>
             </div>
             <div class="">
                 <h3 class="fs-6">DEPARTAMENTO</h3>
-                <p>PUTAMETRIA</p>
+                <p>@Model.Funcionario.Departamento</p>
             </div>
             <div class="">
                 <h3 class="fs-6">CARGO</h3>
-                <p>Putólogo chefe</p>
+                <p>@Model.Funcionario.Cargo</p>
             </div>
             <div class="">
                 <h3 class="fs-6">PERÍODO</h3>
-                <p>10/sempre</p>
+                <p>@Model.DataEmissao</p>
             </div>
-
         </div>
         <table class="table table-bordered text-center">
             <thead>
@@ -65,56 +69,68 @@
                 <tr>
                     <th scope="row">1</th>
                     <td>SALARIO BASE</td>
-                    <td>220:00</td>
-                    <td>5.000,00</td>
+                    <td>@Model.Jornada</td>
+                    <td>@Model.Funcionario.Salario</td>
                     <td></td>
                 </tr>
                 <tr>
                     <th scope="row"></th>
                     <td>HORA EXTRA</td>
-                    <td>15</td>
-                    <td>511,20</td>
+                    <td>@Model.HorasExtras</td>
+                    <td>@TotalHoraExtra</td>
                     <td></td>
                 </tr>
-                <tr>
-                    <th scope="row"></th>
-                    <td>DSR</td>
-                    <td></td>
-                    <td>78,64</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th scope="row"></th>
-                    <td>algo</td>
-                    <td>????</td>
-                    <td>provento????</td>
-                    <td>desconto????</td>
-                </tr>
+                @if (Model.Beneficios.Count >= 0)
+                {
+                    foreach (var Beneficio in Model.Beneficios)
+                    {
+                        <tr>
+                            <th scope="row"></th>
+                            <td>@Beneficio.Nome_Ben</td>
+                            <td></td>
+                            <td>@Beneficio.valor</td>
+                            <td></td>
+                        </tr>
+                    }
+                }
                 <tr>
                     <th scope="row"></th>
                     <td>INSS</td>
-                    <td>11,68%</td>
                     <td></td>
-                    <td>828,39</td>
+                    <td></td>
+                    <td>@Model.Inss</td>
                 </tr>
                 <tr>
                     <th scope="row"></th>
                     <td>IRRF</td>
-                    <td>27,50%</td>
                     <td></td>
-                    <td>852,54</td>
+                    <td></td>
+                    <td>@Model.Irrf</td>
                 </tr>
+                @if (Model.Beneficios.Count >= 0)
+                {
+                    foreach (var Desconto in Model.Descontos)
+                    {
+                        <tr>
+                            <th scope="row"></th>
+                            <td>@Desconto.Motivo</td>
+                            <td></td>
+                            <td>@Desconto.Valor</td>
+                            <td></td>
+                        </tr>
+                    }
+                }
                 <tr>
                     <th scope="row"></th>
                     <td></td>
                     <td></td>
                     <td>
                         <p>Total de proventos:</p>
-                        <p>5.580,00</p>
+                        <p>@Model.SalarioBruto</p>
                     </td>
                     <td>
                         <p>Total de Descontos:</p>
-                        <p>1.677,93</p>
+                        <p>@TotalDesconto</p>
                     </td>
                 </tr>
                 <tr>
@@ -122,7 +138,7 @@
                     <td></td>
                     <td></td>
                     <td>Liquído a receber -></td>
-                    <td>3,902,07</td>
+                    <td>@Model.SalarioLiquido</td>
                 </tr>
             </tbody>
         </table>
