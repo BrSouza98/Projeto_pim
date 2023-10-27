@@ -115,16 +115,10 @@ namespace Projeto_pimWEB.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
-                {
-                    _metodos.UpdateFunc(func);
-                    TempData["MensagemSucesso"] = $"Dados alterados com sucesso do(a): {func.Nome}";
-                    return RedirectToAction("Registro");
-                }
-                else
-                {
-					return View("Editar", func);
-				}
+
+                _metodos.UpdateFunc(func);
+                TempData["MensagemSucesso"] = $"Dados alterados com sucesso do(a): {func.Nome}";
+                return RedirectToAction("Registro");
 
             }
             catch (Exception ex)
