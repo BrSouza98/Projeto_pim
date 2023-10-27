@@ -3,40 +3,57 @@
 
 <a class="navbar-brand logo" asp-area="" asp-controller="Home" asp-action="Index">Projeto PIM</a>
 <button class="navbar-toggler btn-lg" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-        aria-expanded="false" aria-label="Toggle navigation">
-    <i class="bi bi-list text-light"></i>
+		aria-expanded="false" aria-label="Toggle navigation">
+	<i class="bi bi-list text-light"></i>
 </button>
 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-    <ul class="navbar-nav flex-grow-1">
-        <li class="nav-item">
-            <a class="nav-link nav-bar @{  
-               if (ViewContext.RouteData.Values["Action"].ToString() == "Registro") {
-                   WriteLiteral("active-page");
-               }
-             } " asp-area="" asp-controller="Funcionario" asp-action="Registro">Registro</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link nav-bar @{
-               if (ViewContext.RouteData.Values["Action"].ToString() == "Registro_Folhas") {
-                   WriteLiteral("active-page");
-               }
-             } " asp-area="" asp-controller="FolhaPagamento" asp-action="Registro_Folhas">Registro de folhas</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link nav-bar @{
-               if (ViewContext.RouteData.Values["Action"].ToString() == "Create") {
-                   WriteLiteral("active-page");
-               }
-             } " asp-area="" asp-controller="Funcionario" asp-action="Create">Adicionar Funcionario</a>
-        </li>
-    </ul>
-    <div class="dropstart d-none d-sm-block">
-        <button class="btn btn-lg btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            @Model.Nome <i class="bi bi-person-circle"></i>
-        </button>
-        <ul class="dropdown-menu">
-            <li><a class="dropdown-item" asp-controller="Funcionario" asp-action="Editar" asp-route-id="@Model.id_cod_func"> Editar Perfil </a></li>
-            <li><a class="dropdown-item text-danger" asp-area="" asp-controller="Login" asp-action="Sair"> Sair </a></li>
-        </ul>
-    </div>
+	<ul class="navbar-nav flex-grow-1">
+		<!--Dropdown para funcionalidades do Funcionarios-->
+		<div class="dropdown">
+			<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+				Dropdown button
+			</button>
+			<ul class="dropdown-menu dropdown-menu-dark border-0" style="background-color: #2c3639;">
+				<li>
+					<a class="nav-link nav-bar @{
+					    if (ViewContext.RouteData.Values["Action"].ToString() == "Registro") {
+					    WriteLiteral("active-page");
+					  }
+					}"
+					   asp-area="" asp-controller="Funcionario" asp-action="Registro">qqqwwwee
+						Listar Funcionarios
+					</a>
+				</li>
+				<li>
+					<a class="nav-link nav-bar @{
+						 if (ViewContext.RouteData.Values["Action"].ToString() == "Create") {
+						  WriteLiteral("active-page");
+					     }
+					}"
+					   asp-area="" asp-controller="Funcionario" asp-action="Create">
+						Adicionar Funcionario
+					</a>
+				</li>
+			</ul>
+		</div>
+		<li class="nav-item">
+			<a class="nav-link nav-bar @{
+						if (ViewContext.RouteData.Values["Action"].ToString() == "Registro_Folhas") {
+						  WriteLiteral("active-page");
+					    } 
+			} "
+			   asp-area="" asp-controller="FolhaPagamento" asp-action="Registro_Folhas">
+				Consultar Folhas
+			</a>
+		</li>
+	</ul>
+	<div class="dropstart d-none d-sm-block">
+		<button class="btn btn-lg btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+			@Model.Nome <i class="bi bi-person-circle"></i>
+		</button>
+		<ul class="dropdown-menu">
+			<li><a class="dropdown-item" asp-controller="Funcionario" asp-action="Editar" asp-route-id="@Model.id_cod_func"> Editar Perfil </a></li>
+			<li><a class="dropdown-item text-danger" asp-area="" asp-controller="Login" asp-action="Sair"> Sair </a></li>
+		</ul>
+	</div>
 </div>
