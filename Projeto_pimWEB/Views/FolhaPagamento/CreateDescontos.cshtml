@@ -4,12 +4,14 @@
     ViewData["Title"] = "CreateDesconto";
 }
 
-<h1 class="mb-3">Desconto do(a) funcionario: @Model.Funcionario.Nome</h1>
+<h1>Inserir desconto do funcionário(a):</h1>
+<h2>@Model.Funcionario.Nome</h2>
 
-<h2>Adicionar desconto</h2>
 <hr />
 <div class="row d-flex justify-content-center m-auto mt-5">
     <div class="col-md-4 p-4 border border-dark rounded-3">
+        <h3 class="mb-3">Inserir desconto</h3>
+
         <form asp-route-id="@Model.Funcionario.id_cod_func" asp-action="CreateDescontos" method="post">
             <input asp-for="Funcionarioid_cod_func" type="hidden" value="@Model.Funcionario.id_cod_func" />
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
