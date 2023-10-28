@@ -1,8 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.Sqlite;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
 using Projeto_pimWEB.Filter;
 using Projeto_pimWEB.Metodos;
 using Projeto_pimWEB.Models.Classes;
+using System.Data;
+using System.Data.Common;
+using System.Data.Entity.Core;
+using System.Data.SqlClient;
 
 namespace Projeto_pimWEB.Controllers
 {
@@ -47,19 +54,44 @@ namespace Projeto_pimWEB.Controllers
 		}
 
 		[HttpPost]
+
 		public IActionResult Create(Funcionario func)
 		{
 			try
 			{
+				if (ModelState.IsValid)
+				{
+					_metodos.CreateFunc(func);
+					TempData["MensagemSucesso"] = $"Sucesso ao cadastrar: {func.Nome}";
+					return RedirectToAction("Registro");
+				}
+				return View(func);
+			}
+			catch(DbUpdateException ex)
+			{
+
+				if (ex.InnerException is SqliteException sqlite )
+				{
+					switch (sqlite.SqliteErrorCode)
+					{
+						case 19: TempData["MensagemErro"] = $"O {func.Email} já esta cadastrado.\n" +
+								 $"Mais detalhes: {ex.InnerException.Message}";
+
+								 return RedirectToAction("Registro");
+					}
+
+				}
 				
-				_metodos.CreateFunc(func);
-				TempData["MensagemSucesso"] = $"Sucesso ao cadastrar: {func.Nome}";
+				TempData["MensagemErro"] = $"Não foi possivel cadastrar: {func.Nome}.\n" +
+					$"Mais detalhes: {ex.Message}";
+
 				return RedirectToAction("Registro");
 
 			}
+
 			catch (Exception ex)
 			{
-				
+
 				TempData["MensagemErro"] = $"Não foi possivel cadastrar: {func.Nome}.\n" +
 					$"Mais detalhes: {ex.Message}";
 

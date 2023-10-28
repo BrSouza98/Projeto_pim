@@ -16,7 +16,7 @@ namespace Projeto_pimWEB.Models.Classes
 
         public int Funcionarioid_cod_func {  get; set; }
         [ForeignKey("Funcionarioid_cod_func")]
-        public Funcionario Funcionario {get; set;}
+        public Funcionario? Funcionario {get; set;}
 
         
     }

@@ -36,9 +36,9 @@ namespace Projeto_pimWEB.Models.Classes
 		public string PIS { get; set; }
 
         [NotMapped]
-        public ICollection<FolhaPagamento> Folhas { get; set; }
+        public ICollection<FolhaPagamento>? Folhas { get; set; }
         [NotMapped]
-        public ICollection<Dependente> dependentes { get; set; }
+        public ICollection<Dependente>? dependentes { get; set; }
        
         
 

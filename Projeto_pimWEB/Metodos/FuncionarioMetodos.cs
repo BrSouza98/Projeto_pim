@@ -17,9 +17,11 @@ namespace Projeto_pimWEB.Metodos
 
         public Funcionario CreateFunc(Funcionario func)
         {
-            _mbdt.Add(func);
-            this._mbdt.SaveChanges();
-            return func;
+
+			_mbdt.Add(func);
+			this._mbdt.SaveChanges();
+			return func;
+
         }
 
         public Funcionario GetFuncionario(int id) // Retorna apenas o funcionario pela chave primaria 

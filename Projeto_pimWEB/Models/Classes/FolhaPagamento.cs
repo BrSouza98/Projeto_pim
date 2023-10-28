@@ -32,9 +32,9 @@ namespace Projeto_pimWEB.Models.Classes
 		public double Fgts { get; set; }
 
         [NotMapped]
-        public  List<Desconto> Descontos { get; set; }
+        public  List<Desconto>? Descontos { get; set; }
         [NotMapped]
-        public  List<Beneficio> Beneficios { get; set; }
+        public  List<Beneficio>? Beneficios { get; set; }
 
 		public FolhaPagamento()
         {
