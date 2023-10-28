@@ -4,7 +4,10 @@ const handlePhone = (event) => {
     input.value = phoneMask(input.value)
 }
 
-
+const handleCpf = (event) => {
+    let input = event.target
+    input.value = cpfMask(input.value)
+}
 
 const handleRg = (event) => {
     let input = event.target
