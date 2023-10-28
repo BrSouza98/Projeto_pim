@@ -1,18 +1,21 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Drawing;
 
 namespace Projeto_pimWEB.Models.Classes
 {
     public class Pessoa
     {
-        [Required(ErrorMessage ="Campo obrigatorio.")]
+		
+		[Required(ErrorMessage ="Campo obrigatorio.")]
 		[StringLength(50)]
 		public string Nome { get; set; }
 
         public string? Genero { get; set; }
-
-		[Required(ErrorMessage = "Campo obrigatorio.")]
+		
+		
 		[DataType(DataType.Date)]
+		[Required(ErrorMessage = "Campo obrigatorio.")]
         public string DtNascimento { get; set; }
 
 		[Required(ErrorMessage = "Campo obrigatorio.")]
@@ -74,6 +77,8 @@ namespace Projeto_pimWEB.Models.Classes
 		[NotMapped]
 		[StringLength(40)]
 		public string? Complemento { get; set; }
+
+		
 
     }
 
