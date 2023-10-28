@@ -5,7 +5,7 @@
     ViewData["Title"] = "Baixar folha";
     double TotalHoraExtra = 0;
     if(Model.HorasExtras >= 0){
-    double valorHora = Model.SalarioBruto / Model.Funcionario.HoraSemanais;
+    double valorHora = Model.SalarioBruto / Model.Jornada;
     valorHora *= 1.5;
     TotalHoraExtra = Math.Round((int)Model.HorasExtras* valorHora, 2);
     }
