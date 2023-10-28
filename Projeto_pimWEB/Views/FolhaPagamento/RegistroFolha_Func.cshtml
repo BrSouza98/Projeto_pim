@@ -23,29 +23,36 @@
 <h1>
 	Registro de folhas
 </h1>
-<h4>
+<h3>
 	Funcionario(a): @Model.Nome
-</h4>
+</h3>
 
-<table class="table table-striped">
-	<thead>
-		<tr>
-			<th scope="col">ID</th>
-			<th scope="col">Data de emissão</th>
-			<th scope="col">Mês e ano</th>
-			<th scope="col">Salario Liquido</th>
-			<th scope="col">Salario Bruto</th>
-			<th scope="col">INSS</th>
-			<th scope="col">IRRF</th>
-			<th scope="col">FGTS</th>
-			<th scope="col">Faltas </th>
-			<th scope="col"></th>
-		</tr>
-	</thead>
-	<tbody>
+@if (Model.Folhas.Count <= 0)
+{
+	<h4>O funcionário ainda não possui folhas cadastradas.</h4>
+}
+else
+{
+
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th scope="col">ID</th>
+				<th scope="col">Data de emissão</th>
+				<th scope="col">Mês e ano</th>
+				<th scope="col">Salario Liquido</th>
+				<th scope="col">Salario Bruto</th>
+				<th scope="col">INSS</th>
+				<th scope="col">IRRF</th>
+				<th scope="col">FGTS</th>
+				<th scope="col">Faltas </th>
+				<th scope="col"></th>
+			</tr>
+		</thead>
+		<tbody>
 			@if (Model != null)
 			{
-				@foreach(var fp in Model.Folhas)
+				@foreach (var fp in Model.Folhas)
 				{
 					<tr>
 						<td>@fp.id_cod_FP</td>
@@ -59,161 +66,177 @@
 						<td>@fp.Faltas</td>
 						<td>
 							<div>
-							<a asp-controller="FolhaPagamento" asp-route-id="@fp.id_cod_FP" asp-action="FolhaDownload" target="_blank"><button class="btn btn-dark"><i class="bi bi-download"></i></button></a>
+								<a asp-controller="FolhaPagamento" asp-route-id="@fp.id_cod_FP" asp-action="FolhaDownload" target="_blank"><button class="btn btn-dark"><i class="bi bi-download"></i></button></a>
 							</div>
 						</td>
 					</tr>
 				}
-
-				
 			}
-	</tbody>
-</table>
-<br />
+		</tbody>
+	</table>
+	<br />
 
-<h4> Todos os descontos</h4>
-
-<table class="table table-striped">
-	@if (Model.Folhas != null)
-	{
+	<h3> Todos os descontos</h3>
+	<table class="table table-striped">
 		@foreach (var fp in Model.Folhas)
 		{
-
-			<thead class="text-center">
-				<tr>
-					<th class="col-3" scope="col">Motivos</th>
-					<th class="col-3" scope="col">Valores</th>
-					<th class="col-3" scope="col"></th>
-				</tr>
-			</thead>
-
-			@foreach (var desc in fp.Descontos)
+			@if (fp.Descontos == null || fp.Descontos.Count == 0)
 			{
-
-				<tbody class="text-center">
-					<tr>
-						<td>@desc.Motivo</td>
-						<td>@desc.Valor</td>
-						<td class="text-center">
-							<div class="btn-group-sm" role="group">
-								<button type="button" class="btn btn-danger" style="width: 6rem;" data-bs-toggle="modal" data-bs-target="#Modal-Descontos-@desc.id_cod_des">
-								 <i class="bi bi-trash3"></i> Remover 
-								</button>
-							</div>
-						</td>
-					</tr>
-				</tbody>
-				
+				<p>Nenhum desconto fixo cadastrado.</p>
+				break;
 			}
-			
-			break;
+			else
+			{
+				<thead class="text-center">
+					<tr>
+						<th class="col-3" scope="col">Motivos</th>
+						<th class="col-3" scope="col">Valores</th>
+						<th class="col-3" scope="col"></th>
+					</tr>
+				</thead>
+
+				@foreach (var desc in fp.Descontos)
+				{
+
+					<tbody class="text-center">
+						<tr>
+							<td>@desc.Motivo</td>
+							<td>@desc.Valor</td>
+							<td class="text-center">
+								<div class="btn-group-sm" role="group">
+									<button type="button" class="btn btn-danger" style="width: 6rem;" data-bs-toggle="modal" data-bs-target="#Modal-Descontos-@desc.id_cod_des">
+										<i class="bi bi-trash3"></i> Remover
+									</button>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				}
+				break;
+			}
+		}
+
+	</table>
+
+	@if (Model.Folhas != null)
+	{
+		foreach (var folha in Model.Folhas)
+		{
+			@if (folha.Descontos.Count <= 0)
+			{
+				foreach (var desc in folha.Descontos)
+				{
+					<!-- Modal -->
+					<div class="modal fade" id="Modal-Descontos-@desc.id_cod_des" tabindex="-1" aria-labelledby="modalConfirmarApagar" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h1 class="modal-title fs-5" id="modalConfirmarApagarLabel">Apagar desconto</h1>
+									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+								</div>
+								<div class="modal-body">
+									<p>
+										Deseja apagar o desconto <b>@desc.Motivo</b>?
+									</p>
+								</div>
+								<div class="modal-footer">
+									<a asp-controller="FolhaPagamento" asp-route-id="@desc.id_cod_des" asp-action="DeleteDesconto" class="btn btn-danger">Apagar</a>
+									<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				}
+			}
 		}
 	}
 
-</table>
 
-@if (Model.Folhas != null)
-{
-	foreach (var folha in Model.Folhas)
-	{
-		foreach (var desc in folha.Descontos)
+
+
+	<h3> Todos os beneficios</h3>
+
+	<table class="table table-striped">
+		@if (Model.Folhas != null)
 		{
-			<!-- Modal -->
-			<div class="modal fade" id="Modal-Descontos-@desc.id_cod_des" tabindex="-1" aria-labelledby="modalConfirmarApagar" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h1 class="modal-title fs-5" id="modalConfirmarApagarLabel">Apagar desconto</h1>
-							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-						</div>
-						<div class="modal-body">
-							<p>
-								Deseja apagar o desconto <b>@desc.Motivo</b>?
-							</p>
-						</div>
-						<div class="modal-footer">
-							<a asp-controller="FolhaPagamento" asp-route-id="@desc.id_cod_des" asp-action="DeleteDesconto" class="btn btn-danger">Apagar</a>
-							<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+			@foreach (var fp in Model.Folhas)
+			{
+				@if (fp.Beneficios.Count <= 0)
+				{
+					<p>Nenhum beneficio cadastrado para o funcionário</p>
+					break;
+				}
+				else
+				{
+					<thead class="text-center">
+						<tr>
+							<th class="col-3" scope="col">Beneficios</th>
+							<th class="col-3" scope="col">Valores</th>
+							<th class="col-3" scope="col"></th>
+						</tr>
+					</thead>
+
+					@foreach (var bene in fp.Beneficios)
+					{
+
+						<tbody class="text-center">
+							<tr>
+								<td>@bene.Nome_Ben</td>
+								<td>@bene.valor</td>
+								<td>
+									<div class="btn-group-sm" role="group">
+										<button type="button" class="btn btn-danger" style="width: 6rem;" data-bs-toggle="modal" data-bs-target="#Modal-Beneficio-@bene.id_cod_Ben">
+											<i class="bi bi-trash3"></i> Remover
+										</button>
+									</div>
+								</td>
+
+							</tr>
+						</tbody>
+					}
+					break;
+				}
+			}
+
+		}
+	</table>
+
+	@if (Model.Folhas != null)
+	{
+		foreach (var folha in Model.Folhas)
+		{
+			foreach (var bene in folha.Beneficios)
+			{
+				<!-- Modal -->
+				<div class="modal fade" id="Modal-Beneficio-@bene.id_cod_Ben" tabindex="-1" aria-labelledby="modalConfirmarApagar" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h1 class="modal-title fs-5" id="modalConfirmarApagarLabel">Apagar desconto</h1>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
+							<div class="modal-body">
+								<p>
+									Deseja apagar o beneficio <b>@bene.Nome_Ben</b>?
+								</p>
+							</div>
+							<div class="modal-footer">
+								<a asp-controller="FolhaPagamento" asp-route-id="@bene.id_cod_Ben" asp-action="DeleteBeneficio" class="btn btn-danger">Apagar</a>
+								<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			
+
+			}
 		}
 	}
 }
 
-<br />
 
 
-<h4> Todos os beneficios</h4>
 
-<table class="table table-striped">
-	@if (Model.Folhas != null)
-	{
-		@foreach (var fp in Model.Folhas)
-		{
-			<thead class="text-center">
-				<tr>
-					<th class="col-3" scope="col">Beneficios</th>
-					<th class="col-3" scope="col">Valores</th>
-					<th class="col-3" scope="col"></th>
-				</tr>
-			</thead>
 
-			@foreach (var bene in fp.Beneficios)
-			{
 
-				<tbody class="text-center">
-					<tr>
-						<td>@bene.Nome_Ben</td>
-						<td>@bene.valor</td>
-						<td>
-							<div class="btn-group-sm" role="group">
-								<button type="button" class="btn btn-danger" style="width: 6rem;" data-bs-toggle="modal" data-bs-target="#Modal-Beneficio-@bene.id_cod_Ben">
-									<i class="bi bi-trash3"></i> Remover
-								</button>
-							</div>
-						</td>
-
-					</tr>
-				</tbody>
-			}
-			break;
-		}
-
-	}
-</table>
-
-@if (Model.Folhas != null)
-{
-	foreach (var folha in Model.Folhas)
-	{
-		foreach (var bene in folha.Beneficios)
-		{
-			<!-- Modal -->
-			<div class="modal fade" id="Modal-Beneficio-@bene.id_cod_Ben" tabindex="-1" aria-labelledby="modalConfirmarApagar" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h1 class="modal-title fs-5" id="modalConfirmarApagarLabel">Apagar desconto</h1>
-							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-						</div>
-						<div class="modal-body">
-							<p>
-								Deseja apagar o beneficio <b>@bene.Nome_Ben</b>?
-							</p>
-						</div>
-						<div class="modal-footer">
-							<a asp-controller="FolhaPagamento" asp-route-id="@bene.id_cod_Ben" asp-action="DeleteBeneficio" class="btn btn-danger">Apagar</a>
-							<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
-						</div>
-					</div>
-				</div>
-			</div>
-
-		}
-	}
-}
-
-					<!-- Precisa adicionar um botao de voltar-->
+<!-- Precisa adicionar um botao de voltar-->
