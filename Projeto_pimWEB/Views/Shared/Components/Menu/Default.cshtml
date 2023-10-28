@@ -10,8 +10,11 @@
 	<ul class="navbar-nav flex-grow-1">
 		<!--Dropdown para funcionalidades do Funcionarios-->
 		<div class="dropdown">
-			<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-				Dropdown button
+			<button class="nav-item dropdown-toggle nav-link nav-bar border-0 @if(ViewContext.RouteData.Values["Action"].ToString() == "Registro"
+			|| ViewContext.RouteData.Values["Action"].ToString() == "Create"
+			|| ViewContext.RouteData.Values["Action"].ToString() == "Registro_Depen"
+			) {WriteLiteral("active-page");}" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+				Funcionário
 			</button>
 			<ul class="dropdown-menu dropdown-menu-dark border-0" style="background-color: #2c3639;">
 				<li>
@@ -20,7 +23,7 @@
 					    WriteLiteral("active-page");
 					  }
 					}"
-					   asp-area="" asp-controller="Funcionario" asp-action="Registro">qqqwwwee
+					   asp-area="" asp-controller="Funcionario" asp-action="Registro">
 						Listar Funcionarios
 					</a>
 				</li>
@@ -46,6 +49,8 @@
 				Consultar Folhas
 			</a>
 		</li>
+		<li class="d-sm-block d-md-none nav-link"><a class="dropdown-item text-danger" asp-area="" asp-controller="Login" asp-action="Sair"> Sair </a></li>
+
 	</ul>
 	<div class="dropstart d-none d-sm-block">
 		<button class="btn btn-lg btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
