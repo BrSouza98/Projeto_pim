@@ -112,7 +112,7 @@
                     <td></td>
                     <td>@Model.Irrf</td>
                 </tr>
-                @if (Model.Beneficios.Count >= 0)
+                @if (Model.Descontos.Count >= 0)
                 {
                     foreach (var Desconto in Model.Descontos)
                     {
@@ -120,8 +120,8 @@
                             <th scope="row"></th>
                             <td>@Desconto.Motivo</td>
                             <td></td>
-                            <td>@Desconto.Valor</td>
                             <td></td>
+                            <td>@Desconto.Valor</td>
                         </tr>
                     }
                 }
