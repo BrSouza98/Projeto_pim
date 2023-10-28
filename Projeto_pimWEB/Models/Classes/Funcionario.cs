@@ -5,6 +5,8 @@ namespace Projeto_pimWEB.Models.Classes
 {
     public class Funcionario : Pessoa
     {
+		
+
         [Key]
         public int id_cod_func { get; set; }
 
@@ -33,14 +35,12 @@ namespace Projeto_pimWEB.Models.Classes
         [StringLength(14, ErrorMessage ="Informe apenas 11 caracteres.")]
 		public string PIS { get; set; }
 
-
-        [NotMapped]
-        public FolhaPagamento FpRecente { get; set; }
         [NotMapped]
         public ICollection<FolhaPagamento> Folhas { get; set; }
         [NotMapped]
         public ICollection<Dependente> dependentes { get; set; }
        
+        
 
     }
 }
