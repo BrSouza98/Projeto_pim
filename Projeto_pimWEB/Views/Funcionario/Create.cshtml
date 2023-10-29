@@ -29,7 +29,7 @@
 
 				<div class="form-group">
 					<label asp-for="DtNascimento" class="control-label">Data de nascimento</label>
-					<input asp-for="DtNascimento" type="date" class="form-control" min="1903-01-01" max="2005-01-01" />
+					<input asp-for="DtNascimento" class="form-control" />
 					<span asp-validation-for="DtNascimento" class="text-danger"></span>
 				</div>
 				<div class="form-group">
@@ -70,7 +70,7 @@
 
 				<label asp-for="Genero" class="control-label"></label>
 				<select id="SelectGenero" asp-for="Genero" class="form-select">
-					<option selected>Selecione o Genero</option>
+					<option selected value="Não Informado">Selecione o Genero</option>
 					<option value="Homem Cis">Homem Cis</option>
 					<option value="Mulher Cis">Mulher Cis</option>
 					<option value="Mulher Trans">Mulher Trans</option>

@@ -116,17 +116,16 @@ var toggleVar = false
 const togglePwrdDiv = () => {
     if (toggleVar) {
         PasswordDiv.classList.remove('d-none')
-        console.log(toggleVar)
     } else {
         PasswordDiv.classList.add('d-none')
-        console.log(toggleVar)
     }
 }
 
 SwitchAcesso.addEventListener("click", () => {
     toggleVar = !toggleVar
     togglePwrdDiv()
-    
 })
+
+
 
 

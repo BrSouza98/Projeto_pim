@@ -33,9 +33,9 @@
         <div class="d-flex justify-content-between">
         <div>
             <h2 class="fs-4">EMPREGADOR</h2>
-            <p>nome</p>
-            <p>Endereço</p>
-            <p>CNPJ</p>
+            <p>EMPRESA: L&A CONSULTORIA ADMINISTRATIVA E CONTABIL LTDA.</p>
+            <p>ENDEREÇO: Av. Santa Ana, 542 - Centro - Araraquara, São Paulo</p>
+                <p>CNPJ: 56.483.317/0001-80</p>
         </div>
             <h2 class="fs-4">Recibo de Pagamento de Salário</h2>
         </div>
@@ -72,8 +72,8 @@
                 <tr>
                     <th scope="row">1</th>
                     <td>SALARIO BASE</td>
-                    <td>@Model.Jornada</td>
-                    <td>@Model.Funcionario.Salario</td>
+                    <td>@Model.Jornada HRS</td>
+                    <td>R$ @Model.Funcionario.Salario</td>
                     <td></td>
                 </tr>
                 @if(Model.HorasExtras > 0){
@@ -93,7 +93,7 @@
                             <th scope="row"></th>
                             <td>@Beneficio.Nome_Ben</td>
                             <td></td>
-                            <td>@Beneficio.valor</td>
+                            <td>R$ @Beneficio.valor</td>
                             <td></td>
                         </tr>
                     }
@@ -103,14 +103,14 @@
                     <td>INSS</td>
                     <td></td>
                     <td></td>
-                    <td>@Model.Inss</td>
+                    <td>R$ @Model.Inss</td>
                 </tr>
                 <tr>
                     <th scope="row"></th>
                     <td>IRRF</td>
                     <td></td>
                     <td></td>
-                    <td>@Model.Irrf</td>
+                    <td>R$ @Model.Irrf</td>
                 </tr>
                 @if (Model.Descontos.Count >= 0)
                 {
@@ -121,7 +121,7 @@
                             <td>@Desconto.Motivo</td>
                             <td></td>
                             <td></td>
-                            <td>@Desconto.Valor</td>
+                            <td>R$ @Desconto.Valor</td>
                         </tr>
                     }
                 }
@@ -130,12 +130,12 @@
                     <td></td>
                     <td></td>
                     <td>
-                        <p>Total de proventos:</p>
-                        <p>@Model.SalarioBruto</p>
+                        <p><b>Total de proventos:</b></p>
+                        <p>R$ @Model.SalarioBruto</p>
                     </td>
                     <td>
-                        <p>Total de Descontos:</p>
-                        <p>@TotalDesconto</p>
+                        <p><b>Total de Descontos:</b></p>
+                        <p>R$ @TotalDesconto</p>
                     </td>
                 </tr>
                 <tr>
@@ -143,7 +143,7 @@
                     <td></td>
                     <td></td>
                     <td>Liquído a receber -></td>
-                    <td>@Model.SalarioLiquido</td>
+                    <td>R$ @Model.SalarioLiquido</td>
                 </tr>
             </tbody>
         </table>

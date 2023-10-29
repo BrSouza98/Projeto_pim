@@ -1,17 +1,13 @@
 ﻿@model Projeto_pimWEB.Models.Classes.Funcionario
 
 @{
-	ViewData["Title"] = "View";
-	Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewData["Title"] = "Editando - " + Model.Nome;
 }
 
-<h4>Editando o funcionário @Model.Nome</h4>
-<hr />
-
-<form asp-controller="Funcionario" asp-action="Alterar" method="post">
+<form asp-controller="Funcionario" asp-action="Editar" method="post">
 	<div class="row align-content-center flex-column">
-		<div class="col-md-5">
-			<input asp-for="id_cod_func" type="hidden"/>
+		<div class="col-lg-5">
+
 			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 			<div id="firstForm" class="">
 				<h1 class="text-center"> Dados Pessoais</h1>
@@ -33,7 +29,7 @@
 
 				<div class="form-group">
 					<label asp-for="DtNascimento" class="control-label">Data de nascimento</label>
-					<input asp-for="DtNascimento" type="date" class="form-control" min="1903-01-01" max="2005-01-01" />
+					<input asp-for="DtNascimento" class="form-control" />
 					<span asp-validation-for="DtNascimento" class="text-danger"></span>
 				</div>
 				<div class="form-group">
@@ -66,10 +62,15 @@
 					<input asp-for="Email" class="form-control" />
 					<span asp-validation-for="Email" class="text-danger"></span>
 				</div>
+				<div class="form-group">
+					<label asp-for="Nacionalidade" class="control-label"></label>
+					<input asp-for="Nacionalidade" class="form-control" />
+					<span asp-validation-for="Nacionalidade" class="text-danger"></span>
+				</div>
 
 				<label asp-for="Genero" class="control-label"></label>
 				<select id="SelectGenero" asp-for="Genero" class="form-select">
-					<option selected>Selecione o Genero</option>
+					<option selected value="Não Informado">Selecione o Genero</option>
 					<option value="Homem Cis">Homem Cis</option>
 					<option value="Mulher Cis">Mulher Cis</option>
 					<option value="Mulher Trans">Mulher Trans</option>
@@ -85,8 +86,13 @@
 			<div id="secondForm" class="d-none">
 				<h1 class="text-center"> Endereço</h1>
 				<div class="form-group">
+					<label asp-for="CEP" class="control-label"></label>
+					<input asp-for="CEP" class="form-control border" onkeyup="cepApi(event.target.value)" maxlength="9" id="cep" />
+					<span asp-validation-for="CEP" class="text-danger"></span>
+				</div>
+				<div class="form-group">
 					<label asp-for="Rua" class="control-label"></label>
-					<input asp-for="Rua" class="form-control" />
+					<input asp-for="Rua" class="form-control" id="rua" />
 					<span asp-validation-for="Rua" class="text-danger"></span>
 				</div>
 				<div class="form-group">
@@ -96,22 +102,17 @@
 				</div>
 				<div class="form-group">
 					<label asp-for="Bairro" class="control-label"></label>
-					<input asp-for="Bairro" class="form-control" />
+					<input asp-for="Bairro" class="form-control" id="bairro" />
 					<span asp-validation-for="Bairro" class="text-danger"></span>
 				</div>
 				<div class="form-group">
-					<label asp-for="CEP" class="control-label"></label>
-					<input asp-for="CEP" class="form-control border" onkeyup="cepApi(event.target.value)" maxlength="9" id="cep" />
-					<span asp-validation-for="CEP" class="text-danger"></span>
-				</div>
-				<div class="form-group">
 					<label asp-for="Cidade" class="control-label"></label>
-					<input asp-for="Cidade" class="form-control" />
+					<input asp-for="Cidade" class="form-control" id="cidade" />
 					<span asp-validation-for="Cidade" class="text-danger"></span>
 				</div>
 				<div>
 					<label asp-for="Estado" class="control-label"></label>
-					<select id="SelectEstado" asp-for="Estado" class="form-select">
+					<select id="estado" asp-for="Estado" class="form-select">
 						<option selected>Selecione o Estado</option>
 						<option value="AC">AC</option>
 						<option value="AL">AL</option>
@@ -142,12 +143,6 @@
 						<option value="TO">TO</option>
 					</select>
 					<span asp-validation-for="Estado" class="text-danger"></span>
-						
-				</div>
-				<div class="form-group">
-					<label asp-for="Nacionalidade" class="control-label"></label>
-					<input asp-for="Nacionalidade" class="form-control" />
-					<span asp-validation-for="Nacionalidade" class="text-danger"></span>
 				</div>
 				<div class="form-group">
 					<label asp-for="Complemento" class="control-label"></label>
@@ -180,16 +175,17 @@
 					<span asp-validation-for="Salario" class="text-danger"></span>
 				</div>
 				<div class="form-group">
-					<label asp-for="HoraSemanais" class="control-label">Carga Horaria</label>
+					<label asp-for="HoraSemanais" class="control-label">Horas semanais</label>
 					<input asp-for="HoraSemanais" class="form-control" />
 					<span asp-validation-for="HoraSemanais" class="text-danger"></span>
 				</div>
 
 				<div class="form-group">
 					<label asp-for="PIS" class="control-label"></label>
-					<input asp-for="PIS" class="form-control" maxlength="11" onkeypress="validarPIS(event.target.value)" />
+					<input asp-for="PIS" class="form-control" maxlength="14" onkeypress="validarPIS(event.target.value)" id="pis" />
 					<span asp-validation-for="PIS" class="text-danger"></span>
 				</div>
+
 				<div class="form-group form-check form-switch">
 					<label class="form-check-label">
 						<input class="form-check-input" asp-for="Ativo" /> Funcionario ativo
@@ -202,37 +198,21 @@
 					</label>
 				</div>
 
-				<div id="PasswordDiv" class="@{ 
-					if(Convert.ToBoolean(Model.TemAcesso) == true) { WriteLiteral(""); } else { WriteLiteral("d-none");}
-				}">
-					<div class="form-group">
-						<label asp-for="Password" class="control-label"></label>
-						<input asp-for="Password" type="password" class="form-control" />
-						<span asp-validation-for="Password" class="text-danger"></span>
-					</div>
-
-					<div class="form-group">
-						<label asp-for="ConfirmPassword" class="control-label"> Confirmar Password</label>
-						<input asp-for="ConfirmPassword" type="password" class="form-control" />
-						<span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-					</div>
-				</div>
-
 			</div>
 
 		</div>
 		<div class="col-md-5 mt-5 mb-5">
 			<div class="row justify-content-between">
 				<div class="col d-flex justify-content-start">
-					<button type="button" class="btn btn-lg btn-secondary" id="PrevBtn">Voltar</button>
+					<button type="button" class="btn btn-lg btn-secondary" id="PrevBtn"> Voltar</button>
 				</div>
 
 				<div class="col d-flex justify-content-end d-none">
-					<button type="submit" class="btn btn-lg btn-dark" id="FinCadBtn">Finalizar</button>
+					<button type="submit" class="btn btn-lg btn-dark" id="FinCadBtn"> Finalizar </button>
 				</div>
 
 				<div class="col d-flex justify-content-end">
-					<button type="button" class="btn btn-lg btn-dark" id="NextBtn"> Avançar</button>
+					<button type="button" class="btn btn-lg btn-dark" id="NextBtn"> Avançar </button>
 				</div>
 			</div>
 		</div>
