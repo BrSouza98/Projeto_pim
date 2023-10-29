@@ -24,9 +24,10 @@ namespace Projeto_pimWEB.Metodos
 
         }
 
-        public Funcionario GetFuncionario(int id) // Retorna apenas o funcionario pela chave primaria 
+
+		public Funcionario GetFuncionario(int id) // Retorna apenas o funcionario pela chave primaria 
         {
-            Funcionario func = _mbdt.funcionarios.FirstOrDefault(i => i.id_cod_func == id);
+            Funcionario? func = _mbdt.funcionarios.FirstOrDefault(i => i.id_cod_func == id);
             return func;
         }
 
@@ -70,6 +71,7 @@ namespace Projeto_pimWEB.Metodos
             func_db.Bairro = funcionario.Bairro;
             func_db.CEP = funcionario.CEP;
             func_db.Complemento = funcionario.Complemento;
+            func_db.Password = funcionario.Password;
 
             _mbdt.funcionarios.Update(func_db);
             _mbdt.SaveChanges();
@@ -128,7 +130,6 @@ namespace Projeto_pimWEB.Metodos
             return true;
         }
 
-        
-    }
+	}
 
 }

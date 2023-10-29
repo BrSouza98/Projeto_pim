@@ -4,10 +4,10 @@
 	ViewData["Title"] = "Editando - " + Model.Nome;
 }
 
-<form asp-controller="Funcionario" asp-action="Editar" method="post">
+<form asp-controller="Funcionario" asp-action="Alterar" method="post">
 	<div class="row align-content-center flex-column">
 		<div class="col-lg-5">
-
+			<input type="hidden" asp-for="id_cod_func" value="@Model.id_cod_func" />
 			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 			<div id="firstForm" class="">
 				<h1 class="text-center"> Dados Pessoais</h1>
@@ -197,6 +197,20 @@
 						<input class="form-check-input" asp-for="TemAcesso" /> Acesso ao sistema
 					</label>
 				</div>
+				<div id="PasswordDiv" class="d-none">
+					<div class="form-group">
+						<label asp-for="Password" class="control-label"></label>
+						<input asp-for="Password" type="password" class="form-control" />
+						<span asp-validation-for="Password" class="text-danger"></span>
+					</div>
+
+					<div class="form-group">
+						<label asp-for="ConfirmPassword" class="control-label"> Confirmar Password</label>
+						<input asp-for="ConfirmPassword" type="password" class="form-control" />
+						<span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+					</div>
+				</div>
+
 
 			</div>
 
