@@ -23,7 +23,7 @@ namespace Projeto_pimWEB.Models.Classes
 		public string CPF { get; set; }
 
 		[Required(ErrorMessage = "Campo obrigatorio.")]
-		[StringLength(12), MinLength(12, ErrorMessage ="Obrigado ter 12 caracteres.")]
+		[StringLength(12), MinLength(12, ErrorMessage ="Obrigatório minimo de 12 caracteres.")]
 		public string RG { get; set; }
 
 		[StringLength(60)]

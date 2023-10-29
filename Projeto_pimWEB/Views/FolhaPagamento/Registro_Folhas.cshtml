@@ -25,7 +25,7 @@
 		{
 			foreach (var fp in Model)
 			{
-				double Impostos = fp.Inss + fp.Fgts + fp.Irrf;
+				double Impostos = Math.Round(fp.Inss + fp.Fgts + fp.Irrf, 2);
 				<tr>
 					<th scope="row" class="d-none d-lg-table-cell">@fp.Funcionario.id_cod_func</th>
 					<td>@fp.MesAnoRef</td>

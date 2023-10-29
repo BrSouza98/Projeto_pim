@@ -58,11 +58,11 @@ else
 						<td>@fp.id_cod_FP</td>
 						<td>@fp.DataEmissao</td>
 						<td>@fp.MesAnoRef</td>
-						<td>@fp.SalarioLiquido</td>
-						<td>@fp.SalarioBruto</td>
-						<td>@fp.Inss</td>
-						<td>@fp.Irrf</td>
-						<td>@fp.Fgts</td>
+						<td>R$ @fp.SalarioLiquido</td>
+						<td>R$ @fp.SalarioBruto</td>
+						<td>R$ @fp.Inss</td>
+						<td>R$ @fp.Irrf</td>
+						<td>R$ @fp.Fgts</td>
 						<td>@fp.Faltas</td>
 						<td>
 							<div>
@@ -122,32 +122,29 @@ else
 	{
 		foreach (var folha in Model.Folhas)
 		{
-			@if (folha.Descontos.Count <= 0)
+			foreach (var desc in folha.Descontos)
 			{
-				foreach (var desc in folha.Descontos)
-				{
-					<!-- Modal -->
-					<div class="modal fade" id="Modal-Descontos-@desc.id_cod_des" tabindex="-1" aria-labelledby="modalConfirmarApagar" aria-hidden="true">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h1 class="modal-title fs-5" id="modalConfirmarApagarLabel">Apagar desconto</h1>
-									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-								</div>
-								<div class="modal-body">
-									<p>
-										Deseja apagar o desconto <b>@desc.Motivo</b>?
-									</p>
-								</div>
-								<div class="modal-footer">
-									<a asp-controller="FolhaPagamento" asp-route-id="@desc.id_cod_des" asp-action="DeleteDesconto" class="btn btn-danger">Apagar</a>
-									<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
-								</div>
+				<!-- Modal -->
+				<div class="modal fade" id="Modal-Descontos-@desc.id_cod_des" tabindex="-1" aria-labelledby="modalConfirmarApagar" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h1 class="modal-title fs-5" id="modalConfirmarApagarLabel">Apagar desconto</h1>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
+							<div class="modal-body">
+								<p>
+									Deseja apagar o desconto <b>@desc.Motivo</b>?
+								</p>
+							</div>
+							<div class="modal-footer">
+								<a asp-controller="FolhaPagamento" asp-route-id="@desc.id_cod_des" asp-action="DeleteDesconto" class="btn btn-danger">Apagar</a>
+								<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
 							</div>
 						</div>
 					</div>
+				</div>
 
-				}
 			}
 		}
 	}
